@@ -38,15 +38,9 @@ Text HERE.
 
 ## Questions
 
-The two questions you want to answer.
-
 ### Question 1
 
-The first topic we will explore is if being on the home or away team has a significant effect on the team's performance. Our hypothesis is that the home team will have 1) more goals at both half-time and full-time and 2) more wins due to "home team advantage", where it is thought that the hosting team has a significant advantage over the visiting team. This hypothesis will be explored and tested using the variables described in "Analysis plan".
-
-### Question 2
-
-Text HERE.
+The first topic we will explore is if being on the home or away team has a significant effect on the team's performance. Our hypothesis is that the home team will have 1) more goals at both half-time and full-time and 2) more wins due to "home team advantage", where it is thought that the hosting team has a significant advantage over the visiting team. This hypothesis will be explored and tested using the variables described in "Analysis plan". The home team and away team advantage will also be analyzed using the full time results as well as goals.
 
 ## Analysis plan
 
