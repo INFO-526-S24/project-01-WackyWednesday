@@ -1,5 +1,5 @@
 ---
-title: "Proposal title"
+title: "Premier League - Group 4 WackyWednesday"
 subtitle: "Proposal"
 format: html
 editor: visual
@@ -16,16 +16,53 @@ library(tidyverse)
 ```{r}
 #| label: load-dataset
 #| message: false
+soccer <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-04-04/soccer21-22.csv')
 ```
 
 A brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.
 
 Make sure to load the data and use inline code for some of this information.
 
+Text HERE.
+
+```{r}
+#| label: explore-dataset
+## Exploratory code HERE.
+```
+
+
 ## Questions
 
 The two questions you want to answer.
 
+### Question 1
+
+Text HERE.
+
+### Question 2
+
+Text HERE.
+
 ## Analysis plan
 
 -   A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).
+
+### Question 1
+
+- Variables involved:
+  - HERE
+- Variables to be created:
+  - HERE (if applicable)
+- External data:
+  - HERE (if applicable)
+
+### Question 2
+
+- Variables involved:
+  - Goals: `FTHG` (Full Time Home Goals), `FTAG` (Full Time Away Goals), and `FTR` (Full Time Results).
+  - Fouls: `HF` (Home Fouls) and `AF` (Away Fouls).
+  - Cards: `HY` (Home Yellow) , `AY` (Away Yellow), `HR` (Home Red), and `AR` (Away Red).
+- Variables to be created:
+  - Ratios between the total number of yellow cards, red cards, and fouls, by team and game.
+  - Ratio of total number of cards and number of fouls, by team and game.
+- This question is not likely to require external data to be merged in.
