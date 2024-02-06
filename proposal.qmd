@@ -1,6 +1,6 @@
 ---
-title: "Premier League - Group 4 WackyWednesday"
-subtitle: "Proposal"
+title: "Group 4 WackyWednesday - Game-Metrics: Decoding Football Outcomes Through Statistical Precision - Premier League"
+subtitle: "Unveiling Team Dynamics, Discipline, and Shot Efficiency in the World of Football"
 format: html
 editor: visual
 ---
@@ -19,7 +19,11 @@ library(tidyverse)
 soccer <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-04-04/soccer21-22.csv')
 ```
 
-A brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.
+This dataset focus around one of the world's most watched sports leagues - football, It offers clear details that hold substantial potential. Football matches are known for their blend of skill, strategy, and athleticism.Its analysed through this dataset, providing a unique opportunity to explore statistical fouls affecting game outcomes. From team discipline records to the effectiveness of shots on goal, the dataset covers a wide spectrum of factors. Its richness enables a thorough examination, making it a valuable resource for gaining insights into the multifaceted elements that shape football match results and outcomes.
+
+On the other hand, it allows for a singular exploration into the interplay between in-game dynamics and overall success or failure. This analysis could prove invaluable to observers, coaches, and even players striving to enhance their tactical approaches.
+
+By incorporating halftime data, the analysis gains additional depth, providing a fresh perspective on the dynamics within games. In Conclusion, this dataset offers a comprehensive view of the multifaceted elements contributing to the outcome of football matches. Its richness and depth make it a valuable resource for anyone seeking to gain insights into the complexities of the game, be it for strategic planning, performance improvement, or a deeper understanding of the sport's intricacies.
 
 Make sure to load the data and use inline code for some of this information.
 
