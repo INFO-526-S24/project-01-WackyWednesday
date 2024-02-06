@@ -54,12 +54,39 @@ Text HERE.
 
 ### Question 1
 
--   Variables involved:
-    -   HERE
--   Variables to be created:
-    -   HERE (if applicable)
--   External data:
-    -   HERE (if applicable)
+#### Variables involved:
+
+-   The name of the home team: `HomeTeam` (The home team)
+
+-   Wins and losses: `FTR` (Full time result) :
+
+-   The name of the away team: `AwayTeam` (The away team)
+
+-   The half time results: `HTR` (Half Time Results)
+
+-   Full time Home goals: `FTHG` Full time home goals Full time goals for the away team: `FTAG` Full time away goals
+
+-   Halftime goals for the home team: `HTHG` Halftime home goals
+
+-   Halftime goals for the away team: `HTAG` Halftime away goalsThe name of the home team: `HomeTeam` (The home team)
+
+-   Wins and losses: `FTR` (Full time result) :
+
+-   The name of the away team: `AwayTeam` (The away team)
+
+-   The half time results: `HTR` (Half Time Results) Fulltime Home goals: `FTHG` Full time home goals Fulltime goals for the away team: `FTAG` Full time away goals
+
+-   Halftime goals for the home team: `HTHG` Halftime home goals
+
+-   Halftime goals for the away team: `HTAG` Halftime away goals
+
+#### Variables to be created:
+
+-   Not likely for this question
+
+#### External Data set:
+
+-   Not likely for this question.
 
 ### Question 2
 
