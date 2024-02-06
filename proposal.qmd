@@ -30,14 +30,13 @@ Text HERE.
 ## Exploratory code HERE.
 ```
 
-
 ## Questions
 
 The two questions you want to answer.
 
 ### Question 1
 
-Text HERE.
+The first topic we will explore is if being on the home or away team has a significant effect on the team's performance. Our hypothesis is that the home team will have 1) more goals at both half-time and full-time and 2) more wins due to "home team advantage", where it is thought that the hosting team has a significant advantage over the visiting team. This hypothesis will be explored and tested using the variables described in "Analysis plan".
 
 ### Question 2
 
@@ -49,20 +48,20 @@ Text HERE.
 
 ### Question 1
 
-- Variables involved:
-  - HERE
-- Variables to be created:
-  - HERE (if applicable)
-- External data:
-  - HERE (if applicable)
+-   Variables involved:
+    -   HERE
+-   Variables to be created:
+    -   HERE (if applicable)
+-   External data:
+    -   HERE (if applicable)
 
 ### Question 2
 
-- Variables involved:
-  - Goals: `FTHG` (Full Time Home Goals), `FTAG` (Full Time Away Goals), and `FTR` (Full Time Results).
-  - Fouls: `HF` (Home Fouls) and `AF` (Away Fouls).
-  - Cards: `HY` (Home Yellow) , `AY` (Away Yellow), `HR` (Home Red), and `AR` (Away Red).
-- Variables to be created:
-  - Ratios between the total number of yellow cards, red cards, and fouls, by team and game.
-  - Ratio of total number of cards and number of fouls, by team and game.
-- This question is not likely to require external data to be merged in.
+-   Variables involved:
+    -   Goals: `FTHG` (Full Time Home Goals), `FTAG` (Full Time Away Goals), and `FTR` (Full Time Results).
+    -   Fouls: `HF` (Home Fouls) and `AF` (Away Fouls).
+    -   Cards: `HY` (Home Yellow) , `AY` (Away Yellow), `HR` (Home Red), and `AR` (Away Red).
+-   Variables to be created:
+    -   Ratios between the total number of yellow cards, red cards, and fouls, by team and game.
+    -   Ratio of total number of cards and number of fouls, by team and game.
+-   This question is not likely to require external data to be merged in.
