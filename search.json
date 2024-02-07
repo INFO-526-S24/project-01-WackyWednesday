@@ -1,0 +1,135 @@
+[
+  {
+    "objectID": "data/README 2.html",
+    "href": "data/README 2.html",
+    "title": "Data",
+    "section": "",
+    "text": "[Dataset]: Description of the dataset"
+  },
+  {
+    "objectID": "data/README 2.html#variable-names-and-descriptions",
+    "href": "data/README 2.html#variable-names-and-descriptions",
+    "title": "Data",
+    "section": "Variable Names and Descriptions:",
+    "text": "Variable Names and Descriptions:\n\nvariable: Description"
+  },
+  {
+    "objectID": "data/README 2.html#data-types",
+    "href": "data/README 2.html#data-types",
+    "title": "Data",
+    "section": "Data Types:",
+    "text": "Data Types:\n\nColumn: data type"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This project was developed by [Team Name] For INFO 526 - Data Analysis and Visualization at the University of Arizona, taught by Dr. Greg Chism. The team is comprised of the following team members.\n\nTeam member 1: One sentence description of Team member 1 (e.g., year, major, etc.).\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.)."
+  },
+  {
+    "objectID": "presentation.html#quarto",
+    "href": "presentation.html#quarto",
+    "title": "Project title",
+    "section": "Quarto",
+    "text": "Quarto\n\nThe presentation is created using the Quarto CLI\n## sets the start of a new slide"
+  },
+  {
+    "objectID": "presentation.html#layouts",
+    "href": "presentation.html#layouts",
+    "title": "Project title",
+    "section": "Layouts",
+    "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\nAnd add footnotes"
+  },
+  {
+    "objectID": "presentation.html#code",
+    "href": "presentation.html#code",
+    "title": "Project title",
+    "section": "Code",
+    "text": "Code\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
+  },
+  {
+    "objectID": "presentation.html#plots",
+    "href": "presentation.html#plots",
+    "title": "Project title",
+    "section": "Plots",
+    "text": "Plots"
+  },
+  {
+    "objectID": "presentation.html#plot-and-text",
+    "href": "presentation.html#plot-and-text",
+    "title": "Project title",
+    "section": "Plot and text",
+    "text": "Plot and text\n\n\n\nSome text\ngoes here"
+  },
+  {
+    "objectID": "presentation.html#tables",
+    "href": "presentation.html#tables",
+    "title": "Project title",
+    "section": "Tables",
+    "text": "Tables\nIf you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\nAdelie\nTorgersen\n39.1\n18.7\n181\n3750\nmale\n\n\nAdelie\nTorgersen\n39.5\n17.4\n186\n3800\nfemale\n\n\nAdelie\nTorgersen\n40.3\n18.0\n195\n3250\nfemale\n\n\nAdelie\nTorgersen\nNA\nNA\nNA\nNA\nNA\n\n\nAdelie\nTorgersen\n36.7\n19.3\n193\n3450\nfemale\n\n\nAdelie\nTorgersen\n39.3\n20.6\n190\n3650\nmale"
+  },
+  {
+    "objectID": "presentation.html#images",
+    "href": "presentation.html#images",
+    "title": "Project title",
+    "section": "Images",
+    "text": "Images\n\nImage credit: Danielle Navarro, Percolate."
+  },
+  {
+    "objectID": "presentation.html#math-expressions",
+    "href": "presentation.html#math-expressions",
+    "title": "Project title",
+    "section": "Math Expressions",
+    "text": "Math Expressions\nYou can write LaTeX math expressions inside a pair of dollar signs, e.g. $\\alpha+\\beta$ renders \\(\\alpha + \\beta\\). You can use the display style with double dollar signs:\n$$\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i$$\n\\[\n\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i\n\\]\nLimitations:\n\nThe source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting $$ must appear in the very beginning of a line, followed immediately by a non-space character, and the ending $$ must be at the end of a line, led by a non-space character;\nThere should not be spaces after the opening $ or before the closing $."
+  },
+  {
+    "objectID": "presentation.html#feeling-adventurous",
+    "href": "presentation.html#feeling-adventurous",
+    "title": "Project title",
+    "section": "Feeling adventurous?",
+    "text": "Feeling adventurous?\n\nYou are welcomed to use the default styling of the slides. In fact, that's what I expect majority of you will do. You will differentiate yourself with the content of your presentation.\nBut some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Project title",
+    "section": "",
+    "text": "Add project abstract here."
+  },
+  {
+    "objectID": "index.html#abstract",
+    "href": "index.html#abstract",
+    "title": "Project title",
+    "section": "",
+    "text": "Add project abstract here."
+  },
+  {
+    "objectID": "proposal.html",
+    "href": "proposal.html",
+    "title": "Group 4 WackyWednesday - Game-Metrics: Decoding Football Outcomes Through Statistical Precision - Premier League",
+    "section": "",
+    "text": "library(tidyverse)"
+  },
+  {
+    "objectID": "proposal.html#dataset",
+    "href": "proposal.html#dataset",
+    "title": "Group 4 WackyWednesday - Game-Metrics: Decoding Football Outcomes Through Statistical Precision - Premier League",
+    "section": "Dataset",
+    "text": "Dataset\n\nsoccer &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-04-04/soccer21-22.csv')\nsoccer\n\n# A tibble: 380 × 22\n   Date      HomeTeam AwayTeam  FTHG  FTAG FTR    HTHG  HTAG HTR   Referee    HS\n   &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;\n 1 13/08/20… Brentfo… Arsenal      2     0 H         1     0 H     M Oliv…     8\n 2 14/08/20… Man Uni… Leeds        5     1 H         1     0 H     P Tier…    16\n 3 14/08/20… Burnley  Brighton     1     2 A         1     0 H     D Coote    14\n 4 14/08/20… Chelsea  Crystal…     3     0 H         2     0 H     J Moss     13\n 5 14/08/20… Everton  Southam…     3     1 H         0     1 A     A Madl…    14\n 6 14/08/20… Leicest… Wolves       1     0 H         1     0 H     C Paws…     9\n 7 14/08/20… Watford  Aston V…     3     2 H         2     0 H     M Dean     13\n 8 14/08/20… Norwich  Liverpo…     0     3 A         0     1 A     A Marr…    14\n 9 15/08/20… Newcast… West Ham     2     4 A         2     1 H     M Atki…    17\n10 15/08/20… Tottenh… Man City     1     0 H         0     0 D     A Tayl…    13\n# ℹ 370 more rows\n# ℹ 11 more variables: AS &lt;dbl&gt;, HST &lt;dbl&gt;, AST &lt;dbl&gt;, HF &lt;dbl&gt;, AF &lt;dbl&gt;,\n#   HC &lt;dbl&gt;, AC &lt;dbl&gt;, HY &lt;dbl&gt;, AY &lt;dbl&gt;, HR &lt;dbl&gt;, AR &lt;dbl&gt;\n\n\nDescription of the Dataset\nThe dataset comes from Premier League Match Data 2021-2022 (https://www.kaggle.com/datasets/evangower/premier-league-match-data) on Kaggle. The time Period covered in this dataset spans entire 2021 to 2022 Premier League season. The 2021–22 Premier League season marked the 30th anniversary of the Premier League, the foremost league for professional football clubs in England since its creation in 1992 and represented the 123rd season of the highest level of English football.\nVariables in this dataset includes teams, referee, and stats by home and away side such as fouls, shots, cards, and weekly rankings for the season. The dataset appears to be in a tabular format with 380 rows representing individual matches and 22 columns representing each variable Both categorical and numerical variables are included.\nThe description of each variable are:\n1. Date (character): The date when the match was played.\n2. HomeTeam (character): The home team.\n3. AwayTeam (character): The away team.\n4. FTHG (double): Full-time home goals.\n5. FTAG (double): Full-time away goals.\n6. FTR (character): Full-time result.\n7. HTHG (double): Half-time home goals.\n8. HTAG (double): Half-time away goals.\n9. HTR (character): Half-time result.\n10. Referee (character): Referee of the match.\n11. HS (double): Number of shots taken by the home team.\n12. AS (double): Number of shots taken by the away team.\n13. HST (double): Number of shots on target by the home team.\n14. AST (double): Number of shots on target by the away team.\n15. HF (double): Number of fouls by the home team.\n16. AF (double): Number of fouls by the away team.\n17. HC (double): Number of corners taken by the home team.\n18. AC (double): Number of corners taken by the away team.\n19. HY (double): Number of yellow cards received by the home team.\n20. AY (double): Number of yellow cards received by the away team.\n21. HR (double): Number of red cards received by the home team.\n22. AR (double): Number of red cards received by the away team.\nThis dataset is ideal for analytical projects aiming to understand football dynamics, player contributions, and team strategies throughout the season.\n\nReason for Choosing this Dataset:\nThis dataset, focused around one of the world’s most watched sports leagues - football, It offers clear details that hold substantial potential. Football matches are known for their blend of skill, strategy, and athleticism.Its analysed through this dataset, providing a unique opportunity to explore statistical fouls affecting game outcomes. From team discipline records to the effectiveness of shots on goal, the dataset covers a wide spectrum of factors. Its richness enables a thorough examination, making it a valuable resource for gaining insights into the multifaceted elements that shape football match results and outcomes.\nOn the other hand, it allows for a singular exploration into the interplay between in-game dynamics and overall success or failure. This analysis could prove invaluable to observers, coaches, and even players striving to enhance their tactical approaches.\nBy incorporating halftime data, the analysis gains additional depth, providing a fresh perspective on the dynamics within games. In Conclusion, this dataset offers a comprehensive view of the multifaceted elements contributing to the outcome of football matches. Its richness and depth make it a valuable resource for anyone seeking to gain insights into the complexities of the game, be it for strategic planning, performance improvement, or a deeper understanding of the sport’s intricacies.\nMake sure to load the data and use inline code for some of this information.\nText HERE.\n\n## Exploratory code HERE."
+  },
+  {
+    "objectID": "proposal.html#questions",
+    "href": "proposal.html#questions",
+    "title": "Group 4 WackyWednesday - Game-Metrics: Decoding Football Outcomes Through Statistical Precision - Premier League",
+    "section": "Questions",
+    "text": "Questions\n\nQuestion 1\nThe first topic we will explore is if being on the home or away team has a significant effect on the team’s performance. Our hypothesis is that the home team will have 1) more goals at both half-time and full-time and 2) more wins due to “home team advantage”, where it is thought that the hosting team has a significant advantage over the visiting team. This hypothesis will be explored and tested using the variables described in “Analysis plan”. The home team and away team advantage will also be analyzed using the full time results as well as goals."
+  },
+  {
+    "objectID": "proposal.html#analysis-plan",
+    "href": "proposal.html#analysis-plan",
+    "title": "Group 4 WackyWednesday - Game-Metrics: Decoding Football Outcomes Through Statistical Precision - Premier League",
+    "section": "Analysis plan",
+    "text": "Analysis plan\n\nA plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).\n\n\nQuestion 1\n\nVariables involved:\n\nThe name of the home team: HomeTeam (The home team)\nWins and losses: FTR (Full time result) :\nThe name of the away team: AwayTeam (The away team)\nThe half time results: HTR (Half Time Results)\nFull time Home goals: FTHG Full time home goals Full time goals for the away team: FTAG Full time away goals\nHalftime goals for the home team: HTHG Halftime home goals\nHalftime goals for the away team: HTAG Halftime away goalsThe name of the home team: HomeTeam (The home team)\nWins and losses: FTR (Full time result) :\nThe name of the away team: AwayTeam (The away team)\nThe half time results: HTR (Half Time Results) Fulltime Home goals: FTHG Full time home goals Fulltime goals for the away team: FTAG Full time away goals\nHalftime goals for the home team: HTHG Halftime home goals\nHalftime goals for the away team: HTAG Halftime away goals\n\n\n\nVariables to be created:\n\nNot likely for this question\n\n\n\nExternal Data set:\n\nNot likely for this question.\n\n\n\n\nQuestion 2\n\nVariables involved:\n\nGoals: FTHG (Full Time Home Goals), FTAG (Full Time Away Goals), and FTR (Full Time Results).\nFouls: HF (Home Fouls) and AF (Away Fouls).\nCards: HY (Home Yellow) , AY (Away Yellow), HR (Home Red), and AR (Away Red).\n\nVariables to be created:\n\nRatios between the total number of yellow cards, red cards, and fouls, by team and game.\nRatio of total number of cards and number of fouls, by team and game.\n\nThis question is not likely to require external data to be merged in.\n\nIs it possible to forecast the result (final scores) of soccer matches based on the ratio of fouls to cards (yellow and red combined)?\n\nDo teams with higher foul to card ratios typically end up with lower final scores?\nIs there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?\nHow do the ratios of fouls to cards differ between home and away teams?"
+  }
+]
