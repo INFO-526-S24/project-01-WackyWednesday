@@ -17,7 +17,62 @@ library(tidyverse)
 #| label: load-dataset
 #| message: false
 soccer <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-04-04/soccer21-22.csv')
+soccer
 ```
+
+**Description of the Dataset**
+
+The dataset comes from Premier League Match Data 2021-2022 (<https://www.kaggle.com/datasets/evangower/premier-league-match-data>) on Kaggle. The time Period covered in this dataset spans entire 2021 to 2022 Premier League season. The 2021–22 Premier League season marked the 30th anniversary of the Premier League, the foremost league for professional football clubs in England since its creation in 1992 and represented the 123rd season of the highest level of English football.
+
+Variables in this dataset includes teams, referee, and stats by home and away side such as fouls, shots, cards, and weekly rankings for the season. The dataset appears to be in a tabular format with 380 rows representing individual matches and 22 columns representing each variable Both categorical and numerical variables are included.
+
+The description of each variable are:
+
+1\. Date (character): The date when the match was played.
+
+2\. HomeTeam (character): The home team.
+
+3\. AwayTeam (character): The away team.
+
+4\. FTHG (double): Full-time home goals.
+
+5\. FTAG (double): Full-time away goals.
+
+6\. FTR (character): Full-time result.
+
+7\. HTHG (double): Half-time home goals.
+
+8\. HTAG (double): Half-time away goals.
+
+9\. HTR (character): Half-time result.
+
+10\. Referee (character): Referee of the match.
+
+11\. HS (double): Number of shots taken by the home team.
+
+12\. AS (double): Number of shots taken by the away team.
+
+13\. HST (double): Number of shots on target by the home team.
+
+14\. AST (double): Number of shots on target by the away team.
+
+15\. HF (double): Number of fouls by the home team.
+
+16\. AF (double): Number of fouls by the away team.
+
+17\. HC (double): Number of corners taken by the home team.
+
+18\. AC (double): Number of corners taken by the away team.
+
+19\. HY (double): Number of yellow cards received by the home team.
+
+20\. AY (double): Number of yellow cards received by the away team.
+
+21\. HR (double): Number of red cards received by the home team.
+
+22\. AR (double): Number of red cards received by the away team.
+
+This dataset is ideal for analytical projects aiming to understand football dynamics, player contributions, and team strategies throughout the season.\
 
 **Reason for Choosing this Dataset:**
 
@@ -95,6 +150,6 @@ The first topic we will explore is if being on the home or away team has a signi
 
 Is it possible to forecast the result (final scores) of soccer matches based on the ratio of fouls to cards (yellow and red combined)?
 
-a. Do teams with higher foul to card ratios typically end up with lower final scores?
-b. Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?
-c. How do the ratios of fouls to cards differ between home and away teams?
+a.  Do teams with higher foul to card ratios typically end up with lower final scores?
+b.  Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?
+c.  How do the ratios of fouls to cards differ between home and away teams?
