@@ -1,6 +1,6 @@
 ---
-title: "Group 4 WackyWednesday - Game-Metrics: Decoding Football Outcomes Through Statistical Precision - Premier League"
-subtitle: "Unveiling Team Dynamics, Discipline, and Shot Efficiency in the World of Football"
+title: "Group 4 WackyWednesday - Game Metrics: Decoding Premier League Outcomes Through Visual Analysis and Data Exploration"
+subtitle: "Exploring home versus away team dynamics in the world of English football"
 format: html
 editor: visual
 ---
@@ -8,7 +8,13 @@ editor: visual
 ```{r}
 #| label: load-pkgs
 #| message: false
-library(tidyverse)
+#| echo: false
+if(!require(pacman))
+  install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               dlookr
+               )
 ```
 
 ## Dataset
@@ -17,125 +23,103 @@ library(tidyverse)
 #| label: load-dataset
 #| message: false
 soccer <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-04-04/soccer21-22.csv')
-soccer
 ```
 
 **Description of the Dataset**
 
-The dataset comes from Premier League Match Data 2021-2022 (<https://www.kaggle.com/datasets/evangower/premier-league-match-data>) on Kaggle. The time Period covered in this dataset spans entire 2021 to 2022 Premier League season. The 2021–22 Premier League season marked the 30th anniversary of the Premier League, the foremost league for professional football clubs in England since its creation in 1992 and represented the 123rd season of the highest level of English football.
+The dataset comes from [`TidyTuesday`](https://github.com/rfordatascience/tidytuesday)'s 04 April 2023 post ["Premier League Match Data 2021-2022"](https://github.com/rfordatascience/tidytuesday/tree/master/data/2023/2023-04-04). It is derived from [Evan Gower](https://github.com/evangower)'s [Kaggle post](https://www.kaggle.com/datasets/evangower/premier-league-match-data) of the same name.
 
-Variables in this dataset includes teams, referee, and stats by home and away side such as fouls, shots, cards, and weekly rankings for the season. The dataset appears to be in a tabular format with 380 rows representing individual matches and 22 columns representing each variable Both categorical and numerical variables are included.
+The [Premier League](https://www.premierleague.com/) is the foremost league for professional football clubs in England since its creation in 1992. The time period covered in this dataset spans entire 2021 to 2022 Premier League season. The 2021–22 Premier League season marked the 30th anniversary of the league.
 
-The description of each variable are:
+Variables in this dataset includes teams, referee, and stats by home and away side such as fouls, shots, cards, and point totals. The dataset is in a tabular format with `r nrow(soccer)` rows representing individual matches and `r ncol(soccer)` columns representing each variable, described below. Both categorical and numerical variables are included.
 
-1\. Date (character): The date when the match was played.
+A glimpse at each variable:
 
-2\. HomeTeam (character): The home team.
+```{r}
+#| label: explore-dataset
+#| message: false
+#| echo: false
+glimpse(soccer)
+```
 
-3\. AwayTeam (character): The away team.
+The description and type of each variable are as follows:
 
-4\. FTHG (double): Full-time home goals.
+1. `Date` (character): The date when the match was played.
+2. `HomeTeam` (character): The home team.
+3. `AwayTeam` (character): The away team.
+4. `FTHG` (double): Full-time home goals.
+5. `FTAG` (double): Full-time away goals.
+6. `FTR` (character): Full-time result.
+7. `HTHG` (double): Half-time home goals.
+8. `HTAG` (double): Half-time away goals.
+9. `HTR` (character): Half-time result.
+10. `Referee` (character): Referee of the match.
+11. `HS` (double): Number of shots taken by the home team.
+12. `AS` (double): Number of shots taken by the away team.
+13. `HST` (double): Number of shots on target by the home team.
+14. `AST` (double): Number of shots on target by the away team.
+15. `HF` (double): Number of fouls by the home team.
+16. `AF` (double): Number of fouls by the away team.
+17. `HC` (double): Number of corners taken by the home team.
+18. `AC` (double): Number of corners taken by the away team.
+19. `HY` (double): Number of yellow cards received by the home team.
+20. `AY` (double): Number of yellow cards received by the away team.
+21. `HR` (double): Number of red cards received by the home team.
+22. `AR` (double): Number of red cards received by the away team.
 
-5\. FTAG (double): Full-time away goals.
+Diagnosing the quality of each variable:
 
-6\. FTR (character): Full-time result.
+```{r}
+#| label: explore-dataset-quality
+#| message: false
+#| echo: false
+dlookr::diagnose(soccer) |> print(n = 22)
+```
 
-7\. HTHG (double): Half-time home goals.
+This dataset is ideal for analytical projects aiming to understand football dynamics, player contributions, and team strategies throughout the season.
 
-8\. HTAG (double): Half-time away goals.
+**Reason for Choosing this Dataset**
 
-9\. HTR (character): Half-time result.
-
-10\. Referee (character): Referee of the match.
-
-11\. HS (double): Number of shots taken by the home team.
-
-12\. AS (double): Number of shots taken by the away team.
-
-13\. HST (double): Number of shots on target by the home team.
-
-14\. AST (double): Number of shots on target by the away team.
-
-15\. HF (double): Number of fouls by the home team.
-
-16\. AF (double): Number of fouls by the away team.
-
-17\. HC (double): Number of corners taken by the home team.
-
-18\. AC (double): Number of corners taken by the away team.
-
-19\. HY (double): Number of yellow cards received by the home team.
-
-20\. AY (double): Number of yellow cards received by the away team.
-
-21\. HR (double): Number of red cards received by the home team.
-
-22\. AR (double): Number of red cards received by the away team.
-
-This dataset is ideal for analytical projects aiming to understand football dynamics, player contributions, and team strategies throughout the season.\
-
-**Reason for Choosing this Dataset:**
-
-This dataset, focused around one of the world's most watched sports leagues - football, It offers clear details that hold substantial potential. Football matches are known for their blend of skill, strategy, and athleticism.Its analysed through this dataset, providing a unique opportunity to explore statistical fouls affecting game outcomes. From team discipline records to the effectiveness of shots on goal, the dataset covers a wide spectrum of factors. Its richness enables a thorough examination, making it a valuable resource for gaining insights into the multifaceted elements that shape football match results and outcomes.
+This dataset, focused around one of the world's most watched sports leagues - football, It offers clear details that hold substantial potential. Football matches are known for their blend of skill, strategy, and athleticism. Its analysed through this dataset, providing a unique opportunity to explore statistical fouls affecting game outcomes. From team discipline records to the effectiveness of shots on goal, the dataset covers a wide spectrum of factors. Its richness enables a thorough examination, making it a valuable resource for gaining insights into the multifaceted elements that shape football match results and outcomes.
 
 On the other hand, it allows for a singular exploration into the interplay between in-game dynamics and overall success or failure. This analysis could prove invaluable to observers, coaches, and even players striving to enhance their tactical approaches.
 
 By incorporating halftime data, the analysis gains additional depth, providing a fresh perspective on the dynamics within games. In Conclusion, this dataset offers a comprehensive view of the multifaceted elements contributing to the outcome of football matches. Its richness and depth make it a valuable resource for anyone seeking to gain insights into the complexities of the game, be it for strategic planning, performance improvement, or a deeper understanding of the sport's intricacies.
 
-Make sure to load the data and use inline code for some of this information.
-
-Text HERE.
-
-```{r}
-#| label: explore-dataset
-## Exploratory code HERE.
-```
-
 ## Questions
 
 ### Question 1
 
-The first topic we will explore is if being on the home or away team has a significant effect on the team's performance. Our hypothesis is that the home team will have 1) more goals at both half-time and full-time and 2) more wins due to "home team advantage", where it is thought that the hosting team has a significant advantage over the visiting team. This hypothesis will be explored and tested using the variables described in "Analysis plan". The home team and away team advantage will also be analyzed using the full time results as well as goals.
+What effect (if any) does being the "home" team versus being the "away" team affect the teams' performances?
+
+a. Is there a "home-team" advantage, and does it have a significant effect on the teams' performances, both at half-time and full-time?
+b. Do the team standings at half-time affect the final outcome?
+
+Our hypothesis is that the home team will have 1) more goals at both half-time and full-time, and 2) more wins due to "home team advantage", where it is thought that the hosting team has a significant advantage over the visiting team. The home team and away team advantage will also be analyzed using the full-time results as well as goals. We also predict that the team ahead at half-time will win at full-time.
+
+### Question 2
+
+Is it possible to forecast the result (final scores) of soccer matches based on the ratio of fouls to cards (yellow and red combined)?
+
+a.  Do teams with higher foul to card ratios typically end up with lower final scores?
+b.  Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?
+c.  How do the ratios of fouls to cards differ between home and away teams?
+
+Our hypothesis is that the team with greater number of fouls and cards will have a lower score. However, it is possible that the team with more fouls is playing more aggressively and will score more. Although referees are supposed to be unbiased, we predict the number of fouls and cards against the home team will be less.
 
 ## Analysis plan
 
--   A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).
-
 ### Question 1
 
-#### Variables involved:
-
--   The name of the home team: `HomeTeam` (The home team)
-
--   Wins and losses: `FTR` (Full time result) :
-
--   The name of the away team: `AwayTeam` (The away team)
-
--   The half time results: `HTR` (Half Time Results)
-
--   Full time Home goals: `FTHG` Full time home goals Full time goals for the away team: `FTAG` Full time away goals
-
--   Halftime goals for the home team: `HTHG` Halftime home goals
-
--   Halftime goals for the away team: `HTAG` Halftime away goalsThe name of the home team: `HomeTeam` (The home team)
-
--   Wins and losses: `FTR` (Full time result) :
-
--   The name of the away team: `AwayTeam` (The away team)
-
--   The half time results: `HTR` (Half Time Results) Fulltime Home goals: `FTHG` Full time home goals Fulltime goals for the away team: `FTAG` Full time away goals
-
--   Halftime goals for the home team: `HTHG` Halftime home goals
-
--   Halftime goals for the away team: `HTAG` Halftime away goals
-
-#### Variables to be created:
-
--   Not likely for this question
-
-#### External Data set:
-
--   Not likely for this question.
+-   Variables involved:
+    -   The name of the teams: `HomeTeam` (the home team) and `AwayTeam` (the away team)
+    -   Game winner: `FTR` (Full time result)
+    -   Ahead at half time: `HTR` (Half Time Results)
+    -   Full time goals: `FTHG` (Full time home goals) and `FTAG` (full time away goals)
+    -   Halftime goals for the home team: `HTHG` Halftime home goals
+    -   Halftime goals for the away team: `HTAG` Halftime away goals
+-   This question is not likely to require additional variable creation.
+-   This question is not likely to require external data to be merged in.
 
 ### Question 2
 
@@ -147,9 +131,3 @@ The first topic we will explore is if being on the home or away team has a signi
     -   Ratios between the total number of yellow cards, red cards, and fouls, by team and game.
     -   Ratio of total number of cards and number of fouls, by team and game.
 -   This question is not likely to require external data to be merged in.
-
-Is it possible to forecast the result (final scores) of soccer matches based on the ratio of fouls to cards (yellow and red combined)?
-
-a.  Do teams with higher foul to card ratios typically end up with lower final scores?
-b.  Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?
-c.  How do the ratios of fouls to cards differ between home and away teams?
