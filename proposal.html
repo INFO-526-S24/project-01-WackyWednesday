@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Project Title - Group 4 WackyWednesday - Game-Metrics: Decoding Football Outcomes Through Statistical Precision - Premier League</title>
+<title>Project Title - Group 4 WackyWednesday - Game Metrics: Decoding Premier League Outcomes Through Visual Analysis and Data Exploration</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -164,11 +164,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a>
   <ul class="collapse">
   <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
   </ul></li>
   <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis plan</a>
   <ul class="collapse">
   <li><a href="#question-1-1" id="toc-question-1-1" class="nav-link" data-scroll-target="#question-1-1">Question 1</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#question-2-1" id="toc-question-2-1" class="nav-link" data-scroll-target="#question-2-1">Question 2</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -178,8 +179,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Group 4 WackyWednesday - Game-Metrics: Decoding Football Outcomes Through Statistical Precision - Premier League</h1>
-<p class="subtitle lead">Unveiling Team Dynamics, Discipline, and Shot Efficiency in the World of Football</p>
+<h1 class="title">Group 4 WackyWednesday - Game Metrics: Decoding Premier League Outcomes Through Visual Analysis and Data Exploration</h1>
+<p class="subtitle lead">Exploring home versus away team dynamics in the world of English football</p>
 </div>
 
 
@@ -196,117 +197,147 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <section id="dataset" class="level2">
 <h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>soccer <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-04-04/soccer21-22.csv'</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>soccer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 380 × 22
-   Date      HomeTeam AwayTeam  FTHG  FTAG FTR    HTHG  HTAG HTR   Referee    HS
-   &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;
- 1 13/08/20… Brentfo… Arsenal      2     0 H         1     0 H     M Oliv…     8
- 2 14/08/20… Man Uni… Leeds        5     1 H         1     0 H     P Tier…    16
- 3 14/08/20… Burnley  Brighton     1     2 A         1     0 H     D Coote    14
- 4 14/08/20… Chelsea  Crystal…     3     0 H         2     0 H     J Moss     13
- 5 14/08/20… Everton  Southam…     3     1 H         0     1 A     A Madl…    14
- 6 14/08/20… Leicest… Wolves       1     0 H         1     0 H     C Paws…     9
- 7 14/08/20… Watford  Aston V…     3     2 H         2     0 H     M Dean     13
- 8 14/08/20… Norwich  Liverpo…     0     3 A         0     1 A     A Marr…    14
- 9 15/08/20… Newcast… West Ham     2     4 A         2     1 H     M Atki…    17
-10 15/08/20… Tottenh… Man City     1     0 H         0     0 D     A Tayl…    13
-# ℹ 370 more rows
-# ℹ 11 more variables: AS &lt;dbl&gt;, HST &lt;dbl&gt;, AST &lt;dbl&gt;, HF &lt;dbl&gt;, AF &lt;dbl&gt;,
-#   HC &lt;dbl&gt;, AC &lt;dbl&gt;, HY &lt;dbl&gt;, AY &lt;dbl&gt;, HR &lt;dbl&gt;, AR &lt;dbl&gt;</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>soccer <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-04-04/soccer21-22.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Description of the Dataset</strong></p>
-<p>The dataset comes from Premier League Match Data 2021-2022 (<a href="https://www.kaggle.com/datasets/evangower/premier-league-match-data" class="uri">https://www.kaggle.com/datasets/evangower/premier-league-match-data</a>) on Kaggle. The time Period covered in this dataset spans entire 2021 to 2022 Premier League season. The 2021–22 Premier League season marked the 30th anniversary of the Premier League, the foremost league for professional football clubs in England since its creation in 1992 and represented the 123rd season of the highest level of English football.</p>
-<p>Variables in this dataset includes teams, referee, and stats by home and away side such as fouls, shots, cards, and weekly rankings for the season. The dataset appears to be in a tabular format with 380 rows representing individual matches and 22 columns representing each variable Both categorical and numerical variables are included.</p>
-<p>The description of each variable are:</p>
-<p>1. Date (character): The date when the match was played.</p>
-<p>2. HomeTeam (character): The home team.</p>
-<p>3. AwayTeam (character): The away team.</p>
-<p>4. FTHG (double): Full-time home goals.</p>
-<p>5. FTAG (double): Full-time away goals.</p>
-<p>6. FTR (character): Full-time result.</p>
-<p>7. HTHG (double): Half-time home goals.</p>
-<p>8. HTAG (double): Half-time away goals.</p>
-<p>9. HTR (character): Half-time result.</p>
-<p>10. Referee (character): Referee of the match.</p>
-<p>11. HS (double): Number of shots taken by the home team.</p>
-<p>12. AS (double): Number of shots taken by the away team.</p>
-<p>13. HST (double): Number of shots on target by the home team.</p>
-<p>14. AST (double): Number of shots on target by the away team.</p>
-<p>15. HF (double): Number of fouls by the home team.</p>
-<p>16. AF (double): Number of fouls by the away team.</p>
-<p>17. HC (double): Number of corners taken by the home team.</p>
-<p>18. AC (double): Number of corners taken by the away team.</p>
-<p>19. HY (double): Number of yellow cards received by the home team.</p>
-<p>20. AY (double): Number of yellow cards received by the away team.</p>
-<p>21. HR (double): Number of red cards received by the home team.</p>
-<p>22. AR (double): Number of red cards received by the away team.</p>
-<p>This dataset is ideal for analytical projects aiming to understand football dynamics, player contributions, and team strategies throughout the season.<br>
-</p>
-<p><strong>Reason for Choosing this Dataset:</strong></p>
-<p>This dataset, focused around one of the world’s most watched sports leagues - football, It offers clear details that hold substantial potential. Football matches are known for their blend of skill, strategy, and athleticism.Its analysed through this dataset, providing a unique opportunity to explore statistical fouls affecting game outcomes. From team discipline records to the effectiveness of shots on goal, the dataset covers a wide spectrum of factors. Its richness enables a thorough examination, making it a valuable resource for gaining insights into the multifaceted elements that shape football match results and outcomes.</p>
+<p>The dataset comes from <a href="https://github.com/rfordatascience/tidytuesday"><code>TidyTuesday</code></a>’s 04 April 2023 post <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2023/2023-04-04">“Premier League Match Data 2021-2022”</a>. It is derived from <a href="https://github.com/evangower">Evan Gower</a>’s <a href="https://www.kaggle.com/datasets/evangower/premier-league-match-data">Kaggle post</a> of the same name.</p>
+<p>The <a href="https://www.premierleague.com/">Premier League</a> is the foremost league for professional football clubs in England since its creation in 1992. The time period covered in this dataset spans entire 2021 to 2022 Premier League season. The 2021–22 Premier League season marked the 30th anniversary of the league.</p>
+<p>Variables in this dataset includes teams, referee, and stats by home and away side such as fouls, shots, cards, and point totals. The dataset is in a tabular format with 380 rows representing individual matches and 22 columns representing each variable, described below. Both categorical and numerical variables are included.</p>
+<p>A glimpse at each variable:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 380
+Columns: 22
+$ Date     &lt;chr&gt; "13/08/2021", "14/08/2021", "14/08/2021", "14/08/2021", "14/0…
+$ HomeTeam &lt;chr&gt; "Brentford", "Man United", "Burnley", "Chelsea", "Everton", "…
+$ AwayTeam &lt;chr&gt; "Arsenal", "Leeds", "Brighton", "Crystal Palace", "Southampto…
+$ FTHG     &lt;dbl&gt; 2, 5, 1, 3, 3, 1, 3, 0, 2, 1, 2, 2, 0, 2, 5, 2, 1, 0, 0, 4, 5…
+$ FTAG     &lt;dbl&gt; 0, 1, 2, 0, 1, 0, 2, 3, 4, 0, 0, 0, 0, 2, 0, 0, 1, 1, 2, 1, 0…
+$ FTR      &lt;chr&gt; "H", "H", "A", "H", "H", "H", "H", "A", "A", "H", "H", "H", "…
+$ HTHG     &lt;dbl&gt; 1, 1, 1, 2, 0, 1, 2, 0, 2, 0, 1, 1, 0, 1, 2, 2, 1, 0, 0, 1, 3…
+$ HTAG     &lt;dbl&gt; 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0…
+$ HTR      &lt;chr&gt; "H", "H", "H", "H", "A", "H", "H", "A", "H", "D", "H", "H", "…
+$ Referee  &lt;chr&gt; "M Oliver", "P Tierney", "D Coote", "J Moss", "A Madley", "C …
+$ HS       &lt;dbl&gt; 8, 16, 14, 13, 14, 9, 13, 14, 17, 13, 27, 10, 7, 17, 16, 13, …
+$ AS       &lt;dbl&gt; 22, 10, 14, 4, 6, 17, 11, 19, 8, 18, 9, 9, 14, 17, 1, 10, 15,…
+$ HST      &lt;dbl&gt; 3, 8, 3, 6, 6, 5, 7, 3, 3, 3, 9, 2, 2, 4, 4, 3, 3, 6, 3, 7, 1…
+$ AST      &lt;dbl&gt; 4, 3, 8, 1, 3, 3, 2, 8, 9, 4, 3, 1, 3, 8, 0, 1, 4, 6, 5, 1, 0…
+$ HF       &lt;dbl&gt; 12, 11, 10, 15, 13, 6, 18, 4, 4, 11, 6, 8, 12, 6, 13, 11, 12,…
+$ AF       &lt;dbl&gt; 8, 9, 7, 11, 15, 10, 13, 14, 3, 8, 12, 18, 9, 13, 7, 6, 10, 7…
+$ HC       &lt;dbl&gt; 2, 5, 7, 5, 6, 5, 2, 3, 7, 3, 8, 3, 3, 8, 6, 7, 7, 5, 9, 10, …
+$ AC       &lt;dbl&gt; 5, 4, 6, 2, 8, 4, 4, 11, 6, 11, 4, 4, 5, 5, 1, 2, 7, 4, 8, 0,…
+$ HY       &lt;dbl&gt; 0, 1, 2, 0, 2, 1, 3, 1, 1, 2, 0, 3, 3, 2, 1, 4, 2, 1, 3, 0, 1…
+$ AY       &lt;dbl&gt; 0, 2, 1, 0, 0, 2, 1, 1, 0, 1, 0, 4, 1, 4, 0, 0, 3, 4, 0, 1, 2…
+$ HR       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ AR       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1…</code></pre>
+</div>
+</div>
+<p>The description and type of each variable are as follows:</p>
+<ol type="1">
+<li><code>Date</code> (character): The date when the match was played.</li>
+<li><code>HomeTeam</code> (character): The home team.</li>
+<li><code>AwayTeam</code> (character): The away team.</li>
+<li><code>FTHG</code> (double): Full-time home goals.</li>
+<li><code>FTAG</code> (double): Full-time away goals.</li>
+<li><code>FTR</code> (character): Full-time result.</li>
+<li><code>HTHG</code> (double): Half-time home goals.</li>
+<li><code>HTAG</code> (double): Half-time away goals.</li>
+<li><code>HTR</code> (character): Half-time result.</li>
+<li><code>Referee</code> (character): Referee of the match.</li>
+<li><code>HS</code> (double): Number of shots taken by the home team.</li>
+<li><code>AS</code> (double): Number of shots taken by the away team.</li>
+<li><code>HST</code> (double): Number of shots on target by the home team.</li>
+<li><code>AST</code> (double): Number of shots on target by the away team.</li>
+<li><code>HF</code> (double): Number of fouls by the home team.</li>
+<li><code>AF</code> (double): Number of fouls by the away team.</li>
+<li><code>HC</code> (double): Number of corners taken by the home team.</li>
+<li><code>AC</code> (double): Number of corners taken by the away team.</li>
+<li><code>HY</code> (double): Number of yellow cards received by the home team.</li>
+<li><code>AY</code> (double): Number of yellow cards received by the away team.</li>
+<li><code>HR</code> (double): Number of red cards received by the home team.</li>
+<li><code>AR</code> (double): Number of red cards received by the away team.</li>
+</ol>
+<p>Diagnosing the quality of each variable:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 22 × 6
+   variables types     missing_count missing_percent unique_count unique_rate
+   &lt;chr&gt;     &lt;chr&gt;             &lt;int&gt;           &lt;dbl&gt;        &lt;int&gt;       &lt;dbl&gt;
+ 1 Date      character             0               0          123     0.324  
+ 2 HomeTeam  character             0               0           20     0.0526 
+ 3 AwayTeam  character             0               0           20     0.0526 
+ 4 FTHG      numeric               0               0            8     0.0211 
+ 5 FTAG      numeric               0               0            7     0.0184 
+ 6 FTR       character             0               0            3     0.00789
+ 7 HTHG      numeric               0               0            5     0.0132 
+ 8 HTAG      numeric               0               0            5     0.0132 
+ 9 HTR       character             0               0            3     0.00789
+10 Referee   character             0               0           22     0.0579 
+11 HS        numeric               0               0           29     0.0763 
+12 AS        numeric               0               0           29     0.0763 
+13 HST       numeric               0               0           14     0.0368 
+14 AST       numeric               0               0           15     0.0395 
+15 HF        numeric               0               0           20     0.0526 
+16 AF        numeric               0               0           22     0.0579 
+17 HC        numeric               0               0           16     0.0421 
+18 AC        numeric               0               0           14     0.0368 
+19 HY        numeric               0               0            7     0.0184 
+20 AY        numeric               0               0            6     0.0158 
+21 HR        numeric               0               0            3     0.00789
+22 AR        numeric               0               0            2     0.00526</code></pre>
+</div>
+</div>
+<p>This dataset is ideal for analytical projects aiming to understand football dynamics, player contributions, and team strategies throughout the season.</p>
+<p><strong>Reason for Choosing this Dataset</strong></p>
+<p>This dataset, focused around one of the world’s most watched sports leagues - football, It offers clear details that hold substantial potential. Football matches are known for their blend of skill, strategy, and athleticism. Its analysed through this dataset, providing a unique opportunity to explore statistical fouls affecting game outcomes. From team discipline records to the effectiveness of shots on goal, the dataset covers a wide spectrum of factors. Its richness enables a thorough examination, making it a valuable resource for gaining insights into the multifaceted elements that shape football match results and outcomes.</p>
 <p>On the other hand, it allows for a singular exploration into the interplay between in-game dynamics and overall success or failure. This analysis could prove invaluable to observers, coaches, and even players striving to enhance their tactical approaches.</p>
 <p>By incorporating halftime data, the analysis gains additional depth, providing a fresh perspective on the dynamics within games. In Conclusion, this dataset offers a comprehensive view of the multifaceted elements contributing to the outcome of football matches. Its richness and depth make it a valuable resource for anyone seeking to gain insights into the complexities of the game, be it for strategic planning, performance improvement, or a deeper understanding of the sport’s intricacies.</p>
-<p>Make sure to load the data and use inline code for some of this information.</p>
-<p>Text HERE.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Exploratory code HERE.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="questions" class="level2">
 <h2 class="anchored" data-anchor-id="questions">Questions</h2>
 <section id="question-1" class="level3">
 <h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
-<p>The first topic we will explore is if being on the home or away team has a significant effect on the team’s performance. Our hypothesis is that the home team will have 1) more goals at both half-time and full-time and 2) more wins due to “home team advantage”, where it is thought that the hosting team has a significant advantage over the visiting team. This hypothesis will be explored and tested using the variables described in “Analysis plan”. The home team and away team advantage will also be analyzed using the full time results as well as goals.</p>
+<p>What effect (if any) does being the “home” team versus being the “away” team affect the teams’ performances?</p>
+<ol type="a">
+<li>Is there a “home-team” advantage, and does it have a significant effect on the teams’ performances, both at half-time and full-time?</li>
+<li>Do the team standings at half-time affect the final outcome?</li>
+</ol>
+<p>Our hypothesis is that the home team will have 1) more goals at both half-time and full-time, and 2) more wins due to “home team advantage”, where it is thought that the hosting team has a significant advantage over the visiting team. The home team and away team advantage will also be analyzed using the full-time results as well as goals. We also predict that the team ahead at half-time will win at full-time.</p>
+</section>
+<section id="question-2" class="level3">
+<h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+<p>Is it possible to forecast the result (final scores) of soccer matches based on the ratio of fouls to cards (yellow and red combined)?</p>
+<ol type="a">
+<li>Do teams with higher foul to card ratios typically end up with lower final scores?</li>
+<li>Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?</li>
+<li>How do the ratios of fouls to cards differ between home and away teams?</li>
+</ol>
+<p>Our hypothesis is that the team with greater number of fouls and cards will have a lower score. However, it is possible that the team with more fouls is playing more aggressively and will score more. Although referees are supposed to be unbiased, we predict the number of fouls and cards against the home team will be less.</p>
 </section>
 </section>
 <section id="analysis-plan" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-plan">Analysis plan</h2>
-<ul>
-<li>A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).</li>
-</ul>
 <section id="question-1-1" class="level3">
 <h3 class="anchored" data-anchor-id="question-1-1">Question 1</h3>
-<section id="variables-involved" class="level4">
-<h4 class="anchored" data-anchor-id="variables-involved">Variables involved:</h4>
 <ul>
-<li><p>The name of the home team: <code>HomeTeam</code> (The home team)</p></li>
-<li><p>Wins and losses: <code>FTR</code> (Full time result) :</p></li>
-<li><p>The name of the away team: <code>AwayTeam</code> (The away team)</p></li>
-<li><p>The half time results: <code>HTR</code> (Half Time Results)</p></li>
-<li><p>Full time Home goals: <code>FTHG</code> Full time home goals Full time goals for the away team: <code>FTAG</code> Full time away goals</p></li>
-<li><p>Halftime goals for the home team: <code>HTHG</code> Halftime home goals</p></li>
-<li><p>Halftime goals for the away team: <code>HTAG</code> Halftime away goalsThe name of the home team: <code>HomeTeam</code> (The home team)</p></li>
-<li><p>Wins and losses: <code>FTR</code> (Full time result) :</p></li>
-<li><p>The name of the away team: <code>AwayTeam</code> (The away team)</p></li>
-<li><p>The half time results: <code>HTR</code> (Half Time Results) Fulltime Home goals: <code>FTHG</code> Full time home goals Fulltime goals for the away team: <code>FTAG</code> Full time away goals</p></li>
-<li><p>Halftime goals for the home team: <code>HTHG</code> Halftime home goals</p></li>
-<li><p>Halftime goals for the away team: <code>HTAG</code> Halftime away goals</p></li>
+<li>Variables involved:
+<ul>
+<li>The name of the teams: <code>HomeTeam</code> (the home team) and <code>AwayTeam</code> (the away team)</li>
+<li>Game winner: <code>FTR</code> (Full time result)</li>
+<li>Ahead at half time: <code>HTR</code> (Half Time Results)</li>
+<li>Full time goals: <code>FTHG</code> (Full time home goals) and <code>FTAG</code> (full time away goals)</li>
+<li>Halftime goals for the home team: <code>HTHG</code> Halftime home goals</li>
+<li>Halftime goals for the away team: <code>HTAG</code> Halftime away goals</li>
+</ul></li>
+<li>This question is not likely to require additional variable creation.</li>
+<li>This question is not likely to require external data to be merged in.</li>
 </ul>
 </section>
-<section id="variables-to-be-created" class="level4">
-<h4 class="anchored" data-anchor-id="variables-to-be-created">Variables to be created:</h4>
-<ul>
-<li>Not likely for this question</li>
-</ul>
-</section>
-<section id="external-data-set" class="level4">
-<h4 class="anchored" data-anchor-id="external-data-set">External Data set:</h4>
-<ul>
-<li>Not likely for this question.</li>
-</ul>
-</section>
-</section>
-<section id="question-2" class="level3">
-<h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+<section id="question-2-1" class="level3">
+<h3 class="anchored" data-anchor-id="question-2-1">Question 2</h3>
 <ul>
 <li>Variables involved:
 <ul>
@@ -321,12 +352,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>This question is not likely to require external data to be merged in.</li>
 </ul>
-<p>Is it possible to forecast the result (final scores) of soccer matches based on the ratio of fouls to cards (yellow and red combined)?</p>
-<ol type="a">
-<li>Do teams with higher foul to card ratios typically end up with lower final scores?</li>
-<li>Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?</li>
-<li>How do the ratios of fouls to cards differ between home and away teams?</li>
-</ol>
 
 
 </section>
