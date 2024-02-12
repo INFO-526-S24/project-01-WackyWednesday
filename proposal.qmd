@@ -44,15 +44,15 @@ glimpse(soccer)
 
 The description and type of each variable are as follows:
 
-1. `Date` (character): The date when the match was played.
-2. `HomeTeam` (character): The home team.
-3. `AwayTeam` (character): The away team.
-4. `FTHG` (double): Full-time home goals.
-5. `FTAG` (double): Full-time away goals.
-6. `FTR` (character): Full-time result.
-7. `HTHG` (double): Half-time home goals.
-8. `HTAG` (double): Half-time away goals.
-9. `HTR` (character): Half-time result.
+1.  `Date` (character): The date when the match was played.
+2.  `HomeTeam` (character): The home team.
+3.  `AwayTeam` (character): The away team.
+4.  `FTHG` (double): Full-time home goals.
+5.  `FTAG` (double): Full-time away goals.
+6.  `FTR` (character): Full-time result.
+7.  `HTHG` (double): Half-time home goals.
+8.  `HTAG` (double): Half-time away goals.
+9.  `HTR` (character): Half-time result.
 10. `Referee` (character): Referee of the match.
 11. `HS` (double): Number of shots taken by the home team.
 12. `AS` (double): Number of shots taken by the away team.
@@ -80,11 +80,7 @@ This dataset is ideal for analytical projects aiming to understand football dyna
 
 **Reason for Choosing this Dataset**
 
-This dataset, focused around one of the world's most watched sports leagues - football, It offers clear details that hold substantial potential. Football matches are known for their blend of skill, strategy, and athleticism. Its analysed through this dataset, providing a unique opportunity to explore statistical fouls affecting game outcomes. From team discipline records to the effectiveness of shots on goal, the dataset covers a wide spectrum of factors. Its richness enables a thorough examination, making it a valuable resource for gaining insights into the multifaceted elements that shape football match results and outcomes.
-
-On the other hand, it allows for a singular exploration into the interplay between in-game dynamics and overall success or failure. This analysis could prove invaluable to observers, coaches, and even players striving to enhance their tactical approaches.
-
-By incorporating halftime data, the analysis gains additional depth, providing a fresh perspective on the dynamics within games. In Conclusion, this dataset offers a comprehensive view of the multifaceted elements contributing to the outcome of football matches. Its richness and depth make it a valuable resource for anyone seeking to gain insights into the complexities of the game, be it for strategic planning, performance improvement, or a deeper understanding of the sport's intricacies.
+We chose this data set because it provides comprehensive statistics contributing to the outcome of football matches. Therefore, we can explore the interesting topic of the potential existence of bias against away teams in the English Premier League. The availability of data allows us to use variables such as shots on goal or create new variables such as calculating the ratio of yellow cards to fouls to answer this question of bias. Some members of the group are also quite passionate about soccer, which definitely convinced us to use this data set!
 
 ## Questions
 
@@ -92,8 +88,8 @@ By incorporating halftime data, the analysis gains additional depth, providing a
 
 What effect (if any) does being the "home" team versus being the "away" team affect the teams' performances?
 
-a. Is there a "home-team" advantage, and does it have a significant effect on the teams' performances, both at half-time and full-time?
-b. Do the team standings at half-time affect the final outcome?
+a.  Is there a "home-team" advantage, and does it have a significant effect on the teams' performances, both at half-time and full-time?
+b.  Do the team standings at half-time affect the final outcome?
 
 Our hypothesis is that the home team will have 1) more goals at both half-time and full-time, and 2) more wins due to "home team advantage", where it is thought that the hosting team has a significant advantage over the visiting team. The home team and away team advantage will also be analyzed using the full-time results as well as goals. We also predict that the team ahead at half-time will win at full-time.
 
