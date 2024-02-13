@@ -116,14 +116,26 @@ Our hypothesis is that the team with greater number of fouls and cards will have
     -   Halftime goals for the away team: `HTAG` Halftime away goals
 -   This question is not likely to require additional variable creation.
 -   This question is not likely to require external data to be merged in.
+- Plot suggestions:
+    - Violin plots to show the distribution of foul cards for both the home and away teams (This is important to reveal any form of bias that mayb exist for either teams)
+    - Scatter plot to show the relationship betweeen half time goals and full time goals (if positive, the probability of winning is higher if a team leads in half time).
 
 ### Question 2
 
 -   Variables involved:
+
     -   Goals: `FTHG` (Full Time Home Goals), `FTAG` (Full Time Away Goals), and `FTR` (Full Time Results).
     -   Fouls: `HF` (Home Fouls) and `AF` (Away Fouls).
     -   Cards: `HY` (Home Yellow) , `AY` (Away Yellow), `HR` (Home Red), and `AR` (Away Red).
+
 -   Variables to be created:
+
     -   Ratios between the total number of yellow cards, red cards, and fouls, by team and game.
     -   Ratio of total number of cards and number of fouls, by team and game.
+
 -   This question is not likely to require external data to be merged in.
+
+-   Plot suggestions:
+    - Bar charts to show the frequency of the foul cards for both the home and away teams.
+    - Frequency polygon to show the distribution of cards (either yellow or red) for both away and home teams.
+    
