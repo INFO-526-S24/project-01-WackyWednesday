@@ -292,9 +292,7 @@ $ AR       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 </div>
 <p>This dataset is ideal for analytical projects aiming to understand football dynamics, player contributions, and team strategies throughout the season.</p>
 <p><strong>Reason for Choosing this Dataset</strong></p>
-<p>This dataset, focused around one of the world’s most watched sports leagues - football, It offers clear details that hold substantial potential. Football matches are known for their blend of skill, strategy, and athleticism. Its analysed through this dataset, providing a unique opportunity to explore statistical fouls affecting game outcomes. From team discipline records to the effectiveness of shots on goal, the dataset covers a wide spectrum of factors. Its richness enables a thorough examination, making it a valuable resource for gaining insights into the multifaceted elements that shape football match results and outcomes.</p>
-<p>On the other hand, it allows for a singular exploration into the interplay between in-game dynamics and overall success or failure. This analysis could prove invaluable to observers, coaches, and even players striving to enhance their tactical approaches.</p>
-<p>By incorporating halftime data, the analysis gains additional depth, providing a fresh perspective on the dynamics within games. In Conclusion, this dataset offers a comprehensive view of the multifaceted elements contributing to the outcome of football matches. Its richness and depth make it a valuable resource for anyone seeking to gain insights into the complexities of the game, be it for strategic planning, performance improvement, or a deeper understanding of the sport’s intricacies.</p>
+<p>We chose this data set because it provides comprehensive statistics contributing to the outcome of football matches. Therefore, we can explore the interesting topic of the potential existence of bias against away teams in the English Premier League. The availability of data allows us to use variables such as shots on goal or create new variables such as calculating the ratio of yellow cards to fouls to answer this question of bias. Some members of the group are also quite passionate about soccer, which definitely convinced us to use this data set!</p>
 </section>
 <section id="questions" class="level2">
 <h2 class="anchored" data-anchor-id="questions">Questions</h2>
@@ -334,23 +332,33 @@ $ AR       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 </ul></li>
 <li>This question is not likely to require additional variable creation.</li>
 <li>This question is not likely to require external data to be merged in.</li>
+<li>Plot suggestions:
+<ul>
+<li>Violin plots to show the distribution of foul cards for both the home and away teams (This is important to reveal any form of bias that mayb exist for either teams)</li>
+<li>Scatter plot to show the relationship betweeen half time goals and full time goals (if positive, the probability of winning is higher if a team leads in half time).</li>
+</ul></li>
 </ul>
 </section>
 <section id="question-2-1" class="level3">
 <h3 class="anchored" data-anchor-id="question-2-1">Question 2</h3>
 <ul>
-<li>Variables involved:
+<li><p>Variables involved:</p>
 <ul>
 <li>Goals: <code>FTHG</code> (Full Time Home Goals), <code>FTAG</code> (Full Time Away Goals), and <code>FTR</code> (Full Time Results).</li>
 <li>Fouls: <code>HF</code> (Home Fouls) and <code>AF</code> (Away Fouls).</li>
 <li>Cards: <code>HY</code> (Home Yellow) , <code>AY</code> (Away Yellow), <code>HR</code> (Home Red), and <code>AR</code> (Away Red).</li>
 </ul></li>
-<li>Variables to be created:
+<li><p>Variables to be created:</p>
 <ul>
 <li>Ratios between the total number of yellow cards, red cards, and fouls, by team and game.</li>
 <li>Ratio of total number of cards and number of fouls, by team and game.</li>
 </ul></li>
-<li>This question is not likely to require external data to be merged in.</li>
+<li><p>This question is not likely to require external data to be merged in.</p></li>
+<li><p>Plot suggestions:</p>
+<ul>
+<li>Bar charts to show the frequency of the foul cards for both the home and away teams.</li>
+<li>Frequency polygon to show the distribution of cards (either yellow or red) for both away and home teams.</li>
+</ul></li>
 </ul>
 
 
