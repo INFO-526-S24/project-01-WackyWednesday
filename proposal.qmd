@@ -126,7 +126,7 @@ Our hypothesis is that the team with greater number of fouls and cards will have
 
 ### Question 1
 
-Members: name1, name2, name3
+Members: Sai Navya Reddy, Akash Srinivasan, Sanja Dmitrovic
 
 -   Variables involved:
     -   The name of the teams: `HomeTeam` (the home team) and `AwayTeam` (the away team)
@@ -143,7 +143,7 @@ Members: name1, name2, name3
 
 ### Question 2
 
-Members: name1, Jiayue He, name3
+Members: Valerie Okine Jiayue He, Gillian McGinnis
 
 -   Variables involved:
     -   Goals: `FTHG` (Full Time Home Goals), `FTAG` (Full Time Away Goals), and `FTR` (Full Time Results).
