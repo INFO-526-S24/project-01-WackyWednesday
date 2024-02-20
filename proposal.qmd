@@ -8,6 +8,7 @@ editor: visual
 ```{r}
 #| label: load-pkgs
 #| message: false
+#| output: false
 #| echo: false
 if(!require(pacman))
   install.packages("pacman")
