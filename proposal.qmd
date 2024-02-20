@@ -139,12 +139,12 @@ Members: Sai Navya Reddy, Akash Srinivasan, Sanja Dmitrovic
 -   This question is not likely to require additional variable creation.
 -   This question is not likely to require external data to be merged in.
 -   Plot suggestions:
-    -   Violin plots to show the distribution of foul cards for both the home and away teams (This is important to reveal any form of bias that mayb exist for either teams)
-    -   Scatter plot to show the relationship betweeen half time goals and full time goals (if positive, the probability of winning is higher if a team leads in half time).
+    -   Violin plots to show the distribution of foul cards for both the home and away teams (This is important to reveal any form of bias that maybe exist for either teams)
+    -   Scatter plot to show the relationship between half time goals and full time goals (if positive, the probability of winning is higher if a team leads in half time).
 
 ### Question 2
 
-Members: Valerie Okine Jiayue He, Gillian McGinnis
+Members: Valerie Okine, Jiayue He, Gillian McGinnis
 
 -   Variables involved:
     -   Goals: `FTHG` (Full Time Home Goals), `FTAG` (Full Time Away Goals), and `FTR` (Full Time Results).
