@@ -13,9 +13,10 @@ editor: visual
 if(!require(pacman))
   install.packages("pacman")
 
-pacman::p_load(tidyverse,
-               dlookr
-               )
+pacman::p_load(
+  tidyverse,
+  dlookr
+  )
 ```
 
 ## Dataset
@@ -96,13 +97,12 @@ Our hypothesis is that the home team will have 1) more goals at both half-time a
 
 ### Question 2
 
-Is it possible to forecast the result (final scores) of soccer matches based on the ratio of fouls to cards (yellow and red combined)?
+What effect (if any) does being the "home" team versus being the "away" team affect the teams' penalties?
 
-a.  Do teams with higher foul to card ratios typically end up with lower final scores?
-b.  Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?
-c.  How do the ratios of fouls to cards differ between home and away teams?
+a.  Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?
+b.  How do the ratios of cards to fouls differ between home and away teams?
 
-Our hypothesis is that the team with greater number of fouls and cards will have a lower score. However, it is possible that the team with more fouls is playing more aggressively and will score more. Although referees are supposed to be unbiased, we predict the number of fouls and cards against the home team will be less.
+Although referees are supposed to be unbiased, we predict the number of fouls and cards against the home team will be less. Additionally, we predict that the home team will typically have a lower card to foul ratio than the away team (that is, will receive fewer cards per foul in a game).
 
 ## Analysis plan
 
@@ -147,11 +147,10 @@ Members: Sai Navya Reddy, Akash Srinivasan, Sanja Dmitrovic
 Members: Valerie Okine, Jiayue He, Gillian McGinnis
 
 -   Variables involved:
-    -   Goals: `FTHG` (Full Time Home Goals), `FTAG` (Full Time Away Goals), and `FTR` (Full Time Results).
     -   Fouls: `HF` (Home Fouls) and `AF` (Away Fouls).
     -   Cards: `HY` (Home Yellow) , `AY` (Away Yellow), `HR` (Home Red), and `AR` (Away Red).
 -   Variables to be created:
-    -   Ratios between the total number of yellow cards, red cards, and fouls, by team and game.
+    -   Ratios between the total number of yellow cards and red cards to fouls, by team and game.
     -   Ratio of total number of cards and number of fouls, by team and game.
 -   This question is not likely to require external data to be merged in.
 -   Plot suggestions:
