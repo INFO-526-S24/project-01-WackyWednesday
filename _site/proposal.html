@@ -308,13 +308,12 @@ $ AR       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 </section>
 <section id="question-2" class="level3">
 <h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
-<p>Is it possible to forecast the result (final scores) of soccer matches based on the ratio of fouls to cards (yellow and red combined)?</p>
+<p>What effect (if any) does being the “home” team versus being the “away” team affect the teams’ penalties?</p>
 <ol type="a">
-<li>Do teams with higher foul to card ratios typically end up with lower final scores?</li>
 <li>Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?</li>
-<li>How do the ratios of fouls to cards differ between home and away teams?</li>
+<li>How do the ratios of cards to fouls differ between home and away teams?</li>
 </ol>
-<p>Our hypothesis is that the team with greater number of fouls and cards will have a lower score. However, it is possible that the team with more fouls is playing more aggressively and will score more. Although referees are supposed to be unbiased, we predict the number of fouls and cards against the home team will be less.</p>
+<p>Although referees are supposed to be unbiased, we predict the number of fouls and cards against the home team will be less. Additionally, we predict that the home team will typically have a lower card to foul ratio than the away team (that is, will receive fewer cards per foul in a game).</p>
 </section>
 </section>
 <section id="analysis-plan" class="level2">
@@ -376,13 +375,12 @@ $ AR       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 <ul>
 <li>Variables involved:
 <ul>
-<li>Goals: <code>FTHG</code> (Full Time Home Goals), <code>FTAG</code> (Full Time Away Goals), and <code>FTR</code> (Full Time Results).</li>
 <li>Fouls: <code>HF</code> (Home Fouls) and <code>AF</code> (Away Fouls).</li>
 <li>Cards: <code>HY</code> (Home Yellow) , <code>AY</code> (Away Yellow), <code>HR</code> (Home Red), and <code>AR</code> (Away Red).</li>
 </ul></li>
 <li>Variables to be created:
 <ul>
-<li>Ratios between the total number of yellow cards, red cards, and fouls, by team and game.</li>
+<li>Ratios between the total number of yellow cards and red cards to fouls, by team and game.</li>
 <li>Ratio of total number of cards and number of fouls, by team and game.</li>
 </ul></li>
 <li>This question is not likely to require external data to be merged in.</li>
