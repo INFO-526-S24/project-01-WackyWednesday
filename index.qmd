@@ -1,11 +1,198 @@
 ---
-title: "Project title"
+title: "Game Metrics: Decoding Premier League Outcomes Through Visual Analysis and Data Exploration"
 subtitle: "INFO 526 - Project 1"
-author: "Team name"
+author: "Group 4 WackyWednesday"
 format: html
 editor: visual
 ---
 
+```{r}
+#| label: load-pkgs
+#| message: false
+#| output: false
+#| echo: false
+if(!require(pacman))
+  install.packages("pacman")
+
+pacman::p_load(
+  tidyverse
+  )
+
+options(width = 65)
+
+knitr::opts_chunk$set(
+  fig.asp = 0.618,
+  fig.align = "center"
+)
+```
+
+```{r}
+#| label: load-dataset
+#| message: false
+#| echo: false
+soccer <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-04-04/soccer21-22.csv')
+```
+
 ## Abstract
 
-Add project abstract here.
+*Add project abstract here; delete this text when done*
+
+## Introduction
+
+*Add introduction here; delete this text when done*
+
+## Question 1
+
+*Intro goes here; delete this text when done*
+
+### Approach
+
+*Approach goes here; delete this text when done*
+
+### Analysis
+
+*Analysis goes here; delete this text when done*
+
+### Discussion
+
+*Discussion goes here; delete this text when done*
+
+
+## Question 2
+
+*Intro goes here; delete this text when done*
+
+### Approach
+
+*Approach goes here; delete this text when done*
+
+### Analysis
+
+*Analysis goes here; delete this text when done*
+
+#### Penalties by Team
+
+```{r}
+#| label: q2_penalties
+#| message: false
+
+q2_penalties_viz <- soccer |> 
+  rename(
+    yellow_home = HY, yellow_away = AY,
+    red_home = HR, red_away = AR,
+    foul_home = HF, foul_away = AF
+  ) |> 
+  select(
+    yellow_home, yellow_away,
+    red_home, red_away,
+    foul_home, foul_away
+  ) |> 
+  mutate(game_number = row_number()) |> 
+  group_by(game_number) |> 
+  pivot_longer(
+    cols = c(yellow_home, red_home,
+             yellow_away, red_away,
+             foul_away, foul_home),
+    names_to = "pen_type",
+    values_to = "pen_count"
+  ) |> 
+  mutate(
+    pen_cat = case_when(
+      str_detect(pen_type, "yellow") ~ "yellow",
+      str_detect(pen_type, "red") ~ "red",
+      str_detect(pen_type, "foul") ~ "foul"
+    ),
+    h_a = case_when(
+      str_detect(pen_type, "home") ~ "Home",
+      str_detect(pen_type, "away") ~ "Away"
+    )
+  ) |>
+  group_by(h_a, pen_count, pen_cat) |> 
+  select(!pen_type) |> 
+  summarize(tot = n()) |> 
+  # filter(pen_count !=0) |>
+  mutate(
+    pen_cf = case_when(
+      pen_cat == "foul" ~ "Fouls",
+      TRUE ~ "Cards"
+    )
+  ) |> 
+  ggplot(aes(x = pen_count,
+             y = tot,
+             group = pen_cat,
+             color = h_a)) +
+  facet_wrap(
+    ~ pen_cf,
+    ncol = 1,
+    scales = "free",
+    strip.position = "right"
+    # space="free"
+  ) +
+  geom_line(
+    aes(group = interaction(pen_cat, h_a)),
+    linewidth = 1,
+    alpha = 0.5
+  ) +
+  geom_point(
+    aes(shape = h_a),
+    size = 3,
+    stroke = 1
+  ) +
+  # Annotations for Card facet
+  geom_text(
+    data = data.frame(
+      "label" = c("Red", "Yellow"),
+      x = c(0.5, 1.5),
+      y = c(300, 150),
+      # x = c(1.5, 1.5),
+      # y = c(25, 125),
+      pen_cf = c("Cards", "Cards")
+    ),
+    aes(x = x, y = y, group = 1, label=label),
+    color = "black",
+    family = "mono"
+  ) +
+  # Theme settings
+  scale_color_brewer(
+    palette = "Set2",
+    breaks = c("Home", "Away")
+  ) +
+  scale_shape_manual(
+    breaks = c("Home", "Away"),
+    values = c(3, 4)
+  ) +
+  theme_classic() +
+  theme(
+    text = element_text(family = "mono"),
+    legend.position = "inside",
+    legend.position.inside = c(0.9, 0.9),
+    legend.box.background = element_rect(),
+    plot.title.position = "plot"
+  ) +
+  labs(
+    title = "Number of football games by amounts of penalties",
+    x = "Total penalties in a game",
+    y = "Number of games",
+    color = "Team",
+    shape = "Team",
+    subtitle = "Premier League match data, 2021-2022"
+  )
+
+q2_penalties_viz
+```
+
+#### Cards:Fouls Ratio by Team
+
+*code goes here; delete when done*
+
+```{r}
+#| label: q2_ctf
+#| message: false
+
+soccer
+```
+
+
+### Discussion
+
+*Discussion goes here; delete this text when done*
