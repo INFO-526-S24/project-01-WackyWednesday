@@ -57,7 +57,6 @@ soccer <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tid
 
 *Discussion goes here; delete this text when done*
 
-
 ## Question 2
 
 *Intro goes here; delete this text when done*
@@ -192,7 +191,57 @@ q2_penalties_viz
 soccer
 ```
 
-
 ### Discussion
 
 *Discussion goes here; delete this text when done*
+
+```{r}
+#| label: q2_ctf
+#| message: false
+
+#make new Dataset
+# Selecting only the necessary columns 
+
+Compare_dataset <- soccer[, c("HomeTeam", "AwayTeam", "HF", "HR", "HY", "AF", "AR", "AY")] # Avoid division by zero by adding a small number (epsilon) to the denominator 
+
+epsilon <- 0.001 # Calculating Home Foul Ratio 
+
+Compare_dataset$HFR = Compare_dataset$HF / (Compare_dataset$HY + Compare_dataset$HR+epsilon) 
+# Calculating Away Foul Ratio 
+Compare_dataset$AFR = Compare_dataset$AF / (Compare_dataset$AY + Compare_dataset$AR + epsilon)
+
+Compare_dataset
+
+# Melt the dataset for plotting (tidyr pivot_longer is the newer alternative to gather) 
+
+plot_data <- Compare_dataset %>% 
+  pivot_longer(cols = c(HF, HR, HY, AF, AR, AY), names_to = "Category", values_to = "Count")%>%
+  mutate(Type = case_when( str_detect(Category, "F") ~ "Fouls", 
+                           str_detect(Category, "R") ~ "Red Cards", 
+                           str_detect(Category, "Y") ~ "Yellow Cards" ), 
+         Team = case_when( str_detect(Category, "^H") ~ "Home", 
+                           str_detect(Category, "^A") ~ "Away" )) %>% 
+  select(-Category) %>% 
+  group_by(Type, Team) %>% 
+  summarise(AverageCount = mean(Count, na.rm = TRUE)) 
+
+
+ggplot(plot_data, aes(x = Type, y = AverageCount, fill = Team)) + 
+  geom_bar(stat = "identity", 
+           position = position_dodge(width = 0.9)) + 
+  geom_text(aes(label = round(AverageCount, 2), 
+                y = AverageCount + 0.02),  # Adjust the y position for visibility 
+                position = position_dodge(width = 0.9), 
+            vjust = 0, # Vertical adjustment; 0 means right above the bar 
+            size = 3) + # Text size, adjust as needed 
+  theme_minimal() + 
+  labs(title = "Average Fouls, Red Cards, and Yellow Cards for Home vs. Away Teams", x = "", y = "Average Count") + 
+  scale_fill_manual(values = c("Home" = "#dcb89e", "Away" = "#b8e1d3")) # Set your own colors here
+
+
+
+
+
+```
+
+### 
