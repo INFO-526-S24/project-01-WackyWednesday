@@ -71,7 +71,7 @@ away_goals <- away_goals %>%
     'full' = 'soccer$FTAG'
   )
 
-#Create color vector for easier labeling in the plot.
+#Create color vector to color-code home versus away in the scatterplot and regressions.
 colors <- c('Home' = 'blue', 'Away' = 'red')
 
 #Create scatterplot with two regression lines for home and away teams, respectively.
