@@ -15,7 +15,13 @@ if(!require(pacman))
   install.packages("pacman")
 
 pacman::p_load(
-  tidyverse
+  tidyverse,
+  here,
+  ggthemes,
+  viridis,
+  ggcorrplot,
+  devtools,
+  ragg
   )
 
 options(width = 65)
@@ -52,9 +58,11 @@ soccer <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tid
 ### Analysis
 
 #### Correlation between half-time and full-time goals.
+
 ```{r}
 #| label: q1_goals
 #| message: false
+#| warning: false
 
 #Create tibbles based on if the home or away team scored the goals. This makes it easier to color-code the scatterplot and calculate separate linear regressions later.
 home_goals <- tibble(soccer$HTHG, soccer$FTHG)
@@ -92,11 +100,64 @@ q1_goals <- ggplot() +
 suppressMessages(print(q1_goals))
 
 ```
+
 ### Discussion
 
 *Discussion goes here; delete this text when done*
 
 ## Question 2
+
+### Introduction
+
+The correlation between the variables used for the analysis are first scrutinized to reveal any possible correlations amongst them.
+
+```{r dev = 'ragg_png'}
+#| message: false
+#| label: corr_plot
+
+soccer_corr <- soccer |>
+  mutate(
+    HTFCR = (HR + HY)/ HF,
+    ATFCR = (AR + AY/ AF)
+  ) |>
+  pivot_longer( cols = c( 'HF', 'AF'),
+                names_to = 'Team_Fouls',
+                values_to = 'Fouls') |>
+  pivot_longer( cols = c( 'HY', 'AY'),
+                names_to = 'Team_Yellows',
+                values_to = 'yellow_cards') |>
+  pivot_longer( cols = c( 'HR', 'AR'),
+                names_to = 'Team_Reds',
+                values_to = 'red_cards') |>
+  pivot_longer(
+    cols = c( 'HTFCR', 'ATFCR'),
+    names_to = 'Team',
+    values_to = 'FCR'
+  ) |>
+  pivot_longer(
+    cols = c('FTHG', 'FTAG'),
+    names_to = 'TFTG', values_to = 'FTG'
+  )
+
+
+soccer_corr <- soccer_corr |>
+  select( red_cards, yellow_cards, Fouls, FCR, FTG ) |>
+  rename( '🟥' = red_cards, '🟨' = yellow_cards )
+
+cor_matrix <- round(cor(soccer_corr) , 2)
+ggcorrplot(cor_matrix , hc.order =  TRUE, type = 'lower' , lab = TRUE ) +
+  theme_minimal( ) +
+  theme( legend.position = 'none',
+         panel.grid = element_blank(),
+         ) +
+  labs(
+    x = "",
+    y = '',
+    title = "The correlation between the variables used for the analysis",
+    subtitle = "Card Foul Ratio(FCR),Yellow cards(🟨) ,\nRed cards(🟥) and Full Time Goals (FTG)"
+  )
+
+```
 
 *Intro goes here; delete this text when done*
 
@@ -202,8 +263,8 @@ q2_penalties_viz <- soccer |>
   theme_classic() +
   theme(
     text = element_text(family = "mono"),
-    legend.position = "inside",
-    legend.position.inside = c(0.9, 0.9),
+    #legend.position = "inside",
+    #legend.position.inside = c(0.9, 0.9),
     legend.box.background = element_rect(),
     plot.title.position = "plot"
   ) +
@@ -221,13 +282,36 @@ q2_penalties_viz
 
 #### Cards:Fouls Ratio by Team
 
-*code goes here; delete when done*
-
 ```{r}
 #| label: q2_ctf
 #| message: false
 
-soccer
+soccer_ctf <- soccer |>
+  mutate(
+    HTFCR = (HR + HY)/ HF,
+    ATFCR = (AR + AY/ AF)
+  ) |>
+  rename(
+    'Home' = 'HTFCR',
+    'Away' = 'ATFCR'
+  )
+soccer_ctf <- soccer_ctf |>
+  pivot_longer(
+    cols = c( 'Home', 'Away'),
+    names_to = 'Team',
+    values_to = 'FCR'
+  )
+soccer_ctf |>
+  ggplot( aes( x = FCR ) ) +
+  geom_density( aes( fill = Team ), alpha = 0.4 ) +
+  scale_fill_viridis(
+    discrete = TRUE, option = "C"
+  ) +
+  theme_minimal( )  +
+  labs( x = 'Card Foul Ratio',
+        y = 'Density',
+        title = 'The distribution of card foul ratios across teams',
+        caption = 'TidyTuesday')
 ```
 
 ### Discussion
@@ -235,7 +319,7 @@ soccer
 *Discussion goes here; delete this text when done*
 
 ```{r}
-#| label: q2_ctf
+#| label: q2_ctf2
 #| message: false
 
 #make new Dataset
