@@ -51,11 +51,23 @@ soccer <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tid
 
 *Intro goes here; delete this text when done*
 
+##Question 1 (ii) 
+
+*Does the Home advantage played a major role in outcome of the result? Summarize for Total games won by Home and Away team. Summarize for Total goals scored by each team in Home and Away Conditions.*
+
 ### Approach
 
 *Approach goes here; delete this text when done*
 
+*Question 1 (ii) By comparing the Full Time Result (FTR),Home Advantage, and the Away advantage combining all and summary is created with the help of Home_Advantage variable Where if the Result is "H" it will be added to home team victory otherwise it will be added to Away team victory. summarizing the output Bar plot for Total Games *
+*To find the total goals scored by individual team in home and away- Advantage summary is created and combined together to form a new Total goals variable. And Now with Home team, Total variable as aesthetic layers Bar plot is created side by side to interpret the outcome for all 20 teams*
+
+**
+
 ### Analysis
+
+
+*Question 1 ii : As per the data_set, The home game winning advantage did not created impact in every games but only in some games whereas for the goal scored ratio in home and away match except few teams, majority of the team scored more goals in home than in away. *
 
 #### Correlation between half-time and full-time goals.
 
@@ -100,6 +112,61 @@ q1_goals <- ggplot() +
 suppressMessages(print(q1_goals))
 
 ```
+```{r}
+#| label: q1ii_Totalgames_by_Home_and_Away
+#| message: false
+#| warning: false
+
+# Create a variable for home team advantage
+soccer <- soccer %>%
+  mutate(HomeAdvantage = ifelse(FTR == "H", "Home Team Win", "Away Team Win"))
+
+# Analyze home and away team advantage
+advantage_summary <- soccer %>%
+  group_by(HomeAdvantage) %>%
+  summarise(TotalGames = n())
+
+# Print the result
+print(advantage_summary)
+```
+
+```{r}
+# Bar plot for home and away team advantage
+
+ggplot(advantage_summary, aes(x = HomeAdvantage, y = TotalGames, fill = HomeAdvantage)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Distribution of Home and Away Team Wins",
+       x = "Win_Count", y = "Total Games") +
+  scale_fill_manual(values = c("Home Team Win" = "lightgreen", "Away Team Win" = "red")) +
+  theme_minimal()
+```
+
+```{r}
+soccer %>%
+  group_by(HomeTeam) %>%
+  summarize(Total_Home_goals = sum(FTHG))
+ 
+soccer %>%
+  group_by(AwayTeam) %>%
+  summarize(Total_Away_goals = sum(FTAG))
+```
+```{r}
+# Merge the data for home and away goals
+total_goals <- merge(total_home_goals, total_away_goals, by.x = "HomeTeam", by.y = "AwayTeam", all = TRUE)
+
+total_goals_long <- gather(total_goals, key = "TeamType", value = "TotalGoals", -HomeTeam)
+
+# Create a side-by-side bar plot
+ggplot(total_goals_long , aes(x = HomeTeam, y = TotalGoals, fill = TeamType)) +
+  geom_bar(position = "dodge", stat = "identity") +
+  labs(title = "Total Home and Away Goals by Team",
+       x = "Teams on Home and Away", y = "Total Goals") +
+  scale_fill_manual(values = c("Total_Home_goals" = "lightgreen", "Total_Away_goals" = "red")) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
 
 ### Discussion
 
