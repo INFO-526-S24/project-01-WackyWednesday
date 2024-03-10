@@ -142,14 +142,18 @@ ggplot(advantage_summary, aes(x = HomeAdvantage, y = TotalGames, fill = HomeAdva
 ```
 
 ```{r}
-soccer %>%
+total_home_goals <-soccer %>%
   group_by(HomeTeam) %>%
   summarize(Total_Home_goals = sum(FTHG))
  
-soccer %>%
+total_away_goals <-soccer %>%
   group_by(AwayTeam) %>%
   summarize(Total_Away_goals = sum(FTAG))
+
+print(total_home_goals)
+print(total_away_goals)
 ```
+
 ```{r}
 # Merge the data for home and away goals
 total_goals <- merge(total_home_goals, total_away_goals, by.x = "HomeTeam", by.y = "AwayTeam", all = TRUE)
