@@ -65,7 +65,7 @@ showtext::showtext_auto()
 
 *Intro goes here; delete this text when done*
 
-## Question 1 (ii) 
+## Question 1 (ii)
 
 *Does the Home advantage played a major role in outcome of the result? Summarize for Total games won by Home and Away team. Summarize for Total goals scored by each team in Home and Away Conditions.*
 
@@ -73,15 +73,13 @@ showtext::showtext_auto()
 
 *Approach goes here; delete this text when done*
 
-*Question 1 (ii) By comparing the Full Time Result (FTR),Home Advantage, and the Away advantage combining all and summary is created with the help of Home_Advantage variable Where if the Result is "H" it will be added to home team victory otherwise it will be added to Away team victory. summarizing the output Bar plot for Total Games *
-*To find the total goals scored by individual team in home and away- Advantage summary is created and combined together to form a new Total goals variable. And Now with Home team, Total variable as aesthetic layers Bar plot is created side by side to interpret the outcome for all 20 teams*
+*Question 1 (ii) By comparing the Full Time Result (FTR),Home Advantage, and the Away advantage combining all and summary is created with the help of Home_Advantage variable Where if the Result is "H" it will be added to home team victory otherwise it will be added to Away team victory. summarizing the output Bar plot for Total Games* *To find the total goals scored by individual team in home and away- Advantage summary is created and combined together to form a new Total goals variable. And Now with Home team, Total variable as aesthetic layers Bar plot is created side by side to interpret the outcome for all 20 teams*
 
-**
+\*\*
 
 ### Analysis
 
-
-*Question 1 ii : As per the data_set, The home game winning advantage did not created impact in every games but only in some games whereas for the goal scored ratio in home and away match except few teams, majority of the team scored more goals in home than in away. *
+*Question 1 ii : As per the data_set, The home game winning advantage did not created impact in every games but only in some games whereas for the goal scored ratio in home and away match except few teams, majority of the team scored more goals in home than in away.*
 
 #### Correlation between half-time and full-time goals.
 
@@ -219,7 +217,6 @@ ggplot(total_goals_long , aes(x = HomeTeam, y = TotalGoals, fill = TeamType)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
-
 
 ### Discussion
 
@@ -516,21 +513,21 @@ The average penalties by team are provided in the following summary table:
 
 Compare_dataset <- soccer[, c("HomeTeam", "AwayTeam", "HF", "HR", "HY", "AF", "AR", "AY")] # Avoid division by zero by adding a small number (epsilon) to the denominator 
 
-epsilon <- 0.001 # Calculating Home Foul Ratio 
 
-Compare_dataset$HFR = Compare_dataset$HF / (Compare_dataset$HY + Compare_dataset$HR+epsilon) 
+Compare_dataset$HCO = (Compare_dataset$HY + Compare_dataset$HR+epsilon)/Compare_dataset$HF 
 # Calculating Away Foul Ratio 
-Compare_dataset$AFR = Compare_dataset$AF / (Compare_dataset$AY + Compare_dataset$AR + epsilon)
+Compare_dataset$ACO = (Compare_dataset$AY + Compare_dataset$AR + epsilon)/Compare_dataset$AF
 
 # Compare_dataset
 
 # Melt the dataset for plotting (tidyr pivot_longer is the newer alternative to gather) 
 
 plot_data <- Compare_dataset %>% 
-  pivot_longer(cols = c(HF, HR, HY, AF, AR, AY), names_to = "Category", values_to = "Count")%>%
+  pivot_longer(cols = c(HF, HR, HY, AF, AR, AY,HCO,ACO), names_to = "Category", values_to = "Count")%>%
   mutate(Type = case_when( str_detect(Category, "F") ~ "Fouls", 
                            str_detect(Category, "R") ~ "Red Cards", 
-                           str_detect(Category, "Y") ~ "Yellow Cards" ), 
+                           str_detect(Category, "Y") ~ "Yellow Cards", 
+                           str_detect(Category, "C")~"Fouls Ratio"), 
          Team = case_when( str_detect(Category, "^H") ~ "Home", 
                            str_detect(Category, "^A") ~ "Away" )) %>% 
   select(-Category) %>% 
