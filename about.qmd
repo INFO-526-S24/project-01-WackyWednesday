@@ -6,14 +6,14 @@ editor: visual
 
 This project was developed by **\[WackyWednesday\]** For [INFO 526 - Data Analysis and Visualization](https://datavizaz.org/) at the University of Arizona, taught by Dr. Greg Chism. The team is comprised of the following team members.
 
--   Sanja Dmitrovic: One sentence description of Team member (e.g., year, major, etc.).
+-   Sanja Dmitrovic: Fifth year PhD student, Optical Sciences
 
--   Jiayue He: One sentence description of Team member (e.g., year, major, etc.).
+-   Jiayue He: Second year graduate student, Information Science - Human-Centered Computing
 
 -   Gillian McGinnis: First year graduate student, Information Science - Machine Learning
 
--   Valerie Okine: One sentence description of Team member (e.g., year, major, etc.).
+-   Valerie Okine: First year graduate student, Data Science
 
--   Sai Navya Reddy: One sentence description of Team member (e.g., year, major, etc.).
+-   Sai Navya Reddy: First year graduate student, Data Science
 
--   Akash Srinivasan: One sentence description of Team member (e.g., year, major, etc.).
+-   Akash Srinivasan: First year graduate student, Data Science
