@@ -65,7 +65,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r}
-#| label: setup
+
 #| include: false
 
 # Plot theme
@@ -193,13 +193,13 @@ print(advantage_summary)
 
 ::: nonincremental
 For Question 2, our focus shifts towards exploring the potential impact of home versus away team on the occurance of penalties. This question delves into whether playing at home or away influences the likelihood of a team gaining fouls, yellow cards, and red cards. Based on our assumption, we want to see if there is a notable bias against the away team in terms of penalties awarded, suggesting a possible psychological or referee bias factor during game.
+:::
 
-Based on this goal, we come up with two questions:
+## Question 2 Break Down
 
-1\) Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?
+1\) Is there a noticeable bias against the away team in terms of the number of fouls, red, and yellow cards received?
 
 2\) How do the ratios of cards to fouls differ between home and away teams?
-:::
 
 ## Approach for Question 2
 
