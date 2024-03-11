@@ -58,7 +58,7 @@ showtext::showtext_auto()
 
 ## Abstract
 
-This project explores match data from the English Premier League 2021-2022 season, utilizing visualizations to analyze various aspects of the matches. The dataset includes details such as goals scored, half-time results, fouls committed, and more. Through these visualizations, we aim to uncover insights into team performance, home advantage, and potential biases. By examining patterns and trends in the data, we seek to deepen our understanding of the dynamics within the Premier League. This project serves as a valuable resource for football enthusiasts and analysts interested in exploring the intricacies of professional football matches.
+This project analyzes Premier League match data from the 2021-2022 season to investigate team performance and officiating biases. Through data-driven analysis of goals, fouls, and cards, the study explores the influence of home-team advantage and potential disparities in penalty decisions. By uncovering trends in match dynamics, this research provides valuable insights for football enthusiasts and stakeholders alike.
 
 ## Introduction
 
