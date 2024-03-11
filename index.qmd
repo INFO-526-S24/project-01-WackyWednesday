@@ -2,8 +2,12 @@
 title: "Game Metrics: Decoding Premier League Outcomes Through Visual Analysis and Data Exploration"
 subtitle: "INFO 526 - Project 1"
 author: "Group 4 WackyWednesday"
-format: html
+# format: html
 editor: visual
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
 ---
 
 ```{r}
@@ -55,7 +59,7 @@ showtext::showtext_auto()
 
 ## Abstract
 
-This project explores match data from the English Premier League 2021-2022 season, utilizing visualizations to analyze various aspects of the matches. The dataset encompasses details such as goals scored, shots taken, fouls committed, and more. Each visualization is assigned to a variable, facilitating easy reference and integration into the analysis. Through these visualizations, we aim to uncover insights into team performance, home advantage, referee decisions, and potential biases. By examining patterns and trends in the data, we seek to deepen our understanding of the dynamics within the Premier League. This project serves as a valuable resource for football enthusiasts and analysts interested in exploring the intricacies of professional football matches. 
+This project explores match data from the English Premier League 2021-2022 season, utilizing visualizations to analyze various aspects of the matches. The dataset includes details such as goals scored, half-time results, fouls committed, and more. Through these visualizations, we aim to uncover insights into team performance, home advantage, and potential biases. By examining patterns and trends in the data, we seek to deepen our understanding of the dynamics within the Premier League. This project serves as a valuable resource for football enthusiasts and analysts interested in exploring the intricacies of professional football matches.
 
 ## Introduction
 
@@ -65,50 +69,26 @@ The [Premier League](https://www.premierleague.com/) is the foremost league for 
 
 Variables in this dataset includes teams, referee, and stats by home and away side such as fouls, shots, cards, and point totals. The dataset is in a tabular format with `r nrow(soccer)` rows representing individual matches and `r ncol(soccer)` columns representing each variable, described below. Both categorical and numerical variables are included.
 
-A glimpse at each variable:
+The breakdown of each variable in the data set can be found in the [codebook](https://github.com/INFO-526-S24/project-01-WackyWednesday/blob/main/data/README.md) as well as the [project proposal](https://info-526-s24.github.io/project-01-WackyWednesday/proposal.html).
 
-```{r}
-#| label: explore-dataset
-#| message: false
-#| echo: false
-glimpse(soccer)
-```
+In our analysis we will be focusing on the following variables:
 
-The description and type of each variable are as follows:
+-  `HomeTeam` (character): The home team.
+-  `AwayTeam` (character): The away team.
+-  `FTHG` (double): Full-time home goals.
+-  `FTAG` (double): Full-time away goals.
+-  `FTR` (character): Full-time result.
+-  `HTHG` (double): Half-time home goals.
+-  `HTAG` (double): Half-time away goals.
+-  `HTR` (character): Half-time result.
+- `HF` (double): Number of fouls by the home team.
+- `AF` (double): Number of fouls by the away team.
+- `HY` (double): Number of yellow cards received by the home team.
+- `AY` (double): Number of yellow cards received by the away team.
+- `HR` (double): Number of red cards received by the home team.
+- `AR` (double): Number of red cards received by the away team.
 
-1.  `Date` (character): The date when the match was played.
-2.  `HomeTeam` (character): The home team.
-3.  `AwayTeam` (character): The away team.
-4.  `FTHG` (double): Full-time home goals.
-5.  `FTAG` (double): Full-time away goals.
-6.  `FTR` (character): Full-time result.
-7.  `HTHG` (double): Half-time home goals.
-8.  `HTAG` (double): Half-time away goals.
-9.  `HTR` (character): Half-time result.
-10. `Referee` (character): Referee of the match.
-11. `HS` (double): Number of shots taken by the home team.
-12. `AS` (double): Number of shots taken by the away team.
-13. `HST` (double): Number of shots on target by the home team.
-14. `AST` (double): Number of shots on target by the away team.
-15. `HF` (double): Number of fouls by the home team.
-16. `AF` (double): Number of fouls by the away team.
-17. `HC` (double): Number of corners taken by the home team.
-18. `AC` (double): Number of corners taken by the away team.
-19. `HY` (double): Number of yellow cards received by the home team.
-20. `AY` (double): Number of yellow cards received by the away team.
-21. `HR` (double): Number of red cards received by the home team.
-22. `AR` (double): Number of red cards received by the away team.
-
-Diagnosing the quality of each variable:
-
-```{r}
-#| label: explore-dataset-quality
-#| message: false
-#| echo: false
-dlookr::diagnose(soccer) |> print(n = 22)
-```
-
-This dataset is ideal for analytical projects aiming to understand football dynamics, player contributions, and team strategies throughout the season.
+This dataset is ideal for analytical projects aiming to understand football dynamics and team strategies throughout the season.
 
 **Reason for Choosing this Dataset**
 
@@ -118,21 +98,22 @@ We chose this data set because it provides comprehensive statistics contributing
 
 ### Introduction
 
-What effect (if any) does being the "home" team versus being the "away" team affect the teams' performances? *Insert text.*
+*INSERT TEXT -- DELETE THIS TEXT WHEN DONE.*
+What effect (if any) does being the "home" team versus being the "away" team affect the teams' performances?
 
-#### Question 1A
+**Question 1A**
 
 Do the number of goals at half-time determine the final outcome? Does this relationship change between home and away teams?
 
-#### Question 1B
+**Question 1B**
 
 Does home-team advantage play a major role in the final match outcome?
 
 ### Approach
 
-Part A: The variables used to answer this question are half-time home goals (HTHG), full-time home goals (FTHG), half-time away goals (HTAG), and full-time away goals (HTHG). A scatterplot is created to quantify the correlation between goals at half-time and goals at full-time (end of match) and is color-coded based on home versus away teams. Linear regressions are performed separately for home team and away team data and correlation coefficients are reported. Scatterplot and linear regression analysis is chosen because they directly determine how strongly two variables are related to each other.
+Part A: The variables used to answer this question are half-time home goals (`HTHG`), full-time home goals (`FTHG`), half-time away goals (`HTAG`), and full-time away goals (`HTHG`). A scatterplot is created to quantify the correlation between goals at half-time and goals at full-time (end of match) and is color-coded based on home versus away teams. Linear regressions are performed separately for home team and away team data and correlation coefficients are reported. Scatterplot and linear regression analysis is chosen because they directly determine how strongly two variables are related to each other.
 
-Part B: Using the Full Time Result (FTR) variable, home advantage and away advantage are categorized into a new Home_Advantage variable. The advantage is determined through the number of wins of each team. If the Result is "H", it will be added to home team victory and is therefore counted as home team advantage. If not, it will be added to away team victory and is counted as away team advantage. This information is summarized in a bar plot for Total Games to find the total goals scored by individual team in home and away. An advantage summary is created and combined together to form a new Total goals variable. The Home team, Total variable is then used as an aesthetic layer and a bar plot is created side by side to interpret the outcome for all 20 teams.
+Part B: Using the Full Time Result (`FTR`) variable, home advantage and away advantage are categorized into a new Home_Advantage variable. The advantage is determined through the number of wins of each team. If the Result is "H", it will be added to home team victory and is therefore counted as home team advantage. If not, it will be added to away team victory and is counted as away team advantage. This information is summarized in a bar plot for Total Games to find the total goals scored by individual team in home and away. An advantage summary is created and combined together to form a new Total goals variable. The Home team, Total variable is then used as an aesthetic layer and a bar plot is created side by side to interpret the outcome for all 20 teams.
 
 ### Analysis
 
@@ -289,10 +270,12 @@ As per the data_set, the home game winning advantage did not create impact in ev
 
 ### Introduction
 
+*INSERT TEXT -- DELETE THIS TEXT WHEN DONE.*
+
 The correlation between the variables used for the analysis are first scrutinized to reveal information about them.
 
 ```{r dev = 'ragg_png'}
-#| label: corr_plot
+#| label: q2_corr_plot
 #| message: false
 
 soccer_corr <- soccer |>
@@ -319,7 +302,6 @@ soccer_corr <- soccer |>
     names_to = 'TFTG', values_to = 'FTG'
   )
 
-
 soccer_corr <- soccer_corr |>
   select( red_cards, yellow_cards, Fouls, FCR, FTG ) |>
   rename( '🟥' = red_cards, '🟨' = yellow_cards )
@@ -335,7 +317,6 @@ ggcorrplot(cor_matrix,
     legend.position = 'none',
     panel.grid = element_blank(),
     text = element_text(
-      family = "Poppins",
       face = "bold",
       color = "#3d195b"
     ),
@@ -348,22 +329,25 @@ ggcorrplot(cor_matrix,
     subtitle = paste0("Card to Foul Ratio(FCR), Yellow cards(🟨),\n",
                       "Red cards(🟥), and Full Time Goals (FTG)")
   )
-
 ```
 
-*Intro goes here; delete this text when done*
+*INSERT TEXT -- DELETE THIS TEXT WHEN DONE.*
 
 ### Approach
 
-*Approach goes here; delete this text when done*
+*Approach goes here -- DELETE THIS TEXT WHEN DONE.*
 
-*PENALTIES BY TEAM APPROACH HERE*
+#### Question 2A
 
 To determine if there is home-team bias regarding penalties (fouls, yellow cards, and red cards), we plotted the distribution of the total number of games in the season in which a certain number of penalties were given. Although this can be shown with a density plot or area plot, it is easier to see at precisely which penalty counts were more often toward or against each team. Since most games had no red cards given at all, and the maximum number of red cards given was only two, both red cards and yellow cards are plotted on the same facet. The distribution of fouls is much greater, as every single game had at least one foul given. The two team types are mapped to both color and shape for accessibility.
 
+#### Question 2B
+
+*APPROACH FOR 2B GOES HERE -- DELETE THIS TEXT WHEN DONE.*
+
 ### Analysis
 
-#### Penalties by Team
+#### Question 2A: Penalties by Team
 
 ```{r}
 #| label: q2_penalties
@@ -503,7 +487,7 @@ q2_penalties_viz <- ggplot(q2_soccer_pen,
 q2_penalties_viz
 ```
 
-#### Cards:Fouls Ratio by Team
+#### Question 2B: Cards:Fouls Ratio by Team
 
 ```{r}
 #| label: q2_ctf
@@ -560,16 +544,21 @@ ggplot(soccer_ctf, aes(x = FCR)) +
 
 ### Discussion
 
-*Discussion goes here; delete this text when done*
+#### Question 2A
 
 From the chart of the number of games by amount of penalties, there does not appear to be any major trends regarding a home-team bias when it comes to Cards. That said, there are a couple more instances of the home team receiving zero cards (both yellow and red) compared to the away team. The number of fouls does vary, however. The number of instances of a team with more fouls wavers, but generally there are more instances of very high foul counts (18+) for the away team. Interestingly, there is noticeably more instances of games in which the home team received a moderate number of fouls (from 11-13). In general, it also appears that the away team is right-skewed for the total number of fouls given, while the home team is left-skewed.
+
+#### Question 2B
+
+*Discussion goes here; DELETE THIS TEXT WHEN DONE*
+
+#### Additional information
 
 The average penalties by team are provided in the following summary table:
 
 ```{r}
 #| label: q2_ctf2_wrangle
 #| message: false
-#| echo: false
 
 #make new Dataset
 # Selecting only the necessary columns 
@@ -611,7 +600,6 @@ Based on the overall averages, the away team on average receives a greater numbe
 ```{r}
 #| label: q2_ctf2_viz
 #| message: false
-#| echo: false
 
 ggplot(plot_data, aes(x = Type,
                       y = AverageCount,
