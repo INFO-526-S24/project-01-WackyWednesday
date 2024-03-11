@@ -63,6 +63,7 @@ knitr::opts_chunk$set(
   fig.asp = 0.618 
   )
 ```
+
 ```{r}
 #| label: setup
 #| include: false
@@ -70,6 +71,7 @@ knitr::opts_chunk$set(
 # Plot theme
 ggplot2::theme_set(ggplot2::theme_minimal(base_size = 11))
 ```
+
 ```{r}
 #| label: load-dataset-colors
 #| message: false
@@ -85,33 +87,35 @@ sysfonts::font_add_google("Poppins")
 showtext::showtext_auto()
 ```
 
-INTRODUCTION
+## INTRODUCTION
+
 ::: incremental
-This Dataset derived from TidyTuesday's April 4, 2023 post "Premier League Match Data 2021-2022".
-The data is sourced from Evan Gower's Kaggle post of the same name.
-Variables included are teams, referees, and match statistics for home and away sides such as fouls, shots, cards, and point totals.
-Tabular format with rows representing individual matches and columns representing variables.
-The dataset contains both categorical and numerical variables.
-It provides insights into team performance, referee assignments, and match statistics for the season.
+This Dataset derived from TidyTuesday's April 4, 2023 post "Premier League Match Data 2021-2022". The data is sourced from Evan Gower's Kaggle post of the same name. Variables included are teams, referees, and match statistics for home and away sides such as fouls, shots, cards, and point totals. Tabular format with rows representing individual matches and columns representing variables. The dataset contains both categorical and numerical variables. It provides insights into team performance, referee assignments, and match statistics for the season.
 :::
 
-QUESTION1
+## QUESTION 1
 
 1A. Do the number of goals at half-time determine the final outcome? Does this relationship change between home and away teams?
 
 1B. Does home-team advantage play a major role in the final match outcome?
 
-APPROACH
-::: nonincremental
-Part A
+## APPROACH
 
+#### PART A
+
+::: nonincremental
 In Part A, we examine the correlation between half-time and full-time goals scored by home and away teams in the English Premier League 2021-2022 season. Using variables like HTHG, FTHG, HTAG, and FTAG, we create scatterplots, color-coded by team type. Separate linear regressions are conducted for home and away teams to determine correlation coefficients. This approach directly assesses the relationship strength between these variables, offering insights into match dynamics.
+:::
 
-Part B
+#### PART B
 
-In Part B, we categorize home and away advantages in the English Premier League 2021-2022 season based on the Full Time Result (FTR) variable. A bar plot summarizes total games and goals scored by each team at home and away. We then create a new variable, Total goals, by combining advantage summaries with total goals. Finally, side-by-side bar plots interpret outcomes for all 20 teams using the Home team and Total variable.
 ::: nonincremental
-Question 1A: Correlation between half-time and full-time goals.
+In Part B, we categorize home and away advantages in the English Premier League 2021-2022 season based on the Full Time Result (FTR) variable. A bar plot summarizes total games and goals scored by each team at home and away. We then create a new variable, Total goals, by combining advantage summaries with total goals. Finally, side-by-side bar plots interpret outcomes for all 20 teams using the Home team and Total variable
+:::
+
+## Plots of Question 1
+
+### Plot 1
 
 ```{r}
 #| label: q1_goals
@@ -163,4 +167,233 @@ q1_goals <- ggplot() +
 #Suppress warning messages when printing ggplot object.
 suppressMessages(print(q1_goals))
 
+```
+
+### Plot 2
+
+```{r}
+#| label: q1ii_Totalgames_by_Home_and_Away
+#| message: false
+#| warning: false
+
+# Create a variable for home team advantage
+soccer <- soccer %>%
+  mutate(HomeAdvantage = ifelse(FTR == "H", "Home Team Win", "Away Team Win"))
+
+# Analyze home and away team advantage
+advantage_summary <- soccer %>%
+  group_by(HomeAdvantage) %>%
+  summarise(TotalGames = n())
+
+# Print the result
+print(advantage_summary)
+```
+
+## Question 2
+
+What effect (if any) does being the “home” team versus being the “away” team affect the teams’ penalties?
+
+1.  Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?
+
+2.   How do the ratios of cards to fouls differ between home and away teams?
+
+## Approach for Question 2
+
+To analyze potential home-team bias in penalties, we examined the frequency of penalties awarded per game in the season, represented by a distribution plot. Red and yellow cards, often clustered in low counts, were combined for clarity. Fouls, more prevalent in every game, showed a broader distribution. Team types were distinguished by color and shape for better interpretation.
+
+## Plots of Question 2
+
+### Plot 2A
+
+```{r}
+#| label: q2_penalties
+#| message: false
+#| fig.width: 10
+
+q2_soccer_pen <- soccer |> 
+  select(HF, AF, HY, AY, HR, AR) |>
+  rename(
+    yellow_home = HY,
+    yellow_away = AY,
+    foul_home = HF,
+    foul_away = AF,
+    red_home = HR,
+    red_away = AR
+  ) |>
+  mutate(game_number = row_number()) |> 
+  group_by(game_number) |> 
+  pivot_longer(
+    cols = c(yellow_home, red_home,
+             yellow_away, red_away,
+             foul_away, foul_home),
+    names_to = "pen_type",
+    values_to = "pen_count"
+  ) |> 
+  mutate(
+    pen_cat = case_when(
+      str_detect(pen_type, "yellow") ~ "yellow",
+      str_detect(pen_type, "red") ~ "red",
+      str_detect(pen_type, "foul") ~ "foul"
+    ),
+    h_a = case_when(
+      str_detect(pen_type, "home") ~ "Home",
+      str_detect(pen_type, "away") ~ "Away"
+    )
+  ) |>
+  group_by(h_a, pen_count, pen_cat) |> 
+  select(!pen_type) |> 
+  summarize(tot = n()) |> 
+  mutate(
+    pen_cf = case_when(
+      pen_cat == "foul" ~ "Fouls",
+      TRUE ~ "Cards"
+    )
+  )
+
+q2_penalties_viz <- ggplot(q2_soccer_pen,
+                           aes(x = pen_count,
+                               y = tot,
+                               group = pen_cat,
+                               color = h_a)) +
+  facet_wrap(~pen_cf,
+             ncol = 1,
+             scales = "free"
+             ) +
+  geom_line(
+    data = filter(q2_soccer_pen, pen_cat == "red"),
+    aes(group = interaction(pen_cat, h_a)),
+    lineend = "round",
+    linewidth = 10,
+    alpha = 0.05,
+    color = "red"
+  ) +
+  geom_line(
+    data = filter(q2_soccer_pen, pen_cat == "yellow"),
+    aes(group = interaction(pen_cat, h_a)),
+    lineend = "round",
+    linewidth = 10,
+    alpha = 0.1,
+    color = "yellow"
+  ) +
+  geom_line(
+    data = filter(q2_soccer_pen, pen_cat == "foul"),
+    aes(group = interaction(pen_cat, h_a)),
+    lineend = "round",
+    linewidth = 10,
+    alpha = 0.05,
+    color = "purple"
+  ) +
+  geom_line(
+    aes(group = interaction(pen_cat, h_a)),
+    linewidth = 1,
+    alpha = 0.5
+  ) +
+  geom_point(
+    aes(shape = h_a),
+    size = 4,
+    stroke = 1.5
+  ) +
+  geom_text(
+    data = data.frame(
+      "label" = c("Red Cards", "Yellow Cards", "Fouls"),
+      x = c(1, 1.75, 4),
+      y = c(300, 170, 30),
+      pen_cf = c("Cards", "Cards", "Fouls")
+    ),
+    aes(x = x, y = y, group = 1, label = label),
+    color = pal_pl_logo,
+    family = "Poppins",
+    fontface = "bold",
+    size = 5
+  ) +
+  scale_x_continuous(
+    breaks = scales::pretty_breaks(7)
+  ) +
+  scale_color_manual(
+    breaks = c("Home", "Away"),
+    values = darken(pal_pl, 0.3)
+  ) +
+  scale_shape_manual(
+    breaks = c("Home", "Away"),
+    values = c(5, 4)
+  ) +
+  theme_classic() +
+  theme(
+    text = element_text("Poppins",
+                        face = "bold",
+                        color = pal_pl_logo,
+                        size = 15),
+    #legend.position = "inside",
+    #legend.position.inside = c(0.85, 0.85),
+    legend.box.background = element_rect(),
+    strip.background = element_blank(),
+    strip.text.x = element_blank(),
+    plot.title.position = "plot"
+  ) +
+  labs(
+    color = "Team",
+    shape = "Team",
+    x = "Total given in a game",
+    y = "Number of games",
+    title = "Number of English football games by amounts of penalties",
+    subtitle = lab_pl_subtitle,
+    fill = "Team"
+  )
+
+q2_penalties_viz
+```
+
+### PLOT 2B
+
+```{r}
+#| label: q2_ctf
+#| message: false
+#| fig.width: 10
+
+soccer_ctf <- soccer |>
+  mutate(
+    HTFCR = (HR + HY)/ HF,
+    ATFCR = (AR + AY/ AF)
+  ) |>
+  rename(
+    'Home' = 'HTFCR',
+    'Away' = 'ATFCR'
+  ) |> 
+  pivot_longer(
+    cols = c('Home', 'Away'),
+    names_to = 'Team',
+    values_to = 'FCR'
+  )
+
+ggplot(soccer_ctf, aes(x = FCR)) +
+  geom_density(
+    aes(fill = Team, color = Team),
+    alpha = 0.25,
+    linewidth = 1
+  ) +
+  scale_fill_manual(
+    breaks = c("Home", "Away"),
+    values = darken(pal_pl, 0.3)
+  ) +
+  scale_color_manual(
+    breaks = c("Home", "Away"),
+    values = darken(pal_pl, 0.3)
+  ) +
+  theme_classic() +
+  theme(
+    text = element_text("Poppins",
+                        face = "bold",
+                        color = pal_pl_logo,
+                        size = 15),
+    #legend.position = "inside",
+    #legend.position.inside = c(0.75, 0.75),
+    legend.box.background = element_rect()
+  ) +
+  labs(
+    x = 'Card:Foul Ratio',
+    y = 'Density',
+    title = 'The distribution of card:foul ratios across teams',
+    subtitle = lab_pl_subtitle,
+    caption = 'Data from TidyTuesday'
+  )
 ```
