@@ -17,13 +17,35 @@ execute:
 ---
 
 ```{r}
-#| label: load-packages
-#| include: false
+#| label: load-pkgs
+#| message: false
+#| output: false
+#| echo: false
+if(!require(pacman))
+  install.packages("pacman")
 
-# Load packages here
-pacman::p_load(tidymodels,
-               tidyverse)
+pacman::p_load(
+  tidyverse,
+  here,
+  ggthemes,
+  viridis,
+  ggcorrplot,
+  devtools,
+  ragg,
+  colorspace,
+  sysfonts,
+  showtext,
+  scales
+  )
 
+options(width = 65)
+
+knitr::opts_chunk$set(
+  fig.asp = 0.618,
+  fig.align = "center",
+  fig.retina = 1,
+  fig.showtext = T
+)
 ```
 
 ```{r}
@@ -41,125 +63,104 @@ knitr::opts_chunk$set(
   fig.asp = 0.618 
   )
 ```
-
 ```{r}
-#| label: load-data
+#| label: setup
 #| include: false
-# Load data here
-data(mtcars)
-mtcars$speed <- mtcars$hp / mtcars$wt
 
-data("penguins")
+# Plot theme
+ggplot2::theme_set(ggplot2::theme_minimal(base_size = 11))
+```
+```{r}
+#| label: load-dataset-colors
+#| message: false
+#| echo: false
+soccer <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-04-04/soccer21-22.csv')
+
+pal_pl <- c("#F8145C", "#45F2FD", "#30FF86", "#E9FF00")
+pal_pl_logo <- "#3d195b"
+
+lab_pl_subtitle <- "Premier League match data, 2021-2022 season"
+
+sysfonts::font_add_google("Poppins")
+showtext::showtext_auto()
 ```
 
-# Using Quarto for presentations
-
-## Quarto
-
--   The presentation is created using the Quarto CLI
-
--   `##` sets the start of a new slide
-
-## Layouts
-
-You can use plain text
-
-::: columns
-::: {.column width="40%"}
--   or bullet points[^1]
+INTRODUCTION
+::: incremental
+This Dataset derived from TidyTuesday's April 4, 2023 post "Premier League Match Data 2021-2022".
+The data is sourced from Evan Gower's Kaggle post of the same name.
+Variables included are teams, referees, and match statistics for home and away sides such as fouls, shots, cards, and point totals.
+Tabular format with rows representing individual matches and columns representing variables.
+The dataset contains both categorical and numerical variables.
+It provides insights into team performance, referee assignments, and match statistics for the season.
 :::
 
-::: {.column width="60%"}
-or in two columns
-:::
-:::
+QUESTION1
 
-[^1]: And add footnotes
+1A. Do the number of goals at half-time determine the final outcome? Does this relationship change between home and away teams?
 
--   like
+1B. Does home-team advantage play a major role in the final match outcome?
 
--   this
+APPROACH
+::: nonincremental
+Part A
 
-## Code
+In Part A, we examine the correlation between half-time and full-time goals scored by home and away teams in the English Premier League 2021-2022 season. Using variables like HTHG, FTHG, HTAG, and FTAG, we create scatterplots, color-coded by team type. Separate linear regressions are conducted for home and away teams to determine correlation coefficients. This approach directly assesses the relationship strength between these variables, offering insights into match dynamics.
 
-```{r, echo=FALSE}
-model <- lm(mpg ~ speed, data = mtcars) 
+Part B
 
-model |> tidy()
-
-model |> glance()
-
-```
-
-## Plots
+In Part B, we categorize home and away advantages in the English Premier League 2021-2022 season based on the Full Time Result (FTR) variable. A bar plot summarizes total games and goals scored by each team at home and away. We then create a new variable, Total goals, by combining advantage summaries with total goals. Finally, side-by-side bar plots interpret outcomes for all 20 teams using the Home team and Total variable.
+::: nonincremental
+Question 1A: Correlation between half-time and full-time goals.
 
 ```{r}
-penguins |>
-  mutate(species = ifelse(species == "Adelie", "Adelie", "Other")) |>
-  ggplot(aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
-  geom_point()
+#| label: q1_goals
+#| message: false
+#| warning: false
+
+#Create tibbles based on if the home or away team scored the goals. This makes it easier to color-code the scatterplot and calculate separate linear regressions later.
+home_goals <- tibble(soccer$HTHG, soccer$FTHG)
+home_goals <- home_goals %>% 
+  rename(
+     'half' = 'soccer$HTHG',
+     'full' = 'soccer$FTHG'
+  )
+
+away_goals <- tibble(soccer$HTAG, soccer$FTAG)
+away_goals <- away_goals %>% 
+  rename(
+    'half' = 'soccer$HTAG',
+    'full' = 'soccer$FTAG'
+  )
+
+#Calculate correlation coefficients for home and away data sets.
+home_r <- cor(home_goals$half, home_goals$full)
+away_r <- cor(away_goals$half, away_goals$full)
+
+#Create scatterplot with two regression lines for home and away teams, respectively. Add number of points and correlation coefficients to plot.
+q1_goals <- ggplot() + 
+  geom_jitter(data = home_goals, aes(x = half, y = full, color = 'Home'), width = 0.7) +
+  geom_smooth(data = home_goals, aes(x = half, y = full, color = 'Home'), method = lm, se = FALSE) +
+  geom_jitter(data = away_goals, aes(x = half, y = full, color = 'Away'), width = 0.7) +
+  geom_smooth(data = away_goals, aes(x = half, y = full, color = 'Away'), method = lm,  se = FALSE) + 
+  xlim(0, 4) +
+  geom_label(aes(x = 0.25, y = 7, label= 'N = 380')) +
+  geom_label(aes(x = 3.7, y = 5.5, label= 'r = 0.72', color = 'Home'), show.legend  = FALSE) +
+  geom_label(aes(x = 3.7, y = 4.2, label= 'r = 0.70', color = 'Away'), show.legend = FALSE) +
+  labs( x = 'Goals at half-time',
+        y = 'Goals at full-time',
+        color = 'Team') +
+  scale_color_manual(
+    breaks = c("Home", "Away"),
+    values = darken(pal_pl, 0.3)
+  ) + 
+  theme_classic(base_size = 12) +
+  theme(
+    text = element_text("Poppins",
+                        face = "bold",
+                        color = pal_pl_logo))
+
+#Suppress warning messages when printing ggplot object.
+suppressMessages(print(q1_goals))
+
 ```
-
-## Plot and text
-
-::: columns
-::: {.column width="50%"}
--   Some text
-
--   goes here
-:::
-
-::: {.column width="50%"}
-```{r, warning=FALSE, fig.width=5.5}
-penguins |>
-  ggplot(aes(x = bill_length_mm, y = species, color = species)) +
-  geom_boxplot(linewidth = 0.75,
-               outlier.size = 2.5) +
-  theme_minimal(base_size = 15) +
-  theme(legend.key.size = unit(0.8, "cm"))
-```
-:::
-:::
-
-# A new section...
-
-## Tables
-
-If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
-
-```{r}
-penguins |> 
-  head() |>
-  kableExtra::kable() |>
-  kableExtra::kable_styling()
-```
-
-## Images
-
-![Image credit: Danielle Navarro, Percolate.](images/watercolour_sys02_img34_teacup-ocean.png){fig-align="center" width="500"}
-
-## Math Expressions {.smaller}
-
-You can write LaTeX math expressions inside a pair of dollar signs, e.g. \$\\alpha+\\beta\$ renders $\alpha + \beta$. You can use the display style with double dollar signs:
-
-```         
-$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$
-```
-
-$$
-\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i
-$$
-
-Limitations:
-
-1.  The source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting `$$` must appear in the very beginning of a line, followed immediately by a non-space character, and the ending `$$` must be at the end of a line, led by a non-space character;
-
-2.  There should not be spaces after the opening `$` or before the closing `$`.
-
-# Wrap up
-
-## Feeling adventurous?
-
--   You are welcomed to use the default styling of the slides. In fact, that's what I expect majority of you will do. You will differentiate yourself with the content of your presentation.
-
--   But some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs.
