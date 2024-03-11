@@ -63,27 +63,25 @@ showtext::showtext_auto()
 
 ## Question 1
 
-*Intro goes here; delete this text when done*
+What effect (if any) does being the "home" team versus being the "away" team affect the teams' performances?
 
-## Question 1 (ii) 
+### Part A
 
-*Does the Home advantage played a major role in outcome of the result? Summarize for Total games won by Home and Away team. Summarize for Total goals scored by each team in Home and Away Conditions.*
+Do the number of goals at half-time determine the final outcome? Does this relationship change between home and away teams?
+
+### Part B
+
+Does home-team advantage play a major role in the final match outcome?
 
 ### Approach
 
-*Approach goes here; delete this text when done*
+Part A: The variables used to answer this question are half-time home goals (HTHG), full-time home goals (FTHG), half-time away goals (HTAG), and full-time away goals (HTHG). A scatterplot is created to quantify the correlation between goals at half-time and goals at full-time (end of match) and is color-coded based on home versus away teams. Linear regressions are performed separately for home team and away team data and correlation coefficients are reported. Scatterplot and linear regression analysis is chosen because they directly determine how strongly two variables are related to each other.
 
-*Question 1 (ii) By comparing the Full Time Result (FTR),Home Advantage, and the Away advantage combining all and summary is created with the help of Home_Advantage variable Where if the Result is "H" it will be added to home team victory otherwise it will be added to Away team victory. summarizing the output Bar plot for Total Games *
-*To find the total goals scored by individual team in home and away- Advantage summary is created and combined together to form a new Total goals variable. And Now with Home team, Total variable as aesthetic layers Bar plot is created side by side to interpret the outcome for all 20 teams*
-
-**
+Part B: Using the Full Time Result (FTR) variable, home advantage and away advantage are categorized into a new Home_Advantage variable. The advantage is determined through the number of wins of each team. If the Result is "H", it will be added to home team victory and is therefore counted as home team advantage. If not, it will be added to away team victory and is counted as away team advantage. This information is summarized in a bar plot for Total Games to find the total goals scored by individual team in home and away. An advantage summary is created and combined together to form a new Total goals variable. The Home team, Total variable is then used as an aesthetic layer and a bar plot is created side by side to interpret the outcome for all 20 teams.
 
 ### Analysis
 
-
-*Question 1 ii : As per the data_set, The home game winning advantage did not created impact in every games but only in some games whereas for the goal scored ratio in home and away match except few teams, majority of the team scored more goals in home than in away. *
-
-#### Correlation between half-time and full-time goals.
+#### Part A: Correlation between half-time and full-time goals.
 
 ```{r}
 #| label: q1_goals
@@ -105,37 +103,39 @@ away_goals <- away_goals %>%
     'full' = 'soccer$FTAG'
   )
 
-#Create color vector to color-code home versus away in the scatterplot and regressions.
-colors <- c('Home' = 'blue', 'Away' = 'red')
+#Calculate correlation coefficients for home and away data sets.
+home_r <- cor(home_goals$half, home_goals$full)
+away_r <- cor(away_goals$half, away_goals$full)
 
-#Create scatterplot with two regression lines for home and away teams, respectively.
+#Create scatterplot with two regression lines for home and away teams, respectively. Add number of points and correlation coefficients to plot.
 q1_goals <- ggplot() + 
   geom_jitter(data = home_goals, aes(x = half, y = full, color = 'Home'), width = 0.7) +
   geom_smooth(data = home_goals, aes(x = half, y = full, color = 'Home'), method = lm, se = FALSE) +
   geom_jitter(data = away_goals, aes(x = half, y = full, color = 'Away'), width = 0.7) +
   geom_smooth(data = away_goals, aes(x = half, y = full, color = 'Away'), method = lm,  se = FALSE) + 
   xlim(0, 4) +
-  labs( x = 'Half-time Goals',
-        y = 'Full-time Goals',
+  geom_label(aes(x = 0.25, y = 7, label= 'N = 380')) +
+  geom_label(aes(x = 3.7, y = 5.5, label= 'r = 0.72', color = 'Home'), show.legend  = FALSE) +
+  geom_label(aes(x = 3.7, y = 4.2, label= 'r = 0.70', color = 'Away'), show.legend = FALSE) +
+  labs( x = 'Goals at half-time',
+        y = 'Goals at full-time',
         color = 'Team') +
   scale_color_manual(
     breaks = c("Home", "Away"),
     values = darken(pal_pl, 0.3)
-  ) +
+  ) + 
   theme_classic(base_size = 12) +
   theme(
     text = element_text("Poppins",
                         face = "bold",
-                        color = pal_pl_logo)
-  ) +
-  # theme_minimal(base_size = 12) +
-  # scale_color_manual(values = colors) +
-  guides(color = guide_legend(reverse = TRUE)) #Switch legend entries.
+                        color = pal_pl_logo))
 
 #Suppress warning messages when printing ggplot object.
 suppressMessages(print(q1_goals))
 
 ```
+
+#### Part B: Correlation between half-time and full-time goals.
 
 ```{r}
 #| label: q1ii_Totalgames_by_Home_and_Away
@@ -220,10 +220,11 @@ ggplot(total_goals_long , aes(x = HomeTeam, y = TotalGoals, fill = TeamType)) +
 
 ```
 
-
 ### Discussion
 
-*Discussion goes here; delete this text when done*
+Part A: There is a strong correlation between goals scored at half-time and goals scored at full-time. In other words, goals at half-time is a strong indicator of how many goals will be scored at the end of the match. However, there is not a perfect one-to-one relationship between these variables. For example, there are some cases where there are 0 goals scored at half-time, but 4 or 5 goals are scored by the end of the match. This plot also shows that there is slightly higher correlation between half-time and full-time goals for the home team than the away team. However, this does not necessarily determine if there is a home-team advantage because more goals does not necessarily equate to more wins.
+
+Part B: As per the data_set, the home game winning advantage did not create impact in every game but only in some games whereas for the goal scored ratio in home and away match except few teams, majority of the team scored more goals in home than in away.
 
 ## Question 2
 
