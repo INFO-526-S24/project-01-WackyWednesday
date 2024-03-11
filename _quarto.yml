@@ -2,10 +2,10 @@ project:
   type: website
 
 website:
-  title: Project Title
+  title: Game Metrics
   navbar:
     right:
-      - icon: github
+      - icon: trophy-fill
         href: https://github.com/INFO526-DataViz/project-01
     left:
       - text: Project
