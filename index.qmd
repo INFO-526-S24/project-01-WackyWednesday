@@ -339,7 +339,7 @@ To determine if there is home-team bias regarding penalties (fouls, yellow cards
 
 #### Question 2B
 
-*APPROACH FOR 2B GOES HERE -- DELETE THIS TEXT WHEN DONE.*
+To visualize the card foul ratio of the home and away team, a density plot was used. A density plot was chosen to facilitate the representation of the distribution of the home and away matches card foul ratio. A density plot in this context helps to view which team may have a higher card foul ratio and whether the card foul ratio is relatively higher or lower at certain point in the distribution. The aim of this plot is to visualize how aggressively the home or away teams play based on the card foul ratio information.
 
 ### Analysis
 
