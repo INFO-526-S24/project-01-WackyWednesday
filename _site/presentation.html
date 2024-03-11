@@ -8,10 +8,10 @@
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.537">
+  <meta name="generator" content="quarto-1.3.450">
 
-  <meta name="author" content="Author names">
-  <title>Project Title - Project title</title>
+  <meta name="author" content="Akash Srinivasan, Gillian McGinnis, Jiayue He, Sai Navya Reddy, Sanja Dmitrovic, Valerie Okine">
+  <title>Project Title - Game Metrics: Decoding Premier League Outcomes Through Visual Analysis and Data Exploration</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -156,8 +156,7 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -320,219 +319,96 @@
       margin-right: 0; 
     }
   </style>
-  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" data-background-image="images/watercolour_sys02_img34_teacup-ocean.jpg" data-background-opacity="0.7" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
-  <h1 class="title">Project title</h1>
+  <h1 class="title">Game Metrics: Decoding Premier League Outcomes Through Visual Analysis and Data Exploration</h1>
   <p class="subtitle">INFO 526 - Fall 2023 - Project 1</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Author names 
+Akash Srinivasan, Gillian McGinnis, Jiayue He, Sai Navya Reddy, Sanja Dmitrovic, Valerie Okine 
 </div>
 </div>
 </div>
 
 </section>
-<section>
-<section id="using-quarto-for-presentations" class="title-slide slide level1 center">
-<h1>Using Quarto for presentations</h1>
-
-</section>
-<section id="quarto" class="slide level2">
-<h2>Quarto</h2>
-<ul>
-<li><p>The presentation is created using the Quarto CLI</p></li>
-<li><p><code>##</code> sets the start of a new slide</p></li>
-</ul>
-</section>
-<section id="layouts" class="slide level2">
-<h2>Layouts</h2>
-<p>You can use plain text</p>
-<div class="columns">
-<div class="column" style="width:40%;">
-<ul>
-<li>or bullet points<sup>1</sup></li>
-</ul>
-</div><div class="column" style="width:60%;">
-<p>or in two columns</p>
-</div>
-</div>
-<ul>
-<li><p>like</p></li>
-<li><p>this</p></li>
-</ul>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>And add footnotes</p></li></ol></aside></section>
-<section id="code" class="slide level2">
-<h2>Code</h2>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 5
-  term        estimate std.error statistic       p.value
-  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;
-1 (Intercept)   25.3      3.08        8.22 0.00000000358
-2 speed         -0.116    0.0642     -1.81 0.0806       </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 12
-  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
-      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.
-# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
-</div>
-</div>
-</section>
-<section id="plots" class="slide level2">
-<h2>Plots</h2>
-
-<img data-src="presentation_files/figure-revealjs/unnamed-chunk-5-1.png" width="1800" class="r-stretch"></section>
-<section id="plot-and-text" class="slide level2">
-<h2>Plot and text</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><p>Some text</p></li>
-<li><p>goes here</p></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<div class="cell">
-<div class="cell-output-display">
+<section id="introduction" class="slide level2">
+<h2>INTRODUCTION</h2>
 <div>
-<figure>
-<p><img data-src="presentation_files/figure-revealjs/unnamed-chunk-6-1.png" width="1650"></p>
-</figure>
+<p>This Dataset derived from TidyTuesday’s April 4, 2023 post “Premier League Match Data 2021-2022”. The data is sourced from Evan Gower’s Kaggle post of the same name. Variables included are teams, referees, and match statistics for home and away sides such as fouls, shots, cards, and point totals. Tabular format with rows representing individual matches and columns representing variables. The dataset contains both categorical and numerical variables. It provides insights into team performance, referee assignments, and match statistics for the season.</p>
 </div>
-</div>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="a-new-section" class="title-slide slide level1 center">
-<h1>A new section…</h1>
-
 </section>
-<section id="tables" class="slide level2">
-<h2>Tables</h2>
-<p>If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="table" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">island</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">bill_length_mm</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">bill_depth_mm</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">flipper_length_mm</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">body_mass_g</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Adelie</td>
-<td style="text-align: left;">Torgersen</td>
-<td style="text-align: right;">39.1</td>
-<td style="text-align: right;">18.7</td>
-<td style="text-align: right;">181</td>
-<td style="text-align: right;">3750</td>
-<td style="text-align: left;">male</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Adelie</td>
-<td style="text-align: left;">Torgersen</td>
-<td style="text-align: right;">39.5</td>
-<td style="text-align: right;">17.4</td>
-<td style="text-align: right;">186</td>
-<td style="text-align: right;">3800</td>
-<td style="text-align: left;">female</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Adelie</td>
-<td style="text-align: left;">Torgersen</td>
-<td style="text-align: right;">40.3</td>
-<td style="text-align: right;">18.0</td>
-<td style="text-align: right;">195</td>
-<td style="text-align: right;">3250</td>
-<td style="text-align: left;">female</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Adelie</td>
-<td style="text-align: left;">Torgersen</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Adelie</td>
-<td style="text-align: left;">Torgersen</td>
-<td style="text-align: right;">36.7</td>
-<td style="text-align: right;">19.3</td>
-<td style="text-align: right;">193</td>
-<td style="text-align: right;">3450</td>
-<td style="text-align: left;">female</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Adelie</td>
-<td style="text-align: left;">Torgersen</td>
-<td style="text-align: right;">39.3</td>
-<td style="text-align: right;">20.6</td>
-<td style="text-align: right;">190</td>
-<td style="text-align: right;">3650</td>
-<td style="text-align: left;">male</td>
-</tr>
-</tbody>
-</table>
+<section id="question-1" class="slide level2">
+<h2>QUESTION 1</h2>
+<p>1A. Do the number of goals at half-time determine the final outcome? Does this relationship change between home and away teams?</p>
+<p>1B. Does home-team advantage play a major role in the final match outcome?</p>
+</section>
+<section id="approach" class="slide level2">
+<h2>APPROACH</h2>
+</section>
+<section class="slide level2">
 
+<h4 id="part-a">PART A</h4>
+<div>
+<p>In Part A, we examine the correlation between half-time and full-time goals scored by home and away teams in the English Premier League 2021-2022 season. Using variables like HTHG, FTHG, HTAG, and FTAG, we create scatterplots, color-coded by team type. Separate linear regressions are conducted for home and away teams to determine correlation coefficients. This approach directly assesses the relationship strength between these variables, offering insights into match dynamics.</p>
+</div>
+</section>
+<section class="slide level2">
 
+<h4 id="part-b">PART B</h4>
+<div>
+<p>In Part B, we categorize home and away advantages in the English Premier League 2021-2022 season based on the Full Time Result (FTR) variable. A bar plot summarizes total games and goals scored by each team at home and away. We then create a new variable, Total goals, by combining advantage summaries with total goals. Finally, side-by-side bar plots interpret outcomes for all 20 teams using the Home team and Total variable</p>
+</div>
+</section>
+<section id="plots-of-question-1" class="slide level2">
+<h2>Plots of Question 1</h2>
+<h3 id="plot-1">Plot 1</h3>
+
+<img data-src="presentation_files/figure-revealjs/q1_goals-1.png" width="1800" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<h3 id="plot-2">Plot 2</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  HomeAdvantage TotalGames
+  &lt;chr&gt;              &lt;int&gt;
+1 Away Team Win        217
+2 Home Team Win        163</code></pre>
 </div>
 </div>
 </section>
-<section id="images" class="slide level2">
-<h2>Images</h2>
-
-<img data-src="images/watercolour_sys02_img34_teacup-ocean.png" class="quarto-figure quarto-figure-center r-stretch" width="500"><p class="caption">Image credit: Danielle Navarro, Percolate.</p></section>
-<section id="math-expressions" class="slide level2 smaller">
-<h2>Math Expressions</h2>
-<p>You can write LaTeX math expressions inside a pair of dollar signs, e.g.&nbsp;$\alpha+\beta$ renders <span class="math inline">\(\alpha + \beta\)</span>. You can use the display style with double dollar signs:</p>
-<pre><code>$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$</code></pre>
-<p><span class="math display">\[
-\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i
-\]</span></p>
-<p>Limitations:</p>
+<section id="question-2" class="slide level2">
+<h2>Question 2</h2>
+<p>What effect (if any) does being the “home” team versus being the “away” team affect the teams’ penalties?</p>
 <ol type="1">
-<li><p>The source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting <code>$$</code> must appear in the very beginning of a line, followed immediately by a non-space character, and the ending <code>$$</code> must be at the end of a line, led by a non-space character;</p></li>
-<li><p>There should not be spaces after the opening <code>$</code> or before the closing <code>$</code>.</p></li>
+<li><p>Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?</p></li>
+<li><p>How do the ratios of cards to fouls differ between home and away teams?</p></li>
 </ol>
-</section></section>
-<section>
-<section id="wrap-up" class="title-slide slide level1 center">
-<h1>Wrap up</h1>
-
 </section>
-<section id="feeling-adventurous" class="slide level2">
-<h2>Feeling adventurous?</h2>
-<ul>
-<li><p>You are welcomed to use the default styling of the slides. In fact, that's what I expect majority of you will do. You will differentiate yourself with the content of your presentation.</p></li>
-<li><p>But some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs.</p></li>
-</ul>
+<section id="approach-for-question-2" class="slide level2">
+<h2>Approach for Question 2</h2>
+<p>To analyze potential home-team bias in penalties, we examined the frequency of penalties awarded per game in the season, represented by a distribution plot. Red and yellow cards, often clustered in low counts, were combined for clarity. Fouls, more prevalent in every game, showed a broader distribution. Team types were distinguished by color and shape for better interpretation.</p>
+</section>
+<section id="plots-of-question-2" class="slide level2">
+<h2>Plots of Question 2</h2>
+<h3 id="plot-2a">Plot 2A</h3>
 
-<div class="quarto-auto-generated-content">
-<div class="footer footer-default">
+<img data-src="presentation_files/figure-revealjs/q2_penalties-1.png" width="3000" class="r-stretch quarto-figure-center"></section>
+<section class="slide level2">
+
+<h3 id="plot-2b">PLOT 2B</h3>
+
+
+<img data-src="presentation_files/figure-revealjs/q2_ctf-1.png" width="3000" class="r-stretch quarto-figure-center"><div class="footer footer-default">
 
 </div>
-</div>
-</section></section>
-
+</section>
     </div>
   </div>
 
@@ -559,6 +435,7 @@ Author names
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -857,9 +734,10 @@ Author names
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      function tippyHover(el, contentFn) {
         const config = {
           allowHTML: true,
+          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -869,17 +747,8 @@ Author names
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start',
+          placement: 'bottom-start'
         };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
