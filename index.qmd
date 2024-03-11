@@ -55,7 +55,7 @@ showtext::showtext_auto()
 
 ## Abstract
 
-*Add project abstract here; delete this text when done*
+This project explores match data from the English Premier League 2021-2022 season, utilizing visualizations to analyze various aspects of the matches. The dataset encompasses details such as goals scored, shots taken, fouls committed, and more. Each visualization is assigned to a variable, facilitating easy reference and integration into the analysis. Through these visualizations, we aim to uncover insights into team performance, home advantage, referee decisions, and potential biases. By examining patterns and trends in the data, we seek to deepen our understanding of the dynamics within the Premier League. This project serves as a valuable resource for football enthusiasts and analysts interested in exploring the intricacies of professional football matches. 
 
 ## Introduction
 
