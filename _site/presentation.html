@@ -8,10 +8,10 @@
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.450">
+  <meta name="generator" content="quarto-1.4.537">
 
-  <meta name="author" content="Akash Srinivasan, Gillian McGinnis, Jiayue He, Sai Navya Reddy, Sanja Dmitrovic, Valerie Okine">
-  <title>Project Title - Game Metrics: Decoding Premier League Outcomes Through Visual Analysis and Data Exploration</title>
+  <meta name="author" content="Sanja Dmitrovic, Jiayue He, Gillian McGinnis, Valerie Okine, Sai Navya Reddy, Akash Srinivasan">
+  <title>Project Title - Game Metrics: Decoding Premier League Outcomes</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -156,7 +156,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -324,89 +325,75 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="images/watercolour_sys02_img34_teacup-ocean.jpg" data-background-opacity="0.7" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
-  <h1 class="title">Game Metrics: Decoding Premier League Outcomes Through Visual Analysis and Data Exploration</h1>
-  <p class="subtitle">INFO 526 - Fall 2023 - Project 1</p>
+<section id="title-slide" data-background-image="images/football_match.jpg" data-background-opacity="0.5" data-background-size="cover" data-slide-number="none" class="quarto-title-block center">
+  <h1 class="title">Game Metrics: Decoding Premier League Outcomes</h1>
+  <p class="subtitle">INFO 526 - Spring 2024 - Project 1</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Akash Srinivasan, Gillian McGinnis, Jiayue He, Sai Navya Reddy, Sanja Dmitrovic, Valerie Okine 
+Sanja Dmitrovic, Jiayue He, Gillian McGinnis, Valerie Okine, Sai Navya Reddy, Akash Srinivasan 
 </div>
 </div>
 </div>
 
 </section>
-<section id="introduction" class="slide level2">
-<h2>INTRODUCTION</h2>
-<div>
-<p>This Dataset derived from TidyTuesday’s April 4, 2023 post “Premier League Match Data 2021-2022”. The data is sourced from Evan Gower’s Kaggle post of the same name. Variables included are teams, referees, and match statistics for home and away sides such as fouls, shots, cards, and point totals. Tabular format with rows representing individual matches and columns representing variables. The dataset contains both categorical and numerical variables. It provides insights into team performance, referee assignments, and match statistics for the season.</p>
-</div>
+<section id="dataset-of-choice" class="slide level2">
+<h2>Dataset of choice</h2>
+<!-- ::: incremental -->
+<h3 id="premier-league-match-data">Premier League match data</h3>
+<p>English football, 2021-2022 season</p>
+<p>Source: TidyTuesday 04 April 2023, <code>soccer</code> <!-- This Dataset derived from TidyTuesday's April 4, 2023 post "Premier League Match Data 2021-2022". The data is sourced from Evan Gower's Kaggle post of the same name. Variables included are teams, referees, and match statistics for home and away sides such as fouls, shots, cards, and point totals. Tabular format with rows representing individual matches and columns representing variables. The dataset contains both categorical and numerical variables. It provides insights into team performance, referee assignments, and match statistics for the season. --> <!-- ::: --></p>
 </section>
 <section id="question-1" class="slide level2">
-<h2>QUESTION 1</h2>
-<p>1A. Do the number of goals at half-time determine the final outcome? Does this relationship change between home and away teams?</p>
-<p>1B. Does home-team advantage play a major role in the final match outcome?</p>
+<h2>Question 1</h2>
+<h3 id="scores">Scores</h3>
+<p>1A. Do the number of goals at <strong>half-time</strong> determine the final outcome?</p>
+<p>1B. Does <strong>home-team advantage</strong> play any role in the final outcome?</p>
+<!-- ## APPROACH -->
+<!-- #### PART A -->
+<!-- ::: nonincremental -->
+<!-- In Part A, we examine the correlation between half-time and full-time goals scored by home and away teams in the English Premier League 2021-2022 season. Using variables like HTHG, FTHG, HTAG, and FTAG, we create scatterplots, color-coded by team type. Separate linear regressions are conducted for home and away teams to determine correlation coefficients. This approach directly assesses the relationship strength between these variables, offering insights into match dynamics. -->
+<!-- ::: -->
+<!-- #### PART B -->
+<!-- ::: nonincremental -->
+<!-- In Part B, we categorize home and away advantages in the English Premier League 2021-2022 season based on the Full Time Result (FTR) variable. A bar plot summarizes total games and goals scored by each team at home and away. We then create a new variable, Total goals, by combining advantage summaries with total goals. Finally, side-by-side bar plots interpret outcomes for all 20 teams using the Home team and Total variable -->
+<!-- ::: -->
+<!-- ## Plots of Question 1 -->
 </section>
-<section id="approach" class="slide level2">
-<h2>APPROACH</h2>
-</section>
-<section class="slide level2">
+<section id="plot-1a-half-time-v.-full-time" class="slide level2">
+<h2>Plot 1A: Half-Time v. Full-Time</h2>
 
-<h4 id="part-a">PART A</h4>
-<div>
-<p>In Part A, we examine the correlation between half-time and full-time goals scored by home and away teams in the English Premier League 2021-2022 season. Using variables like HTHG, FTHG, HTAG, and FTAG, we create scatterplots, color-coded by team type. Separate linear regressions are conducted for home and away teams to determine correlation coefficients. This approach directly assesses the relationship strength between these variables, offering insights into match dynamics.</p>
-</div>
-</section>
-<section class="slide level2">
+<img data-src="presentation_files/figure-revealjs/prez_q1_goals-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1800"></section>
+<section id="plot-1b-home-team-advantage" class="slide level2">
+<h2>Plot 1B: Home-Team Advantage</h2>
 
-<h4 id="part-b">PART B</h4>
-<div>
-<p>In Part B, we categorize home and away advantages in the English Premier League 2021-2022 season based on the Full Time Result (FTR) variable. A bar plot summarizes total games and goals scored by each team at home and away. We then create a new variable, Total goals, by combining advantage summaries with total goals. Finally, side-by-side bar plots interpret outcomes for all 20 teams using the Home team and Total variable</p>
-</div>
-</section>
-<section id="plots-of-question-1" class="slide level2">
-<h2>Plots of Question 1</h2>
-<h3 id="plot-1">Plot 1</h3>
-
-<img data-src="presentation_files/figure-revealjs/q1_goals-1.png" width="1800" class="r-stretch quarto-figure-center"></section>
-<section class="slide level2">
-
-<h3 id="plot-2">Plot 2</h3>
-<div class="cell" data-layout-align="center">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-  HomeAdvantage TotalGames
-  &lt;chr&gt;              &lt;int&gt;
-1 Away Team Win        217
-2 Home Team Win        163</code></pre>
-</div>
-</div>
-</section>
+<img data-src="presentation_files/figure-revealjs/prez_q1ii_Totalgames_by_Home_and_Away-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1800"></section>
 <section id="question-2" class="slide level2">
 <h2>Question 2</h2>
-<p>What effect (if any) does being the “home” team versus being the “away” team affect the teams’ penalties?</p>
-<ol type="1">
-<li><p>Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?</p></li>
-<li><p>How do the ratios of cards to fouls differ between home and away teams?</p></li>
-</ol>
+<h3 id="penalties">Penalties</h3>
+<!-- ::: nonincremental -->
+<!-- For Question 2, our focus shifts towards exploring the potential impact of home versus away team on the occurance of penalties. This question delves into whether playing at home or away influences the likelihood of a team gaining fouls, yellow cards, and red cards. Based on our assumption, we want to see if there is a notable bias against the away team in terms of penalties awarded, suggesting a possible psychological or referee bias factor during game. -->
+<!-- ::: -->
+<!-- ## Question 2 Break Down -->
+<p>2A. Is there a noticeable <strong>bias against the away team</strong> in terms of penalties recieved?</p>
+<p>2B. How do the <strong>ratios of cards to fouls</strong> differ between home and away teams?</p>
+<!-- ## Approach for Question 2 -->
+<!-- To analyze potential home-team bias in penalties, we examined the frequency of penalties awarded per game in the season, represented by a distribution plot. Red and yellow cards, often clustered in low counts, were combined for clarity. Fouls, more prevalent in every game, showed a broader distribution. Team types were distinguished by color and shape for better interpretation. -->
+<!-- ## Plots of Question 2 -->
 </section>
-<section id="approach-for-question-2" class="slide level2">
-<h2>Approach for Question 2</h2>
-<p>To analyze potential home-team bias in penalties, we examined the frequency of penalties awarded per game in the season, represented by a distribution plot. Red and yellow cards, often clustered in low counts, were combined for clarity. Fouls, more prevalent in every game, showed a broader distribution. Team types were distinguished by color and shape for better interpretation.</p>
-</section>
-<section id="plots-of-question-2" class="slide level2">
-<h2>Plots of Question 2</h2>
-<h3 id="plot-2a">Plot 2A</h3>
+<section id="plot-2a-home-v.-away-penalties" class="slide level2">
+<h2>Plot 2A: Home v. Away Penalties</h2>
 
-<img data-src="presentation_files/figure-revealjs/q2_penalties-1.png" width="3000" class="r-stretch quarto-figure-center"></section>
-<section class="slide level2">
-
-<h3 id="plot-2b">PLOT 2B</h3>
+<img data-src="presentation_files/figure-revealjs/prez_q2_penalties-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3000"></section>
+<section id="plot-2b-cardsfouls-ratio" class="slide level2">
+<h2>Plot 2B: Cards:Fouls Ratio</h2>
 
 
-<img data-src="presentation_files/figure-revealjs/q2_ctf-1.png" width="3000" class="r-stretch quarto-figure-center"><div class="footer footer-default">
+<img data-src="presentation_files/figure-revealjs/prez_q2_ctf-1.png" class="quarto-figure quarto-figure-center r-stretch" width="3000"><div class="quarto-auto-generated-content">
+<div class="footer footer-default">
 
+</div>
 </div>
 </section>
     </div>
@@ -435,7 +422,6 @@ Akash Srinivasan, Gillian McGinnis, Jiayue He, Sai Navya Reddy, Sanja Dmitrovic,
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -734,10 +720,9 @@ Akash Srinivasan, Gillian McGinnis, Jiayue He, Sai Navya Reddy, Sanja Dmitrovic,
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -747,8 +732,17 @@ Akash Srinivasan, Gillian McGinnis, Jiayue He, Sai Navya Reddy, Sanja Dmitrovic,
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
