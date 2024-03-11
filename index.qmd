@@ -98,7 +98,7 @@ We chose this data set because it provides comprehensive statistics contributing
 
 ### Introduction
 
-*INSERT TEXT -- DELETE THIS TEXT WHEN DONE.* What effect (if any) does being the "home" team versus being the "away" team affect the teams' performances?
+First, we explore if a home-team advantage is present when assessing teams' performances. Here, we use goals as the main indicator of how well a team performs. One way we answer this question is by characterizing the relationship between goals scored at half-time (variables: HTHG, HTAG) and goals scored at the end of the match (variables: FTHG, FTAG) for both home and away teams through scatterplot and linear regression analysis. We wish to quantify how well goals at half-time predict goals at full-time in general as well as seeing if the strength of this relationship changes based on being on the home or away team. Then, we explore this question of home-team advantage using the Full Time Result variable (FTR) and creating a barplot of total goals per team (e.g., Arsenal, Liverpool, etc.) and if they were home or away. Our hypothesis is that the home team will score more goals and win more matches.
 
 **Question 1A**
 
