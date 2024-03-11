@@ -195,7 +195,7 @@ What effect (if any) does being the “home” team versus being the “away” 
 
 1.  Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?
 
-2.   How do the ratios of cards to fouls differ between home and away teams?
+2.  How do the ratios of cards to fouls differ between home and away teams?
 
 ## Approach for Question 2
 
