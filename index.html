@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.537">
+<meta name="generator" content="quarto-1.4.540">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -245,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
 <section id="introduction-1" class="level3">
 <h3 class="anchored" data-anchor-id="introduction-1">Introduction</h3>
-<p><em>INSERT TEXT – DELETE THIS TEXT WHEN DONE.</em> What effect (if any) does being the “home” team versus being the “away” team affect the teams’ performances?</p>
+<p>This analysis will reveal whether or not there is a home team advantage. It will talk about the performances of various teams based on whether they are playing a home or away match.</p>
 <p><strong>Question 1A</strong></p>
 <p>Do the number of goals at half-time determine the final outcome? Does this relationship change between home and away teams?</p>
 <p><strong>Question 1B</strong></p>
@@ -502,10 +502,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="introduction-2">Introduction</h3>
 <p>In question2, we want to figure out what effect (if any) does being the “home” team versus being the “away” team affect the teams’ penalties?</p>
 <p>A correlation matrix is first used to find any potential relationships amongst the variables of interest before any futher analysis is conducted.The variables of interest here are red cards, yellow cards,the card foul ratio and the full time goals. The correlation plot is designed to assign a higher color hue to the variables which have a relatively higher correlation. From the visualization, it is revealed that the most positively correlated variables of interest are yellow cards and the card foul ratio. This is followed by the yellow cards and the number of fouls. All other variables of interest seem to have very little correlation amongst them.</p>
-<p><strong>Question 2A</strong></p>
-<p>Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?</p>
-<p><strong>Question 2B</strong></p>
-<p>How do the ratios of cards to fouls differ between home and away teams?</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Show the code</summary>
@@ -564,11 +560,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/q2_corr_plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
+<p><strong>Question 2A</strong></p>
+<p>Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?</p>
+<p><strong>Question 2B</strong></p>
+<p>How do the ratios of cards to fouls differ between home and away teams?</p>
 </section>
 <section id="approach-1" class="level3">
 <h3 class="anchored" data-anchor-id="approach-1">Approach</h3>
