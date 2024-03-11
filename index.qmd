@@ -59,17 +59,72 @@ showtext::showtext_auto()
 
 ## Introduction
 
-*Add introduction here; delete this text when done*
+The dataset comes from [`TidyTuesday`](https://github.com/rfordatascience/tidytuesday)'s 04 April 2023 post ["Premier League Match Data 2021-2022"](https://github.com/rfordatascience/tidytuesday/tree/master/data/2023/2023-04-04). It is derived from [Evan Gower](https://github.com/evangower)'s [Kaggle post](https://www.kaggle.com/datasets/evangower/premier-league-match-data) of the same name.
+
+The [Premier League](https://www.premierleague.com/) is the foremost league for professional football clubs in England since its creation in 1992. The time period covered in this dataset spans entire 2021 to 2022 Premier League season. The 2021–22 Premier League season marked the 30th anniversary of the league.
+
+Variables in this dataset includes teams, referee, and stats by home and away side such as fouls, shots, cards, and point totals. The dataset is in a tabular format with `r nrow(soccer)` rows representing individual matches and `r ncol(soccer)` columns representing each variable, described below. Both categorical and numerical variables are included.
+
+A glimpse at each variable:
+
+```{r}
+#| label: explore-dataset
+#| message: false
+#| echo: false
+glimpse(soccer)
+```
+
+The description and type of each variable are as follows:
+
+1.  `Date` (character): The date when the match was played.
+2.  `HomeTeam` (character): The home team.
+3.  `AwayTeam` (character): The away team.
+4.  `FTHG` (double): Full-time home goals.
+5.  `FTAG` (double): Full-time away goals.
+6.  `FTR` (character): Full-time result.
+7.  `HTHG` (double): Half-time home goals.
+8.  `HTAG` (double): Half-time away goals.
+9.  `HTR` (character): Half-time result.
+10. `Referee` (character): Referee of the match.
+11. `HS` (double): Number of shots taken by the home team.
+12. `AS` (double): Number of shots taken by the away team.
+13. `HST` (double): Number of shots on target by the home team.
+14. `AST` (double): Number of shots on target by the away team.
+15. `HF` (double): Number of fouls by the home team.
+16. `AF` (double): Number of fouls by the away team.
+17. `HC` (double): Number of corners taken by the home team.
+18. `AC` (double): Number of corners taken by the away team.
+19. `HY` (double): Number of yellow cards received by the home team.
+20. `AY` (double): Number of yellow cards received by the away team.
+21. `HR` (double): Number of red cards received by the home team.
+22. `AR` (double): Number of red cards received by the away team.
+
+Diagnosing the quality of each variable:
+
+```{r}
+#| label: explore-dataset-quality
+#| message: false
+#| echo: false
+dlookr::diagnose(soccer) |> print(n = 22)
+```
+
+This dataset is ideal for analytical projects aiming to understand football dynamics, player contributions, and team strategies throughout the season.
+
+**Reason for Choosing this Dataset**
+
+We chose this data set because it provides comprehensive statistics contributing to the outcome of football matches. Therefore, we can explore the interesting topic of the potential existence of bias against away teams in the English Premier League. The availability of data allows us to use variables such as shots on goal or create new variables such as calculating the ratio of yellow cards to fouls to answer this question of bias. Some members of the group are also quite passionate about soccer, which definitely convinced us to use this data set!
 
 ## Question 1
 
-What effect (if any) does being the "home" team versus being the "away" team affect the teams' performances?
+### Introduction
 
-### Part A
+What effect (if any) does being the "home" team versus being the "away" team affect the teams' performances? *Insert text.*
+
+#### Question 1A
 
 Do the number of goals at half-time determine the final outcome? Does this relationship change between home and away teams?
 
-### Part B
+#### Question 1B
 
 Does home-team advantage play a major role in the final match outcome?
 
@@ -81,7 +136,7 @@ Part B: Using the Full Time Result (FTR) variable, home advantage and away advan
 
 ### Analysis
 
-#### Part A: Correlation between half-time and full-time goals.
+#### Question 1A: Correlation between half-time and full-time goals.
 
 ```{r}
 #| label: q1_goals
@@ -135,7 +190,7 @@ suppressMessages(print(q1_goals))
 
 ```
 
-#### Part B: Total games won by home and away teams.
+#### Question 1B: Total games won by home and away teams.
 
 ```{r}
 #| label: q1ii_Totalgames_by_Home_and_Away
@@ -222,9 +277,13 @@ ggplot(total_goals_long , aes(x = HomeTeam, y = TotalGoals, fill = TeamType)) +
 
 ### Discussion
 
-Part A: There is a strong correlation between goals scored at half-time and goals scored at full-time. In other words, goals at half-time is a strong indicator of how many goals will be scored at the end of the match. However, there is not a perfect one-to-one relationship between these variables. For example, there are some cases where there are 0 goals scored at half-time, but 4 or 5 goals are scored by the end of the match. This plot also shows that there is slightly higher correlation between half-time and full-time goals for the home team than the away team. However, this does not necessarily determine if there is a home-team advantage because more goals does not necessarily equate to more wins.
+#### Question 1A
 
-Part B: As per the data_set, the home game winning advantage did not create impact in every game but only in some games whereas for the goal scored ratio in home and away match except few teams, majority of the team scored more goals in home than in away.
+There is a strong correlation between goals scored at half-time and goals scored at full-time. In other words, goals at half-time is a strong indicator of how many goals will be scored at the end of the match. However, there is not a perfect one-to-one relationship between these variables. For example, there are some cases where there are 0 goals scored at half-time, but 4 or 5 goals are scored by the end of the match. This plot also shows that there is slightly higher correlation between half-time and full-time goals for the home team than the away team. However, this does not necessarily determine if there is a home-team advantage because more goals does not necessarily equate to more wins.
+
+#### Question 1B
+
+As per the data_set, the home game winning advantage did not create impact in every game but only in some games whereas for the goal scored ratio in home and away match except few teams, majority of the team scored more goals in home than in away.
 
 ## Question 2
 
