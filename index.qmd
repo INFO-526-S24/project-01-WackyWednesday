@@ -135,7 +135,7 @@ suppressMessages(print(q1_goals))
 
 ```
 
-#### Part B: Correlation between half-time and full-time goals.
+#### Part B: Total games won by home and away teams.
 
 ```{r}
 #| label: q1ii_Totalgames_by_Home_and_Away
