@@ -269,7 +269,17 @@ As per the data_set, the home game winning advantage did not create impact in ev
 
 ### Introduction
 
-A correlation matrix is first used to find any potential relationships amongst thevariables of interest before any futher analysis is conducted.The variables of interest here are red cards, yellow cards,the card foul ratio and the full time goals. The correlation plot is designed to assign a higher color hue to the variables which havea relatively higher correlation. From the visualization, it is revealed that the most positively correlated variables of interest are yellow cards and the card foul ratio. This is followed by the yellow cards and the number of fouls. All other variables of interest seem to have verylittle correlation amongst them.
+In question2, we want to figure out what effect (if any) does being the "home" team versus being the "away" team affect the teams' penalties?
+
+A correlation matrix is first used to find any potential relationships amongst the variables of interest before any futher analysis is conducted.The variables of interest here are red cards, yellow cards,the card foul ratio and the full time goals. The correlation plot is designed to assign a higher color hue to the variables which have a relatively higher correlation. From the visualization, it is revealed that the most positively correlated variables of interest are yellow cards and the card foul ratio. This is followed by the yellow cards and the number of fouls. All other variables of interest seem to have very little correlation amongst them.
+
+**Question 2A**
+
+Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?
+
+**Question 2B**
+
+How do the ratios of cards to fouls differ between home and away teams?
 
 ```{r dev = 'ragg_png'}
 #| label: q2_corr_plot
