@@ -98,7 +98,7 @@ We chose this data set because it provides comprehensive statistics contributing
 
 ### Introduction
 
-*INSERT TEXT -- DELETE THIS TEXT WHEN DONE.* What effect (if any) does being the "home" team versus being the "away" team affect the teams' performances?
+This analysis will reveal whether or not there is a home team advantage. It will talk about the performances of various teams based on whether they are playing a home or away match.
 
 **Question 1A**
 
