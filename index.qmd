@@ -65,11 +65,7 @@ showtext::showtext_auto()
 
 What effect (if any) does being the "home" team versus being the "away" team affect the teams' performances?
 
-<<<<<<< HEAD
 ### Part A
-=======
-## Question 1 (ii)
->>>>>>> 878466bf468d954ae346b86521e11ebcaea2555e
 
 Do the number of goals at half-time determine the final outcome? Does this relationship change between home and away teams?
 
@@ -81,23 +77,11 @@ Does home-team advantage play a major role in the final match outcome?
 
 Part A: The variables used to answer this question are half-time home goals (HTHG), full-time home goals (FTHG), half-time away goals (HTAG), and full-time away goals (HTHG). A scatterplot is created to quantify the correlation between goals at half-time and goals at full-time (end of match) and is color-coded based on home versus away teams. Linear regressions are performed separately for home team and away team data and correlation coefficients are reported. Scatterplot and linear regression analysis is chosen because they directly determine how strongly two variables are related to each other.
 
-<<<<<<< HEAD
 Part B: Using the Full Time Result (FTR) variable, home advantage and away advantage are categorized into a new Home_Advantage variable. The advantage is determined through the number of wins of each team. If the Result is "H", it will be added to home team victory and is therefore counted as home team advantage. If not, it will be added to away team victory and is counted as away team advantage. This information is summarized in a bar plot for Total Games to find the total goals scored by individual team in home and away. An advantage summary is created and combined together to form a new Total goals variable. The Home team, Total variable is then used as an aesthetic layer and a bar plot is created side by side to interpret the outcome for all 20 teams.
 
 ### Analysis
 
 #### Part A: Correlation between half-time and full-time goals.
-=======
-*Question 1 (ii) By comparing the Full Time Result (FTR),Home Advantage, and the Away advantage combining all and summary is created with the help of Home_Advantage variable Where if the Result is "H" it will be added to home team victory otherwise it will be added to Away team victory. summarizing the output Bar plot for Total Games* *To find the total goals scored by individual team in home and away- Advantage summary is created and combined together to form a new Total goals variable. And Now with Home team, Total variable as aesthetic layers Bar plot is created side by side to interpret the outcome for all 20 teams*
-
-\*\*
-
-### Analysis
-
-*Question 1 ii : As per the data_set, The home game winning advantage did not created impact in every games but only in some games whereas for the goal scored ratio in home and away match except few teams, majority of the team scored more goals in home than in away.*
-
-#### Correlation between half-time and full-time goals.
->>>>>>> 878466bf468d954ae346b86521e11ebcaea2555e
 
 ```{r}
 #| label: q1_goals
