@@ -163,16 +163,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
-  <li><a href="#question-1-ii" id="toc-question-1-ii" class="nav-link" data-scroll-target="#question-1-ii">Question 1 (ii)</a>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a>
   <ul class="collapse">
+  <li><a href="#introduction-1" id="toc-introduction-1" class="nav-link" data-scroll-target="#introduction-1">Introduction</a></li>
   <li><a href="#approach" id="toc-approach" class="nav-link" data-scroll-target="#approach">Approach</a></li>
   <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   </ul></li>
   <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a>
   <ul class="collapse">
-  <li><a href="#introduction-1" id="toc-introduction-1" class="nav-link" data-scroll-target="#introduction-1">Introduction</a></li>
+  <li><a href="#introduction-2" id="toc-introduction-2" class="nav-link" data-scroll-target="#introduction-2">Introduction</a></li>
   <li><a href="#approach-1" id="toc-approach-1" class="nav-link" data-scroll-target="#approach-1">Approach</a></li>
   <li><a href="#analysis-1" id="toc-analysis-1" class="nav-link" data-scroll-target="#analysis-1">Analysis</a></li>
   <li><a href="#discussion-1" id="toc-discussion-1" class="nav-link" data-scroll-target="#discussion-1">Discussion</a></li>
@@ -212,31 +212,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="abstract" class="level2">
 <h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p><em>Add project abstract here; delete this text when done</em></p>
+<p>This project explores match data from the English Premier League 2021-2022 season, utilizing visualizations to analyze various aspects of the matches. The dataset includes details such as goals scored, half-time results, fouls committed, and more. Through these visualizations, we aim to uncover insights into team performance, home advantage, and potential biases. By examining patterns and trends in the data, we seek to deepen our understanding of the dynamics within the Premier League. This project serves as a valuable resource for football enthusiasts and analysts interested in exploring the intricacies of professional football matches.</p>
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p><em>Add introduction here; delete this text when done</em></p>
+<p>The dataset comes from <a href="https://github.com/rfordatascience/tidytuesday"><code>TidyTuesday</code></a>’s 04 April 2023 post <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2023/2023-04-04">“Premier League Match Data 2021-2022”</a>. It is derived from <a href="https://github.com/evangower">Evan Gower</a>’s <a href="https://www.kaggle.com/datasets/evangower/premier-league-match-data">Kaggle post</a> of the same name.</p>
+<p>The <a href="https://www.premierleague.com/">Premier League</a> is the foremost league for professional football clubs in England since its creation in 1992. The time period covered in this dataset spans entire 2021 to 2022 Premier League season. The 2021–22 Premier League season marked the 30th anniversary of the league.</p>
+<p>Variables in this dataset includes teams, referee, and stats by home and away side such as fouls, shots, cards, and point totals. The dataset is in a tabular format with 380 rows representing individual matches and 22 columns representing each variable, described below. Both categorical and numerical variables are included.</p>
+<p>The breakdown of each variable in the data set can be found in the <a href="https://github.com/INFO-526-S24/project-01-WackyWednesday/blob/main/data/README.md">codebook</a> as well as the <a href="https://info-526-s24.github.io/project-01-WackyWednesday/proposal.html">project proposal</a>.</p>
+<p>In our analysis we will be focusing on the following variables:</p>
+<ul>
+<li><code>HomeTeam</code> (character): The home team.</li>
+<li><code>AwayTeam</code> (character): The away team.</li>
+<li><code>FTHG</code> (double): Full-time home goals.</li>
+<li><code>FTAG</code> (double): Full-time away goals.</li>
+<li><code>FTR</code> (character): Full-time result.</li>
+<li><code>HTHG</code> (double): Half-time home goals.</li>
+<li><code>HTAG</code> (double): Half-time away goals.</li>
+<li><code>HTR</code> (character): Half-time result.</li>
+<li><code>HF</code> (double): Number of fouls by the home team.</li>
+<li><code>AF</code> (double): Number of fouls by the away team.</li>
+<li><code>HY</code> (double): Number of yellow cards received by the home team.</li>
+<li><code>AY</code> (double): Number of yellow cards received by the away team.</li>
+<li><code>HR</code> (double): Number of red cards received by the home team.</li>
+<li><code>AR</code> (double): Number of red cards received by the away team.</li>
+</ul>
+<p>This dataset is ideal for analytical projects aiming to understand football dynamics and team strategies throughout the season.</p>
+<p><strong>Reason for Choosing this Dataset</strong></p>
+<p>We chose this data set because it provides comprehensive statistics contributing to the outcome of football matches. Therefore, we can explore the interesting topic of the potential existence of bias against away teams in the English Premier League. The availability of data allows us to use variables such as shots on goal or create new variables such as calculating the ratio of yellow cards to fouls to answer this question of bias. Some members of the group are also quite passionate about soccer, which definitely convinced us to use this data set!</p>
 </section>
 <section id="question-1" class="level2">
 <h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
-<p><em>Intro goes here; delete this text when done</em></p>
+<section id="introduction-1" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-1">Introduction</h3>
+<p><em>INSERT TEXT – DELETE THIS TEXT WHEN DONE.</em> What effect (if any) does being the “home” team versus being the “away” team affect the teams’ performances?</p>
+<p><strong>Question 1A</strong></p>
+<p>Do the number of goals at half-time determine the final outcome? Does this relationship change between home and away teams?</p>
+<p><strong>Question 1B</strong></p>
+<p>Does home-team advantage play a major role in the final match outcome?</p>
 </section>
-<section id="question-1-ii" class="level2">
-<h2 class="anchored" data-anchor-id="question-1-ii">Question 1 (ii)</h2>
-<p><em>Does the Home advantage played a major role in outcome of the result? Summarize for Total games won by Home and Away team. Summarize for Total goals scored by each team in Home and Away Conditions.</em></p>
 <section id="approach" class="level3">
 <h3 class="anchored" data-anchor-id="approach">Approach</h3>
-<p><em>Approach goes here; delete this text when done</em></p>
-<p><em>Question 1 (ii) By comparing the Full Time Result (FTR),Home Advantage, and the Away advantage combining all and summary is created with the help of Home_Advantage variable Where if the Result is “H” it will be added to home team victory otherwise it will be added to Away team victory. summarizing the output Bar plot for Total Games </em> <em>To find the total goals scored by individual team in home and away- Advantage summary is created and combined together to form a new Total goals variable. And Now with Home team, Total variable as aesthetic layers Bar plot is created side by side to interpret the outcome for all 20 teams</em></p>
-<p>**</p>
+<p>Part A: The variables used to answer this question are half-time home goals (<code>HTHG</code>), full-time home goals (<code>FTHG</code>), half-time away goals (<code>HTAG</code>), and full-time away goals (<code>HTHG</code>). A scatterplot is created to quantify the correlation between goals at half-time and goals at full-time (end of match) and is color-coded based on home versus away teams. Linear regressions are performed separately for home team and away team data and correlation coefficients are reported. Scatterplot and linear regression analysis is chosen because they directly determine how strongly two variables are related to each other.</p>
+<p>Part B: Using the Full Time Result (<code>FTR</code>) variable, home advantage and away advantage are categorized into a new Home_Advantage variable. The advantage is determined through the number of wins of each team. If the Result is “H”, it will be added to home team victory and is therefore counted as home team advantage. If not, it will be added to away team victory and is counted as away team advantage. This information is summarized in a bar plot for Total Games to find the total goals scored by individual team in home and away. An advantage summary is created and combined together to form a new Total goals variable. The Home team, Total variable is then used as an aesthetic layer and a bar plot is created side by side to interpret the outcome for all 20 teams.</p>
 </section>
 <section id="analysis" class="level3">
 <h3 class="anchored" data-anchor-id="analysis">Analysis</h3>
-<p><em>Question 1 ii : As per the data_set, The home game winning advantage did not created impact in every games but only in some games whereas for the goal scored ratio in home and away match except few teams, majority of the team scored more goals in home than in away. </em></p>
-<section id="correlation-between-half-time-and-full-time-goals." class="level4">
-<h4 class="anchored" data-anchor-id="correlation-between-half-time-and-full-time-goals.">Correlation between half-time and full-time goals.</h4>
+<section id="question-1a-correlation-between-half-time-and-full-time-goals." class="level4">
+<h4 class="anchored" data-anchor-id="question-1a-correlation-between-half-time-and-full-time-goals.">Question 1A: Correlation between half-time and full-time goals.</h4>
 <div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create tibbles based on if the home or away team scored the goals. This makes it easier to color-code the scatterplot and calculate separate linear regressions later.</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>home_goals <span class="ot">&lt;-</span> <span class="fu">tibble</span>(soccer<span class="sc">$</span>HTHG, soccer<span class="sc">$</span>FTHG)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>home_goals <span class="ot">&lt;-</span> home_goals <span class="sc">%&gt;%</span> </span>
@@ -252,35 +278,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'full'</span> <span class="ot">=</span> <span class="st">'soccer$FTAG'</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Create color vector to color-code home versus away in the scatterplot and regressions.</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Home'</span> <span class="ot">=</span> <span class="st">'blue'</span>, <span class="st">'Away'</span> <span class="ot">=</span> <span class="st">'red'</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#Create scatterplot with two regression lines for home and away teams, respectively.</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>q1_goals <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data =</span> home_goals, <span class="fu">aes</span>(<span class="at">x =</span> half, <span class="at">y =</span> full, <span class="at">color =</span> <span class="st">'Home'</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> home_goals, <span class="fu">aes</span>(<span class="at">x =</span> half, <span class="at">y =</span> full, <span class="at">color =</span> <span class="st">'Home'</span>), <span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data =</span> away_goals, <span class="fu">aes</span>(<span class="at">x =</span> half, <span class="at">y =</span> full, <span class="at">color =</span> <span class="st">'Away'</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> away_goals, <span class="fu">aes</span>(<span class="at">x =</span> half, <span class="at">y =</span> full, <span class="at">color =</span> <span class="st">'Away'</span>), <span class="at">method =</span> lm,  <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="at">x =</span> <span class="st">'Half-time Goals'</span>,</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">'Full-time Goals'</span>,</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">'Team'</span>) <span class="sc">+</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Home"</span>, <span class="st">"Away"</span>),</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">darken</span>(pal_pl, <span class="fl">0.3</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="st">"Poppins"</span>,</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>                        <span class="at">face =</span> <span class="st">"bold"</span>,</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>                        <span class="at">color =</span> pal_pl_logo)</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="co"># theme_minimal(base_size = 12) +</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># scale_color_manual(values = colors) +</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>)) <span class="co">#Switch legend entries.</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate correlation coefficients for home and away data sets.</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>home_r <span class="ot">&lt;-</span> <span class="fu">cor</span>(home_goals<span class="sc">$</span>half, home_goals<span class="sc">$</span>full)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>away_r <span class="ot">&lt;-</span> <span class="fu">cor</span>(away_goals<span class="sc">$</span>half, away_goals<span class="sc">$</span>full)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#Create scatterplot with two regression lines for home and away teams, respectively. Add number of points and correlation coefficients to plot.</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>q1_goals <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data =</span> home_goals, <span class="fu">aes</span>(<span class="at">x =</span> half, <span class="at">y =</span> full, <span class="at">color =</span> <span class="st">'Home'</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> home_goals, <span class="fu">aes</span>(<span class="at">x =</span> half, <span class="at">y =</span> full, <span class="at">color =</span> <span class="st">'Home'</span>), <span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data =</span> away_goals, <span class="fu">aes</span>(<span class="at">x =</span> half, <span class="at">y =</span> full, <span class="at">color =</span> <span class="st">'Away'</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> away_goals, <span class="fu">aes</span>(<span class="at">x =</span> half, <span class="at">y =</span> full, <span class="at">color =</span> <span class="st">'Away'</span>), <span class="at">method =</span> lm,  <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">0.25</span>, <span class="at">y =</span> <span class="dv">7</span>, <span class="at">label=</span> <span class="st">'N = 380'</span>)) <span class="sc">+</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">3.7</span>, <span class="at">y =</span> <span class="fl">5.5</span>, <span class="at">label=</span> <span class="st">'r = 0.72'</span>, <span class="at">color =</span> <span class="st">'Home'</span>), <span class="at">show.legend  =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">3.7</span>, <span class="at">y =</span> <span class="fl">4.2</span>, <span class="at">label=</span> <span class="st">'r = 0.70'</span>, <span class="at">color =</span> <span class="st">'Away'</span>), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="at">x =</span> <span class="st">'Goals at half-time'</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">'Goals at full-time'</span>,</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">'Team'</span>) <span class="sc">+</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Home"</span>, <span class="st">"Away"</span>),</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">darken</span>(pal_pl, <span class="fl">0.3</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="st">"Poppins"</span>,</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>                        <span class="at">face =</span> <span class="st">"bold"</span>,</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>                        <span class="at">color =</span> pal_pl_logo))</span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co">#Suppress warning messages when printing ggplot object.</span></span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">print</span>(q1_goals))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -289,7 +316,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</section>
+<section id="question-1b-total-games-won-by-home-and-away-teams." class="level4">
+<h4 class="anchored" data-anchor-id="question-1b-total-games-won-by-home-and-away-teams.">Question 1B: Total games won by home and away teams.</h4>
 <div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a variable for home team advantage</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>soccer <span class="ot">&lt;-</span> soccer <span class="sc">%&gt;%</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HomeAdvantage =</span> <span class="fu">ifelse</span>(FTR <span class="sc">==</span> <span class="st">"H"</span>, <span class="st">"Home Team Win"</span>, <span class="st">"Away Team Win"</span>))</span>
@@ -301,6 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the result</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(advantage_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   HomeAdvantage TotalGames
@@ -310,6 +343,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar plot for home and away team advantage</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(advantage_summary, <span class="fu">aes</span>(<span class="at">x =</span> HomeAdvantage, <span class="at">y =</span> TotalGames, <span class="at">fill =</span> HomeAdvantage)) <span class="sc">+</span></span>
@@ -329,6 +364,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">color =</span> pal_pl_logo,</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size =</span> <span class="dv">15</span>)</span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -336,9 +372,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># theme_minimal()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>total_home_goals <span class="ot">&lt;-</span>soccer <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(HomeTeam) <span class="sc">%&gt;%</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Total_Home_goals =</span> <span class="fu">sum</span>(FTHG))</span>
@@ -348,6 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Total_Away_goals =</span> <span class="fu">sum</span>(FTAG))</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(total_home_goals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 20 × 2
    HomeTeam       Total_Home_goals
@@ -373,7 +415,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 19 West Ham                     33
 20 Wolves                       20</code></pre>
 </div>
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(total_away_goals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 20 × 2
    AwayTeam       Total_Away_goals
@@ -401,6 +446,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge the data for home and away goals</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>total_goals <span class="ot">&lt;-</span> <span class="fu">merge</span>(total_home_goals, total_away_goals, <span class="at">by.x =</span> <span class="st">"HomeTeam"</span>, <span class="at">by.y =</span> <span class="st">"AwayTeam"</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -426,6 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># theme_minimal() +</span></span>
 <span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -438,19 +486,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="discussion" class="level3">
 <h3 class="anchored" data-anchor-id="discussion">Discussion</h3>
-<p><em>Discussion goes here; delete this text when done</em></p>
+<section id="question-1a" class="level4">
+<h4 class="anchored" data-anchor-id="question-1a">Question 1A</h4>
+<p>There is a strong correlation between goals scored at half-time and goals scored at full-time. In other words, goals at half-time is a strong indicator of how many goals will be scored at the end of the match. However, there is not a perfect one-to-one relationship between these variables. For example, there are some cases where there are 0 goals scored at half-time, but 4 or 5 goals are scored by the end of the match. This plot also shows that there is slightly higher correlation between half-time and full-time goals for the home team than the away team. However, this does not necessarily determine if there is a home-team advantage because more goals does not necessarily equate to more wins.</p>
+</section>
+<section id="question-1b" class="level4">
+<h4 class="anchored" data-anchor-id="question-1b">Question 1B</h4>
+<p>As per the data_set, the home game winning advantage did not create impact in every game but only in some games whereas for the goal scored ratio in home and away match except few teams, majority of the team scored more goals in home than in away.</p>
+</section>
 </section>
 </section>
 <section id="question-2" class="level2">
 <h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
-<section id="introduction-1" class="level3">
-<h3 class="anchored" data-anchor-id="introduction-1">Introduction</h3>
-<p>The correlation between the variables used for the analysis are first scrutinized to reveal information about them.</p>
+<section id="introduction-2" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-2">Introduction</h3>
+<p>In question2, we want to figure out what effect (if any) does being the “home” team versus being the “away” team affect the teams’ penalties?</p>
+<p>A correlation matrix is first used to find any potential relationships amongst the variables of interest before any futher analysis is conducted.The variables of interest here are red cards, yellow cards,the card foul ratio and the full time goals. The correlation plot is designed to assign a higher color hue to the variables which have a relatively higher correlation. From the visualization, it is revealed that the most positively correlated variables of interest are yellow cards and the card foul ratio. This is followed by the yellow cards and the number of fouls. All other variables of interest seem to have very little correlation amongst them.</p>
+<p><strong>Question 2A</strong></p>
+<p>Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?</p>
+<p><strong>Question 2B</strong></p>
+<p>How do the ratios of cards to fouls differ between home and away teams?</p>
 <div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>soccer_corr <span class="ot">&lt;-</span> soccer <span class="sc">|&gt;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">HTFCR =</span> (HR <span class="sc">+</span> HY)<span class="sc">/</span> HF,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ATFCR =</span> (AR <span class="sc">+</span> AY<span class="sc">/</span> AF)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ATFCR =</span> (AR <span class="sc">+</span> AY)<span class="sc">/</span>AF</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>( <span class="at">cols =</span> <span class="fu">c</span>( <span class="st">'HF'</span>, <span class="st">'AF'</span>),</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">names_to =</span> <span class="st">'Team_Fouls'</span>,</span>
@@ -464,63 +526,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>( <span class="st">'HTFCR'</span>, <span class="st">'ATFCR'</span>),</span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">'Team'</span>,</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">'FCR'</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">'CFR'</span></span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">'FTHG'</span>, <span class="st">'FTAG'</span>),</span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">'TFTG'</span>, <span class="at">values_to =</span> <span class="st">'FTG'</span></span>
 <span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>soccer_corr <span class="ot">&lt;-</span> soccer_corr <span class="sc">|&gt;</span></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( red_cards, yellow_cards, Fouls, FCR, FTG ) <span class="sc">|&gt;</span></span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>( <span class="st">'🟥'</span> <span class="ot">=</span> red_cards, <span class="st">'🟨'</span> <span class="ot">=</span> yellow_cards )</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>cor_matrix <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(soccer_corr) , <span class="dv">2</span>)</span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcorrplot</span>(cor_matrix,</span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>           <span class="at">hc.order =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>           <span class="at">type =</span> <span class="st">'lower'</span>,</span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>           <span class="at">lab =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">'none'</span>,</span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(</span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>      <span class="at">family =</span> <span class="st">"Poppins"</span>,</span>
-<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">"bold"</span>,</span>
-<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"#3d195b"</span></span>
-<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span></span>
-<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
-<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"The correlation between the variables used for the analysis"</span>,</span>
-<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"Card to Foul Ratio(FCR), Yellow cards(🟨),</span><span class="sc">\n</span><span class="st">"</span>,</span>
-<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"Red cards(🟥), and Full Time Goals (FTG)"</span>)</span>
-<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>soccer_corr <span class="ot">&lt;-</span> soccer_corr <span class="sc">|&gt;</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( red_cards, yellow_cards, Fouls, CFR, FTG ) <span class="sc">|&gt;</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>( <span class="st">'Red'</span> <span class="ot">=</span> red_cards, <span class="st">'Yellow'</span> <span class="ot">=</span> yellow_cards )</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>cor_matrix <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(soccer_corr) , <span class="dv">2</span>)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcorrplot</span>(cor_matrix,</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>           <span class="at">hc.order =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>           <span class="at">type =</span> <span class="st">'lower'</span>,</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>           <span class="at">lab =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">'none'</span>,</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">"bold"</span>,</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"#3d195b"</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"The correlation between the variables used for the analysis"</span>,</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"Card to Foul Ratio(CFR), Yellow cards(Yellow),</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"Red cards(Red), and Full Time Goals (FTG)"</span>)</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/corr_plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><img src="index_files/figure-html/q2_corr_plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><em>Intro goes here; delete this text when done</em></p>
 </section>
 <section id="approach-1" class="level3">
 <h3 class="anchored" data-anchor-id="approach-1">Approach</h3>
-<p><em>Approach goes here; delete this text when done</em></p>
-<p><em>PENALTIES BY TEAM APPROACH HERE</em></p>
+<section id="question-2a" class="level4">
+<h4 class="anchored" data-anchor-id="question-2a">Question 2A</h4>
 <p>To determine if there is home-team bias regarding penalties (fouls, yellow cards, and red cards), we plotted the distribution of the total number of games in the season in which a certain number of penalties were given. Although this can be shown with a density plot or area plot, it is easier to see at precisely which penalty counts were more often toward or against each team. Since most games had no red cards given at all, and the maximum number of red cards given was only two, both red cards and yellow cards are plotted on the same facet. The distribution of fouls is much greater, as every single game had at least one foul given. The two team types are mapped to both color and shape for accessibility.</p>
+</section>
+<section id="question-2b" class="level4">
+<h4 class="anchored" data-anchor-id="question-2b">Question 2B</h4>
+<p>To visualize the card foul ratio of the home and away team, a density plot was used. A density plot was chosen to facilitate the representation of the distribution of the home and away matches card foul ratio. A density plot in this context helps to view which team may have a higher card foul ratio and whether the card foul ratio is relatively higher or lower at certain point in the distribution. The aim of this plot is to visualize how aggressively the home or away teams play based on the card foul ratio information.</p>
+</section>
 </section>
 <section id="analysis-1" class="level3">
 <h3 class="anchored" data-anchor-id="analysis-1">Analysis</h3>
-<section id="penalties-by-team" class="level4">
-<h4 class="anchored" data-anchor-id="penalties-by-team">Penalties by Team</h4>
+<section id="question-2a-penalties-by-team" class="level4">
+<h4 class="anchored" data-anchor-id="question-2a-penalties-by-team">Question 2A: Penalties by Team</h4>
 <div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>q2_soccer_pen <span class="ot">&lt;-</span> soccer <span class="sc">|&gt;</span> </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(HF, AF, HY, AY, HR, AR) <span class="sc">|&gt;</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
@@ -634,8 +701,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a>                        <span class="at">face =</span> <span class="st">"bold"</span>,</span>
 <span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a>                        <span class="at">color =</span> pal_pl_logo,</span>
 <span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size =</span> <span class="dv">15</span>),</span>
-<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"inside"</span>,</span>
-<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position.inside =</span> <span class="fu">c</span>(<span class="fl">0.85</span>, <span class="fl">0.85</span>),</span>
+<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a>    <span class="co">#legend.position = "inside",</span></span>
+<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a>    <span class="co">#legend.position.inside = c(0.85, 0.85),</span></span>
 <span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(),</span>
 <span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.text.x =</span> <span class="fu">element_blank</span>(),</span>
@@ -652,6 +719,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>q2_penalties_viz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -661,13 +729,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="cardsfouls-ratio-by-team" class="level4">
-<h4 class="anchored" data-anchor-id="cardsfouls-ratio-by-team">Cards:Fouls Ratio by Team</h4>
+<section id="question-2b-cardsfouls-ratio-by-team" class="level4">
+<h4 class="anchored" data-anchor-id="question-2b-cardsfouls-ratio-by-team">Question 2B: Cards:Fouls Ratio by Team</h4>
 <div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>soccer_ctf <span class="ot">&lt;-</span> soccer <span class="sc">|&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">HTFCR =</span> (HR <span class="sc">+</span> HY)<span class="sc">/</span> HF,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ATFCR =</span> (AR <span class="sc">+</span> AY<span class="sc">/</span> AF)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ATFCR =</span> (AR <span class="sc">+</span> AY)<span class="sc">/</span> AF</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Home'</span> <span class="ot">=</span> <span class="st">'HTFCR'</span>,</span>
@@ -699,8 +769,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>                        <span class="at">face =</span> <span class="st">"bold"</span>,</span>
 <span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>                        <span class="at">color =</span> pal_pl_logo,</span>
 <span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size =</span> <span class="dv">15</span>),</span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"inside"</span>,</span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position.inside =</span> <span class="fu">c</span>(<span class="fl">0.75</span>, <span class="fl">0.75</span>),</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    <span class="co">#legend.position = "inside",</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">#legend.position.inside = c(0.75, 0.75),</span></span>
 <span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>()</span>
 <span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
@@ -710,6 +780,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> lab_pl_subtitle,</span>
 <span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">'Data from TidyTuesday'</span></span>
 <span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -722,20 +793,104 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="discussion-1" class="level3">
 <h3 class="anchored" data-anchor-id="discussion-1">Discussion</h3>
-<p><em>Discussion goes here; delete this text when done</em></p>
+<section id="question-2a-1" class="level4">
+<h4 class="anchored" data-anchor-id="question-2a-1">Question 2A</h4>
 <p>From the chart of the number of games by amount of penalties, there does not appear to be any major trends regarding a home-team bias when it comes to Cards. That said, there are a couple more instances of the home team receiving zero cards (both yellow and red) compared to the away team. The number of fouls does vary, however. The number of instances of a team with more fouls wavers, but generally there are more instances of very high foul counts (18+) for the away team. Interestingly, there is noticeably more instances of games in which the home team received a moderate number of fouls (from 11-13). In general, it also appears that the away team is right-skewed for the total number of fouls given, while the home team is left-skewed.</p>
+</section>
+<section id="question-2b-1" class="level4">
+<h4 class="anchored" data-anchor-id="question-2b-1">Question 2B</h4>
+<p>The density plot represents the distribution of the card foul ratio of the home and away teams of the premier league data set.The card foul ratio represents the number of cards per fouls committed during a match. This ratio helps to determine whether or not the b fouls committed are rather aggresive or not. A higher card foul ratio represents that a team may be playing more aggresively while a lower card foul ratio suggest the opposite.The visualization highlights the card foul ratio of home and away teams across various matches played in the premier league. From this density plot, it is rather evident that the card foul ratios of the home team are on the higher side compared to that of the away team. One would believe that it would be the opposite in this scenario and that the away team would have a higher card foul ratio due to a bias in favor of the home team. However this is clearly not the case. It rather appear that the home team has a higher card foul ratio and one cannot help but wonder if this is simply as a result of the home team feeling more confident and comfortable in their territory. In conclusion, home teams have a higher card foul ratio and play more aggresively during premier league matches compared to the away team.</p>
+</section>
+<section id="additional-information" class="level4">
+<h4 class="anchored" data-anchor-id="additional-information">Additional information</h4>
 <p>The average penalties by team are provided in the following summary table:</p>
 <div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#make new Dataset</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting only the necessary columns </span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>Compare_dataset <span class="ot">&lt;-</span> soccer[, <span class="fu">c</span>(<span class="st">"HomeTeam"</span>, <span class="st">"AwayTeam"</span>, <span class="st">"HF"</span>, <span class="st">"HR"</span>, <span class="st">"HY"</span>, <span class="st">"AF"</span>, <span class="st">"AR"</span>, <span class="st">"AY"</span>)] <span class="co"># Avoid division by zero by adding a small number (epsilon) to the denominator </span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>Compare_dataset<span class="sc">$</span>HCO <span class="ot">=</span> (Compare_dataset<span class="sc">$</span>HY <span class="sc">+</span> Compare_dataset<span class="sc">$</span>HR)<span class="sc">/</span>Compare_dataset<span class="sc">$</span>HF </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculating Away Foul Ratio </span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>Compare_dataset<span class="sc">$</span>ACO <span class="ot">=</span> (Compare_dataset<span class="sc">$</span>AY <span class="sc">+</span> Compare_dataset<span class="sc">$</span>AR )<span class="sc">/</span>Compare_dataset<span class="sc">$</span>AF</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare_dataset</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt the dataset for plotting (tidyr pivot_longer is the newer alternative to gather) </span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> Compare_dataset <span class="sc">%&gt;%</span> </span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(HF, HR, HY, AF, AR, AY,HCO,ACO), <span class="at">names_to =</span> <span class="st">"Category"</span>, <span class="at">values_to =</span> <span class="st">"Count"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type =</span> <span class="fu">case_when</span>( <span class="fu">str_detect</span>(Category, <span class="st">"F"</span>) <span class="sc">~</span> <span class="st">"Fouls"</span>, </span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">str_detect</span>(Category, <span class="st">"R"</span>) <span class="sc">~</span> <span class="st">"Red Cards"</span>, </span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">str_detect</span>(Category, <span class="st">"Y"</span>) <span class="sc">~</span> <span class="st">"Yellow Cards"</span>, </span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">str_detect</span>(Category, <span class="st">"C"</span>)<span class="sc">~</span><span class="st">"Fouls Ratio"</span>), </span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">Team =</span> <span class="fu">case_when</span>( <span class="fu">str_detect</span>(Category, <span class="st">"^H"</span>) <span class="sc">~</span> <span class="st">"Home"</span>, </span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">str_detect</span>(Category, <span class="st">"^A"</span>) <span class="sc">~</span> <span class="st">"Away"</span> )) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Category) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Type, Team) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">AverageCount =</span> <span class="fu">mean</span>(Count, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary table</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>plot_data <span class="sc">|&gt;</span> </span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> Type,</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> AverageCount</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 4
-  Team  Fouls `Red Cards` `Yellow Cards`
-  &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;
-1 Away   10.2      0.0632           1.74
-2 Home   10.1      0.05             1.65</code></pre>
+<pre><code># A tibble: 2 × 5
+  Team  Fouls `Fouls Ratio` `Red Cards` `Yellow Cards`
+  &lt;chr&gt; &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;
+1 Away   10.2         0.188      0.0632           1.74
+2 Home   10.1         0.175      0.05             1.65</code></pre>
 </div>
 </div>
 <p>Based on the overall averages, the away team on average receives a greater number of penalties per game. However, it is still by a relatively slim margin. The table is shown below in chart form to visualize how close these averages are:</p>
 <div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> Type,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y =</span> AverageCount,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">fill =</span> Team)) <span class="sc">+</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>)) <span class="sc">+</span> </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(AverageCount, <span class="dv">2</span>), </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> AverageCount <span class="sc">+</span> <span class="fl">0.02</span>),  <span class="co"># Adjust the y position for visibility </span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>), </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="dv">0</span>, <span class="co"># Vertical adjustment; 0 means right above the bar </span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">5</span>, <span class="co"># Text size, adjust as needed </span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> pal_pl_logo,</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> <span class="st">"Poppins"</span>,</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">fontface =</span> <span class="st">"bold"</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="st">"Poppins"</span>,</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>                        <span class="at">face =</span> <span class="st">"bold"</span>,</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">color =</span> pal_pl_logo,</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size =</span> <span class="dv">15</span>),</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">#legend.position = "inside",</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">#legend.position.inside = c(0.85, 0.85),</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(),</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Average Fouls, Red Cards, and "</span>,</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"Yellow Cards</span><span class="sc">\n</span><span class="st">for Home vs. Away Teams"</span>),</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> lab_pl_subtitle,</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count"</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Home"</span>, <span class="st">"Away"</span>),</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">darken</span>(pal_pl, <span class="fl">0.3</span>)</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -744,6 +899,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="section" class="level3">
 <h3 class="anchored" data-anchor-id="section"></h3>
