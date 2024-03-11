@@ -1,11 +1,11 @@
 ---
-title: "Game Metrics: Decoding Premier League Outcomes Through Visual Analysis and Data Exploration"
-subtitle: "INFO 526 - Fall 2023 - Project 1"
-author: "Akash Srinivasan, Gillian McGinnis, Jiayue He, Sai Navya Reddy, Sanja Dmitrovic, Valerie Okine"
+title: "Game Metrics: Decoding Premier League Outcomes"
+subtitle: "INFO 526 - Spring 2024 - Project 1"
+author: "Sanja Dmitrovic, Jiayue He, Gillian McGinnis, Valerie Okine, Sai Navya Reddy, Akash Srinivasan"
 title-slide-attributes:
-  data-background-image: images/watercolour_sys02_img34_teacup-ocean.jpg
-  data-background-size: stretch
-  data-background-opacity: "0.7"
+  data-background-image: images/football_match.jpg
+  data-background-size: cover
+  data-background-opacity: "0.3"
   data-slide-number: none
 format:
   revealjs:
@@ -17,7 +17,7 @@ execute:
 ---
 
 ```{r}
-#| label: load-pkgs
+#| label: prez_load-pkgs
 #| message: false
 #| output: false
 #| echo: false
@@ -49,7 +49,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r}
-#| label: setup
+#| label: prez_setup
 #| include: false
 
 # Plot theme
@@ -65,15 +65,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r}
-#| label: setup
-#| include: false
-
-# Plot theme
-ggplot2::theme_set(ggplot2::theme_minimal(base_size = 11))
-```
-
-```{r}
-#| label: load-dataset-colors
+#| label: prez_load-dataset-colors
 #| message: false
 #| echo: false
 soccer <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-04-04/soccer21-22.csv')
@@ -87,38 +79,46 @@ sysfonts::font_add_google("Poppins")
 showtext::showtext_auto()
 ```
 
-## INTRODUCTION
+## Dataset of choice
 
-::: incremental
-This Dataset derived from TidyTuesday's April 4, 2023 post "Premier League Match Data 2021-2022". The data is sourced from Evan Gower's Kaggle post of the same name. Variables included are teams, referees, and match statistics for home and away sides such as fouls, shots, cards, and point totals. Tabular format with rows representing individual matches and columns representing variables. The dataset contains both categorical and numerical variables. It provides insights into team performance, referee assignments, and match statistics for the season.
-:::
+<!-- ::: incremental -->
 
-## QUESTION 1
+### Premier League match data
 
-1A. Do the number of goals at half-time determine the final outcome? Does this relationship change between home and away teams?
+English football, 2021-2022 season
 
-1B. Does home-team advantage play a major role in the final match outcome?
+Source: TidyTuesday 04 April 2023, `soccer`
+<!-- This Dataset derived from TidyTuesday's April 4, 2023 post "Premier League Match Data 2021-2022". The data is sourced from Evan Gower's Kaggle post of the same name. Variables included are teams, referees, and match statistics for home and away sides such as fouls, shots, cards, and point totals. Tabular format with rows representing individual matches and columns representing variables. The dataset contains both categorical and numerical variables. It provides insights into team performance, referee assignments, and match statistics for the season. -->
+<!-- ::: -->
 
-## APPROACH
+## Question 1
 
-#### PART A
+### Scores
 
-::: nonincremental
-In Part A, we examine the correlation between half-time and full-time goals scored by home and away teams in the English Premier League 2021-2022 season. Using variables like HTHG, FTHG, HTAG, and FTAG, we create scatterplots, color-coded by team type. Separate linear regressions are conducted for home and away teams to determine correlation coefficients. This approach directly assesses the relationship strength between these variables, offering insights into match dynamics.
-:::
+1A. Do the number of goals at **half-time** determine the final outcome?
 
-#### PART B
+1B. Does **home-team advantage** play any role in the final outcome?
 
-::: nonincremental
-In Part B, we categorize home and away advantages in the English Premier League 2021-2022 season based on the Full Time Result (FTR) variable. A bar plot summarizes total games and goals scored by each team at home and away. We then create a new variable, Total goals, by combining advantage summaries with total goals. Finally, side-by-side bar plots interpret outcomes for all 20 teams using the Home team and Total variable
-:::
+<!-- ## APPROACH -->
 
-## Plots of Question 1
+<!-- #### PART A -->
 
-### Plot 1
+<!-- ::: nonincremental -->
+<!-- In Part A, we examine the correlation between half-time and full-time goals scored by home and away teams in the English Premier League 2021-2022 season. Using variables like HTHG, FTHG, HTAG, and FTAG, we create scatterplots, color-coded by team type. Separate linear regressions are conducted for home and away teams to determine correlation coefficients. This approach directly assesses the relationship strength between these variables, offering insights into match dynamics. -->
+<!-- ::: -->
+
+<!-- #### PART B -->
+
+<!-- ::: nonincremental -->
+<!-- In Part B, we categorize home and away advantages in the English Premier League 2021-2022 season based on the Full Time Result (FTR) variable. A bar plot summarizes total games and goals scored by each team at home and away. We then create a new variable, Total goals, by combining advantage summaries with total goals. Finally, side-by-side bar plots interpret outcomes for all 20 teams using the Home team and Total variable -->
+<!-- ::: -->
+
+<!-- ## Plots of Question 1 -->
+
+## Plot 1A: Half-Time v. Full-Time
 
 ```{r}
-#| label: q1_goals
+#| label: prez_q1_goals
 #| message: false
 #| warning: false
 
@@ -169,14 +169,14 @@ suppressMessages(print(q1_goals))
 
 ```
 
-### Plot 2
+## Plot 1B: Home-Team Advantage
 
 ```{r}
-#| label: q1ii_Totalgames_by_Home_and_Away
+#| label: prez_q1ii_Totalgames_by_Home_and_Away
 #| message: false
 #| warning: false
 
-# Create a variable for home team advantage
+
 soccer <- soccer %>%
   mutate(HomeAdvantage = ifelse(FTR == "H", "Home Team Win", "Away Team Win"))
 
@@ -185,28 +185,65 @@ advantage_summary <- soccer %>%
   group_by(HomeAdvantage) %>%
   summarise(TotalGames = n())
 
-# Print the result
-print(advantage_summary)
+total_home_goals <-soccer %>%
+  group_by(HomeTeam) %>%
+  summarize(Total_Home_goals = sum(FTHG))
+ 
+total_away_goals <-soccer %>%
+  group_by(AwayTeam) %>%
+  summarize(Total_Away_goals = sum(FTAG))
+
+# Merge the data for home and away goals
+total_goals <- merge(total_home_goals, total_away_goals, by.x = "HomeTeam", by.y = "AwayTeam", all = TRUE)
+
+total_goals_long <- gather(total_goals, key = "TeamType", value = "TotalGoals", -HomeTeam)
+
+# Create a side-by-side bar plot
+ggplot(total_goals_long , aes(x = HomeTeam, y = TotalGoals, fill = TeamType)) +
+  geom_bar(position = "dodge", stat = "identity") +
+  labs(title = "Total Home and Away Goals by Team",
+       x = "Teams on Home and Away", y = "Total Goals") +
+  # scale_fill_manual(values = c("Total_Home_goals" = "lightgreen", "Total_Away_goals" = "red")) +
+  scale_fill_manual(
+    breaks = c("Total_Home_goals", "Total_Away_goals"),
+    labels = c("Home", "Away"),
+    values = darken(pal_pl, 0.3)
+  ) +
+  theme_classic() +
+  theme(
+    text = element_text("Poppins",
+                        face = "bold",
+                        color = pal_pl_logo,
+                        size = 12)
+  ) +
+  # theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
 ## Question 2
 
-What effect (if any) does being the “home” team versus being the “away” team affect the teams’ penalties?
+### Penalties
 
-1.  Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?
+<!-- ::: nonincremental -->
+<!-- For Question 2, our focus shifts towards exploring the potential impact of home versus away team on the occurance of penalties. This question delves into whether playing at home or away influences the likelihood of a team gaining fouls, yellow cards, and red cards. Based on our assumption, we want to see if there is a notable bias against the away team in terms of penalties awarded, suggesting a possible psychological or referee bias factor during game. -->
+<!-- ::: -->
 
-2.   How do the ratios of cards to fouls differ between home and away teams?
+<!-- ## Question 2 Break Down -->
 
-## Approach for Question 2
+2A. Is there a noticeable **bias against the away team** in terms of penalties recieved?
 
-To analyze potential home-team bias in penalties, we examined the frequency of penalties awarded per game in the season, represented by a distribution plot. Red and yellow cards, often clustered in low counts, were combined for clarity. Fouls, more prevalent in every game, showed a broader distribution. Team types were distinguished by color and shape for better interpretation.
+2B. How do the **ratios of cards to fouls** differ between home and away teams?
 
-## Plots of Question 2
+<!-- ## Approach for Question 2 -->
 
-### Plot 2A
+<!-- To analyze potential home-team bias in penalties, we examined the frequency of penalties awarded per game in the season, represented by a distribution plot. Red and yellow cards, often clustered in low counts, were combined for clarity. Fouls, more prevalent in every game, showed a broader distribution. Team types were distinguished by color and shape for better interpretation. -->
+
+<!-- ## Plots of Question 2 -->
+
+## Plot 2A: Home v. Away Penalties
 
 ```{r}
-#| label: q2_penalties
+#| label: prez_q2_penalties
 #| message: false
 #| fig.width: 10
 
@@ -343,17 +380,17 @@ q2_penalties_viz <- ggplot(q2_soccer_pen,
 q2_penalties_viz
 ```
 
-### PLOT 2B
+## Plot 2B: Cards:Fouls Ratio
 
 ```{r}
-#| label: q2_ctf
+#| label: prez_q2_ctf
 #| message: false
 #| fig.width: 10
 
 soccer_ctf <- soccer |>
   mutate(
     HTFCR = (HR + HY)/ HF,
-    ATFCR = (AR + AY/ AF)
+    ATFCR = (AR + AY)/ AF
   ) |>
   rename(
     'Home' = 'HTFCR',

@@ -273,16 +273,7 @@ In question2, we want to figure out what effect (if any) does being the "home" t
 
 A correlation matrix is first used to find any potential relationships amongst the variables of interest before any futher analysis is conducted.The variables of interest here are red cards, yellow cards,the card foul ratio and the full time goals. The correlation plot is designed to assign a higher color hue to the variables which have a relatively higher correlation. From the visualization, it is revealed that the most positively correlated variables of interest are yellow cards and the card foul ratio. This is followed by the yellow cards and the number of fouls. All other variables of interest seem to have very little correlation amongst them.
 
-**Question 2A**
-
-Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?
-
-**Question 2B**
-
-How do the ratios of cards to fouls differ between home and away teams?
-
-```{r dev = 'ragg_png'}
-#| label: q2_corr_plot
+```{r}
 #| message: false
 #| warning: false
 
@@ -337,7 +328,16 @@ ggcorrplot(cor_matrix,
     subtitle = paste0("Card to Foul Ratio(CFR), Yellow cards(Yellow),\n",
                       "Red cards(Red), and Full Time Goals (FTG)")
   )
+
 ```
+
+**Question 2A**
+
+Is there a noticeable bias against the away team in terms of the number of fouls, red cards, and yellow cards received?
+
+**Question 2B**
+
+How do the ratios of cards to fouls differ between home and away teams?
 
 ### Approach
 
@@ -501,7 +501,7 @@ q2_penalties_viz
 soccer_ctf <- soccer |>
   mutate(
     HTFCR = (HR + HY)/ HF,
-    ATFCR = (AR + AY/ AF)
+    ATFCR = (AR + AY)/ AF
   ) |>
   rename(
     'Home' = 'HTFCR',
@@ -554,7 +554,7 @@ From the chart of the number of games by amount of penalties, there does not app
 
 #### Question 2B
 
-The density plot represents the distribution of the card foul ratio of the home and away teamsof the premier league data set.The card foul ratio represents the number of cards per fouls committed duringa match. This ratio helps to determine whether or not theb fouls committed are rather aggresive or not.A higher card foul ratio represents that a team may be playing more aggresively while a lower card foul ratio suggest theopposite.The visualization highlights the card foul ratio of home and away teams across various matches played in the premier league.From this density plot, it is rather evident that the card foul ratios of thehome team are on the higher side compared to that of the away team. One would believe that it would bethe opposite in this scenario and that the away team would have a higher card foul ratio due to a bias infavor of the home team. However this is clearly not the case. It rather appear that the home team has a higher card foul ratio and onecannot help but wonder if this is simply as a result of the home team feeling more confident and comfortable in their territory.In conclusion, home teams have a higher card foul ratio and play more aggresively during premier league matches compared to the away team.
+The density plot represents the distribution of the card foul ratio of the home and away teams of the premier league data set.The card foul ratio represents the number of cards per fouls committed during a match. This ratio helps to determine whether or not the b fouls committed are rather aggresive or not. A higher card foul ratio represents that a team may be playing more aggresively while a lower card foul ratio suggest the opposite.The visualization highlights the card foul ratio of home and away teams across various matches played in the premier league. From this density plot, it is rather evident that the card foul ratios of the home team are on the higher side compared to that of the away team. One would believe that it would be the opposite in this scenario and that the away team would have a higher card foul ratio due to a bias in favor of the home team. However this is clearly not the case. It rather appear that the home team has a higher card foul ratio and one cannot help but wonder if this is simply as a result of the home team feeling more confident and comfortable in their territory. In conclusion, home teams have a higher card foul ratio and play more aggresively during premier league matches compared to the away team.
 
 #### Additional information
 
