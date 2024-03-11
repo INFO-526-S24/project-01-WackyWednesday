@@ -501,7 +501,7 @@ q2_penalties_viz
 soccer_ctf <- soccer |>
   mutate(
     HTFCR = (HR + HY)/ HF,
-    ATFCR = (AR + AY/ AF)
+    ATFCR = (AR + AY)/ AF
   ) |>
   rename(
     'Home' = 'HTFCR',
