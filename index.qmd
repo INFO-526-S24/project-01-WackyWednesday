@@ -2,7 +2,6 @@
 title: "Game Metrics: Decoding Premier League Outcomes Through Visual Analysis and Data Exploration"
 subtitle: "INFO 526 - Project 1"
 author: "Group 4 WackyWednesday"
-# format: html
 editor: visual
 format:
   html:
@@ -98,7 +97,7 @@ We chose this data set because it provides comprehensive statistics contributing
 
 ### Introduction
 
-First, we explore if a home-team advantage is present when assessing teams' performances. Here, we use goals as the main indicator of how well a team performs. One way we answer this question is by characterizing the relationship between goals scored at half-time (variables: HTHG, HTAG) and goals scored at the end of the match (variables: FTHG, FTAG) for both home and away teams through scatterplot and linear regression analysis. We wish to quantify how well goals at half-time predict goals at full-time in general as well as seeing if the strength of this relationship changes based on being on the home or away team. Then, we explore this question of home-team advantage using the Full Time Result variable (FTR) and creating a barplot of total goals per team (e.g., Arsenal, Liverpool, etc.) and if they were home or away. Our hypothesis is that the home team will score more goals and win more matches.
+First, we explore if a home-team advantage is present when assessing teams' performances. Here, we use goals as the main indicator of how well a team performs. One way we answer this question is by characterizing the relationship between goals scored at half-time (variables: `HTHG`, `HTAG`) and goals scored at the end of the match (variables: `FTHG`, `FTAG`) for both home and away teams through scatterplot and linear regression analysis. We wish to quantify how well goals at half-time predict goals at full-time in general as well as seeing if the strength of this relationship changes based on being on the home or away team. Then, we explore this question of home-team advantage using the Full Time Result variable (`FTR`) and creating a barplot of total goals per team (e.g., Arsenal, Liverpool, etc.) and if they were home or away. Our hypothesis is that the home team will score more goals and win more matches.
 
 **Question 1A**
 
@@ -173,7 +172,7 @@ suppressMessages(print(q1_goals))
 #### Question 1B: Total games won by home and away teams.
 
 ```{r}
-#| label: q1ii_Totalgames_by_Home_and_Away
+#| label: q1b_Totalgames_by_Home_and_Away
 #| message: false
 #| warning: false
 
@@ -191,6 +190,7 @@ print(advantage_summary)
 ```
 
 ```{r}
+#| label: q1b_bar
 # Bar plot for home and away team advantage
 
 ggplot(advantage_summary, aes(x = HomeAdvantage, y = TotalGames, fill = HomeAdvantage)) +
@@ -210,10 +210,10 @@ ggplot(advantage_summary, aes(x = HomeAdvantage, y = TotalGames, fill = HomeAdva
                         color = pal_pl_logo,
                         size = 15)
   )
-  # theme_minimal()
 ```
 
 ```{r}
+#| label: q1b_summ_tabs
 total_home_goals <-soccer %>%
   group_by(HomeTeam) %>%
   summarize(Total_Home_goals = sum(FTHG))
@@ -227,6 +227,7 @@ print(total_away_goals)
 ```
 
 ```{r}
+#| label: q1b_totals
 # Merge the data for home and away goals
 total_goals <- merge(total_home_goals, total_away_goals, by.x = "HomeTeam", by.y = "AwayTeam", all = TRUE)
 
@@ -263,17 +264,18 @@ There is a strong correlation between goals scored at half-time and goals scored
 
 #### Question 1B
 
-As per the data_set, the home game winning advantage did not create impact in every game but only in some games whereas for the goal scored ratio in home and away match except few teams, majority of the team scored more goals in home than in away.
+As per the dataset, the home team winning advantage did not create impact in every game but only in some games. For the goals scored in home and away match, the majority of the teams scored more goals when playing as home rather than in away (with a few exceptions, such as Chelsea).
 
 ## Question 2
 
 ### Introduction
 
-In question2, we want to figure out what effect (if any) does being the "home" team versus being the "away" team affect the teams' penalties?
+In question 2, we want to figure out what effect (if any) does being the "home" team versus being the "away" team affect the teams' penalties?
 
-A correlation matrix is first used to find any potential relationships amongst the variables of interest before any futher analysis is conducted.The variables of interest here are red cards, yellow cards,the card foul ratio and the full time goals. The correlation plot is designed to assign a higher color hue to the variables which have a relatively higher correlation. From the visualization, it is revealed that the most positively correlated variables of interest are yellow cards and the card foul ratio. This is followed by the yellow cards and the number of fouls. All other variables of interest seem to have very little correlation amongst them.
+A correlation matrix is first used to find any potential relationships amongst the variables of interest before any further analysis is conducted. The variables of interest here are red cards, yellow cards,the card foul ratio and the full time goals. The correlation plot is designed to assign a higher color hue to the variables which have a relatively higher correlation. From the visualization, it is revealed that the most positively correlated variables of interest are yellow cards and the card foul ratio. This is followed by the yellow cards and the number of fouls. All other variables of interest seem to have very little correlation amongst them.
 
 ```{r}
+#| label: q2_corr_plot
 #| message: false
 #| warning: false
 
@@ -550,11 +552,11 @@ ggplot(soccer_ctf, aes(x = FCR)) +
 
 #### Question 2A
 
-From the chart of the number of games by amount of penalties, there does not appear to be any major trends regarding a home-team bias when it comes to Cards. That said, there are a couple more instances of the home team receiving zero cards (both yellow and red) compared to the away team. The number of fouls does vary, however. The number of instances of a team with more fouls wavers, but generally there are more instances of very high foul counts (18+) for the away team. Interestingly, there is noticeably more instances of games in which the home team received a moderate number of fouls (from 11-13). In general, it also appears that the away team is right-skewed for the total number of fouls given, while the home team is left-skewed.
+From the chart of the number of games by amount of penalties, there does not appear to be any major trends regarding a home-team bias when it comes to Cards. That said, there are a couple more instances of the home team receiving zero cards (both yellow and red) compared to the away team. The number of fouls does vary, however. The number of instances of a team with more fouls wavers, but generally there are more instances of very high foul counts (18+) for the away team. Interestingly, there is noticeably more instances of games in which the home team received a moderate number of fouls (from 11-13). In general, it also appears that the away team is right-skewed for the total number of fouls given, while the home team is left-skewed. Interestingly the actual averages across the whole season are quite close, as demonstrated in the later "Additional Information" section.
 
 #### Question 2B
 
-The density plot represents the distribution of the card foul ratio of the home and away teams of the premier league data set.The card foul ratio represents the number of cards per fouls committed during a match. This ratio helps to determine whether or not the b fouls committed are rather aggresive or not. A higher card foul ratio represents that a team may be playing more aggresively while a lower card foul ratio suggest the opposite.The visualization highlights the card foul ratio of home and away teams across various matches played in the premier league. From this density plot, it is rather evident that the card foul ratios of the home team are on the higher side compared to that of the away team. One would believe that it would be the opposite in this scenario and that the away team would have a higher card foul ratio due to a bias in favor of the home team. However this is clearly not the case. It rather appear that the home team has a higher card foul ratio and one cannot help but wonder if this is simply as a result of the home team feeling more confident and comfortable in their territory. In conclusion, home teams have a higher card foul ratio and play more aggresively during premier league matches compared to the away team.
+The density plot represents the distribution of the card foul ratio of the home and away teams of the data. The card foul ratio represents the number of cards (both yellow and red) given "per" fouls committed during a match. A higher card:foul ratio might suggest that a team may be playing more aggressively, while a lower card:foul ratio suggest the opposite. From this density plot, it is evident that the card:foul ratios of the away team are typically on the higher side compared to that of the home team. This could indicate that the away team feels the need to play more aggressively, or that there is a home-team bias when it comes to cards given.
 
 #### Additional information
 
@@ -567,7 +569,7 @@ The average penalties by team are provided in the following summary table:
 #make new Dataset
 # Selecting only the necessary columns 
 
-Compare_dataset <- soccer[, c("HomeTeam", "AwayTeam", "HF", "HR", "HY", "AF", "AR", "AY")] # Avoid division by zero by adding a small number (epsilon) to the denominator 
+Compare_dataset <- soccer[, c("HomeTeam", "AwayTeam", "HF", "HR", "HY", "AF", "AR", "AY")]
 
 
 Compare_dataset$HCO = (Compare_dataset$HY + Compare_dataset$HR)/Compare_dataset$HF 
