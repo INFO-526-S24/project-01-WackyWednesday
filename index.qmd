@@ -331,8 +331,6 @@ ggcorrplot(cor_matrix,
 
 ### Approach
 
-*Approach goes here -- DELETE THIS TEXT WHEN DONE.*
-
 #### Question 2A
 
 To determine if there is home-team bias regarding penalties (fouls, yellow cards, and red cards), we plotted the distribution of the total number of games in the season in which a certain number of penalties were given. Although this can be shown with a density plot or area plot, it is easier to see at precisely which penalty counts were more often toward or against each team. Since most games had no red cards given at all, and the maximum number of red cards given was only two, both red cards and yellow cards are plotted on the same facet. The distribution of fouls is much greater, as every single game had at least one foul given. The two team types are mapped to both color and shape for accessibility.
