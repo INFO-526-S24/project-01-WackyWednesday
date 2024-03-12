@@ -58,7 +58,7 @@ showtext::showtext_auto()
 
 ## Abstract
 
-This project analyzes Premier League match data from the 2021-2022 season to investigate team performance and officiating biases. Through data-driven analysis of goals, fouls, and cards, the study explores the influence of home-team advantage and potential disparities in penalty decisions. By uncovering trends in match dynamics, this research provides valuable insights for football enthusiasts and stakeholders alike.
+This project examines 2021-2022 Premier League match data to analyze team performance, home-team advantage, and potential officiating biases. Methods included creating visualizations and summary tables to compare home and away team performance and penalties across the entire season. Results indicate a strong correlation between half-time and full-time goals, with slightly higher predictability for home teams. Home-team advantage is evident in goal scoring but does not guarantee victory. Additionally, there's a difference in the most frequent number of fouls given to the home team compared to the away team. The card-to-foul ratio also appears to be higher for the away team. Overall, this study offers insights into Premier League dynamics and officiating tendencies.
 
 ## Introduction
 
