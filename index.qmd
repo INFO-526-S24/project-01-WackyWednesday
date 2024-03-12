@@ -601,20 +601,27 @@ plot_data <- Compare_dataset %>%
   summarise(AverageCount = mean(Count, na.rm = TRUE)) 
 
 # Summary table
-plot_data |> 
+plot_data |>
   pivot_wider(
     names_from = Type,
     values_from = AverageCount
-  ) 
-
-
+  )
 ```
 
 ```{r}
 #|message: false
 #|warning: false
 
-kable(plot_data, "html") %>%
+
+reshaped_data <- plot_data |>
+  pivot_wider(
+    names_from = Type,
+    values_from = AverageCount
+  )
+
+# Print the reshaped data as a table
+reshaped_data |>
+  kable("html") |>
   kable_styling(full_width = FALSE)
 
 ```
