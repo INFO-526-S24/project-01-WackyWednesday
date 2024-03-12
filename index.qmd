@@ -123,6 +123,7 @@ Part B: Using the Full Time Result (`FTR`) variable, home advantage and away adv
 #| label: q1_goals
 #| message: false
 #| warning: false
+#| fig.alt: "Scatter plot with linear line-of-best-fit showing goals at full-time versus goals at half-time for Premier League match data, with home team and away team indicated by color. The x-axis (half-time goals) is marked from 0 to 4 on intervals of 1, and the y-axis (full-time goals) is marked from 0 to 6 on intervals of 2. The lines-of-best-fit have a strong slope upward and are annotated with their r values, 0.72 for the home team and 0.70 for the away team."
 
 #Create tibbles based on if the home or away team scored the goals. This makes it easier to color-code the scatterplot and calculate separate linear regressions later.
 home_goals <- tibble(soccer$HTHG, soccer$FTHG)
@@ -193,6 +194,7 @@ kable(advantage_summary, "html") %>%
 
 ```{r}
 #| label: q1b_bar
+#| fig.alt: "Bar plot of the total number of games in which the away team won and when the home team won for Premier League match data. The y-axis is marked from 0 to 200 on intervals of 50, and the team types are indicated by x-axis labels and color. The away team appears to have won 217 games, while the home team won 163 games."
 # Bar plot for home and away team advantage
 
 ggplot(advantage_summary, aes(x = HomeAdvantage, y = TotalGames, fill = HomeAdvantage)) +
@@ -234,6 +236,7 @@ kable(total_away_goals, "html") %>%
 
 ```{r}
 #| label: q1b_totals
+#| fig.alt: "Bar plot of the total number of scores made by each team in a Premier League season, divided by home or away as indicated by color. The y-axis ranges from 0 to 60, and the x-axis has labels for each team. The greatest number of goals scored was by Man City as a home team (58), and the lowest was Norwich as an away team (11); no team had an even number of home goals versus away goals except for Watford (17). All values are reported in tables available as text above the plot."
 # Merge the data for home and away goals
 total_goals <- merge(total_home_goals, total_away_goals, by.x = "HomeTeam", by.y = "AwayTeam", all = TRUE)
 
@@ -284,6 +287,7 @@ A correlation matrix is first used to find any potential relationships amongst t
 #| label: q2_corr_plot
 #| message: false
 #| warning: false
+#| fig.alt: "Correlation plot comparing variables relating to Premier League data variables of cards-to-foul ratio (CFR), yellow cards, red cards, and full-time goals (FTG). The values are shaded based on their correlation value. Red & fouls has a correlation of 0.04, FTG & fouls -0.03, CFR & fouls -0.05, yellow & fouls 0.25; FTG & red 0.01, CFR & red 0.09, yellow & red 0.01; CFR & FTG -0.05, yellow & FTG -0.05; yellow & CFR 0.46."
 
 soccer_corr <- soccer |>
   mutate(
@@ -365,6 +369,7 @@ To visualize the card foul ratio of the home and away team, a density plot was u
 #| label: q2_penalties
 #| message: false
 #| fig.width: 10
+#| fig.alt: "Point and line plot showing the number of Premier League games versus the number of certain penalties given in a game to the home team and away team, where penalties are divided by yellow cards, red cards, and fouls, and the team type is indicated by color and point shape. The plot is faceted by cards and fouls; the former has an x-axis range of 0 to 6 on intervals of 1 and a y-axis range of 0 to 300 on intervals of 100, and the latter has an x-axis range of 0 to 25 on intervals of 5 and a y-axis range of 0 to 40 on intervals of 10. Most games had 0 red cards given, and the away & home team are roughly equal in the number of instances of 1 red card given; only the home team has an instance of 2 red cards given in a game. The distribution of yellow cards given is roughly equivalent for both the home team and the away team, and only the home team has an instance of 6 fouls given. The distribution of fouls is roughly equivalent from 0 to 6, at which point the away team peaks and troughs from 7-9, and the home team has more instances than the away team around 11-13. The trend resumes from 15-22 fouls. Only away teams had instances of 23 and 25 fouls given."
 
 q2_soccer_pen <- soccer |> 
   select(HF, AF, HY, AY, HR, AR) |>
@@ -505,6 +510,7 @@ q2_penalties_viz
 #| label: q2_ctf
 #| message: false
 #| fig.width: 10
+#| fig.alt: "Distribution plot of card-to-foul ratios by home team and away team in Premier League data. The x-axis ranges from 0 to 1 on intervals of 0.25, and the y-axis ranges from 0 to 3 on intervals of 1. The home team and away team are differentiated with color, and the fill has a slight opacity to allow the density values to be visible throughout. Both distributions are right-skewed, and have slight dips around 0.01 with the home team being slightly higher. The away team has a higher density peak of about 3.25 around a ratio of 0.2 compared to the home team, which peaks around a density of 3 at 0.15. Both taper as the ratio increases, with the away team occasionally rising in density above that of the home team, especially around 0.04."
 
 soccer_ctf <- soccer |>
   mutate(
@@ -631,6 +637,7 @@ Based on the overall averages, the away team on average receives a greater numbe
 ```{r}
 #| label: q2_ctf2_viz
 #| message: false
+#| fig.alt: "Bar plot showing the average fouls, red cards, yellow cards, and card-to-foul ratio for the home team and the away team Premier League data. The teams are separated by color. The x-axis is marked with each category, and the y-axis ranges from 0 to 10 on intervals of 2.5. The values are reported as text in the table above the visualization, and are also annotated on the plot itself rounded to two decimal points. The fouls average to 10.16 and 10.06 for the away and home team respectively; the ratio as 0.19 and 0.18; the red cards ad 0.06 and 0.06; and the yellow cards as 1.74 and 1.65."
 
 ggplot(plot_data, aes(x = Type,
                       y = AverageCount,
