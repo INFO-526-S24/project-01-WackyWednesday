@@ -28,7 +28,9 @@ pacman::p_load(
   colorspace,
   sysfonts,
   showtext,
-  scales
+  scales,
+  knir,
+  kableExtra
   )
 
 options(width = 65)
@@ -185,8 +187,8 @@ advantage_summary <- soccer %>%
   group_by(HomeAdvantage) %>%
   summarise(TotalGames = n())
 
-# Print the result
-print(advantage_summary)
+kable(advantage_summary, "html") %>%
+  kable_styling(full_width = FALSE)
 ```
 
 ```{r}
@@ -222,8 +224,12 @@ total_away_goals <-soccer %>%
   group_by(AwayTeam) %>%
   summarize(Total_Away_goals = sum(FTAG))
 
-print(total_home_goals)
-print(total_away_goals)
+kable(total_home_goals, "html") %>%
+  kable_styling(full_width = FALSE)
+kable(total_away_goals, "html") %>%
+  kable_styling(full_width = FALSE)
+
+
 ```
 
 ```{r}
@@ -565,6 +571,8 @@ The average penalties by team are provided in the following summary table:
 ```{r}
 #| label: q2_ctf2_wrangle
 #| message: false
+#| warning: false
+#| output: false
 
 #make new Dataset
 # Selecting only the necessary columns 
@@ -597,8 +605,18 @@ plot_data |>
   pivot_wider(
     names_from = Type,
     values_from = AverageCount
-  ) |> 
-  print()
+  ) 
+
+
+```
+
+```{r}
+#|message: false
+#|warning: false
+
+kable(plot_data, "html") %>%
+  kable_styling(full_width = FALSE)
+
 ```
 
 Based on the overall averages, the away team on average receives a greater number of penalties per game. However, it is still by a relatively slim margin. The table is shown below in chart form to visualize how close these averages are:
