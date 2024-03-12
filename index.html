@@ -987,11 +987,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">AverageCount =</span> <span class="fu">mean</span>(Count, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span>
 <span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary table</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>plot_data <span class="sc">|&gt;</span> </span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>plot_data <span class="sc">|&gt;</span></span>
 <span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
 <span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> Type,</span>
 <span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> AverageCount</span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell" data-layout-align="center">
@@ -1000,58 +1000,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|message: false</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#|warning: false</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(plot_data, <span class="st">"html"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>reshaped_data <span class="ot">&lt;-</span> plot_data <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> Type,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> AverageCount</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the reshaped data as a table</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>reshaped_data <span class="sc">|&gt;</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Type</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Team</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">AverageCount</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Fouls</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Fouls Ratio</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Red Cards</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Yellow Cards</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Fouls</td>
 <td style="text-align: left;">Away</td>
-<td style="text-align: right;">10.1578947</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Fouls</td>
-<td style="text-align: left;">Home</td>
-<td style="text-align: right;">10.0552632</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Fouls Ratio</td>
-<td style="text-align: left;">Away</td>
+<td style="text-align: right;">10.15789</td>
 <td style="text-align: right;">0.1875560</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Fouls Ratio</td>
-<td style="text-align: left;">Home</td>
-<td style="text-align: right;">0.1750374</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Red Cards</td>
-<td style="text-align: left;">Away</td>
 <td style="text-align: right;">0.0631579</td>
+<td style="text-align: right;">1.744737</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Red Cards</td>
 <td style="text-align: left;">Home</td>
+<td style="text-align: right;">10.05526</td>
+<td style="text-align: right;">0.1750374</td>
 <td style="text-align: right;">0.0500000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Yellow Cards</td>
-<td style="text-align: left;">Away</td>
-<td style="text-align: right;">1.7447368</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Yellow Cards</td>
-<td style="text-align: left;">Home</td>
-<td style="text-align: right;">1.6526316</td>
+<td style="text-align: right;">1.652632</td>
 </tr>
 </tbody>
 </table>
